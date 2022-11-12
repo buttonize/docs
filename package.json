@@ -1,0 +1,52 @@
+{
+	"name": "docs-app",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"prepare": "husky install",
+		"env": "env-cmd -f .env bash -c \"ssocreds -p \\$AWS_PROFILE\" && env-cmd -f .env",
+		"start": "npm run env -- sst start",
+		"build": "npm run env -- sst build",
+		"deploy": "npm run env -- sst deploy",
+		"remove": "npm run env -- sst remove",
+		"console": "npm run env -- sst console",
+		"typecheck": "tsc --noEmit",
+		"test": "sst bind -- vitest run",
+		"lint": "eslint 'services' 'stacks' 'docs' --quiet --ext .ts,.tsx,.js,.jsx,.json",
+		"lint:fix": "eslint 'services' 'stacks' 'docs' --quiet --ext .ts,.tsx,.js,.jsx,.json --fix"
+	},
+	"lint-staged": {
+		"*.{ts,tsx,js,jsx,json}": "eslint --quiet --fix",
+		"*.{graphql,gql,html}": "prettier --write"
+	},
+	"devDependencies": {
+		"aws-cdk-lib": "2.50.0",
+		"@serverless-stack/cli": "^1.17.1",
+		"@serverless-stack/resources": "^1.17.1",
+		"typescript": "^4.8.4",
+		"@tsconfig/node16": "^1.0.3",
+		"vitest": "^0.25.1",
+		"env-cmd": "^10.1.0",
+		"@commitlint/cli": "^17.1.2",
+		"@commitlint/config-conventional": "^17.1.0",
+		"@microsoft/eslint-plugin-sdl": "^0.2.0",
+		"@typescript-eslint/eslint-plugin": "5.38.1",
+		"@typescript-eslint/parser": "5.38.1",
+		"eslint": "8.24.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-react": "^7.31.8",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-security": "^1.5.0",
+		"eslint-plugin-simple-import-sort": "^7.0.0",
+		"husky": "8.0.1",
+		"lint-staged": "11.2.6",
+		"prettier": "2.7.1",
+		"prettier-plugin-tailwindcss": "^0.1.13"
+	},
+	"workspaces": [
+		"services",
+		"docs"
+	]
+}

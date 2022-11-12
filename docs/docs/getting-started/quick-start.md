@@ -6,6 +6,16 @@ description: quick start
 
 # Quick start
 
+##  Docs under construction &#9888;
+
+:::caution
+
+The docs section will be done after AWS re:Invent.
+
+:::
+
+<hr/>
+
 
 Let's discover **Docusaurus in less than 5 minutes**.
 

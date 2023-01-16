@@ -1,10 +1,14 @@
 ---
 slug: /
 sidebar_position: 1
-description: quick start
+description: Buttonize your infrastructure right now and create your first widget.
 ---
 
 # Quick start
+
+## What is Buttonize
+
+
 
 ##  Docs under construction &#9888;
 

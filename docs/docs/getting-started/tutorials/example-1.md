@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-# Infrastructure as Code
+# First example
 
 Let's discover **Docusaurus in less than 5 minutes**.
 

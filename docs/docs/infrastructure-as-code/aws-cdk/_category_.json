@@ -1,0 +1,8 @@
+{
+	"label": "AWS CDK",
+	"position": 1,
+	"link": {
+		"type": "generated-index",
+		"description": "At Buttonize we make sure Infrastructure as Code definitions are first class citizens in our low-code ecosystem and that's why we prepared an AWS CDK Constructs library containing everything you need in order to manage Buttonize widgets from your AWS CDK."
+	}
+}

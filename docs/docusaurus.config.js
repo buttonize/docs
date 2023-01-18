@@ -34,11 +34,12 @@ const config = {
 			({
 				docs: {
 					sidebarPath: require.resolve('./sidebars.js'),
+					sidebarCollapsed: false,
 					routeBasePath: '/'
 				},
-				blog: {
-					showReadingTime: true
-				},
+				// blog: {
+				// 	showReadingTime: true
+				// },
 				theme: {
 					customCss: require.resolve('./src/css/custom.css')
 				},
@@ -66,7 +67,7 @@ const config = {
 						position: 'left',
 						label: 'Docs'
 					},
-					{ to: '/blog', label: 'Blog', position: 'left' },
+					// { to: '/blog', label: 'Blog', position: 'left' },
 					{
 						href: 'https://app.buttonize.io',
 						label: 'Buttonize App',
@@ -101,10 +102,10 @@ const config = {
 					{
 						title: 'More',
 						items: [
-							{
-								label: 'Blog',
-								to: '/blog'
-							},
+							// {
+							// 	label: 'Blog',
+							// 	to: '/blog'
+							// },
 							{
 								label: 'GitHub',
 								href: 'https://github.com/buttonize'
@@ -124,7 +125,44 @@ const config = {
 				theme: lightCodeTheme,
 				darkTheme: darkCodeTheme
 			}
-		})
+		}),
+	plugins: [
+		[
+			'docusaurus-plugin-remote-content',
+			{
+				name: 'buttonize-cdk',
+				sourceBaseUrl:
+					'https://raw.githubusercontent.com/buttonize/buttonize-cdk/master/',
+				outDir: 'docs/infrastructure-as-code/aws-cdk',
+				documents: ['API.md'],
+				performCleanup: false,
+				modifyContent(filename, content) {
+					switch (filename) {
+						case 'API.md':
+							return {
+								filename: 'api-reference.md',
+								content: `---
+sidebar_position: 2
+description: API Reference of Buttonize AWS CDK constructs
+---
+		${content.replace(
+			/# API Reference.*\n/,
+			`# API Reference
+<p>
+	<a href="https://discord.gg/2quY4Vz5BM"><img alt="Discord" src="https://img.shields.io/discord/1038752242238496779?style=flat-square" /></a>&nbsp;
+	<a href="https://www.npmjs.com/package/@buttonize/cdk"><img alt="npm" src="https://img.shields.io/npm/v/@buttonize/cdk?style=flat-square" /></a>&nbsp;
+	<a href="https://github.com/buttonize/buttonize-cdk/actions/workflows/release.yml?query=branch%3Amaster"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/buttonize/buttonize-cdk/release.yml?branch=master&style=flat-square" /></a>
+</p>
+<img src="/img/cdk.png" style={{ height: "100px", marginTop: "10px" }}/>
+`
+		)}`
+							}
+					}
+					return undefined
+				}
+			}
+		]
+	]
 }
 
 module.exports = config

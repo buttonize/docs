@@ -1,6 +1,7 @@
 {
 	"label": "Tutorials",
 	"position": 2,
+	"collapsed": true,
 	"link": {
 		"type": "generated-index",
 		"description": "Tutorials here"

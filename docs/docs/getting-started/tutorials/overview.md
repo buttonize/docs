@@ -1,9 +1,9 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 description: Execute and manage your Buttonize widgets.
 ---
 
-# First example
+# Overview
 
 Let's discover **Docusaurus in less than 5 minutes**.
 

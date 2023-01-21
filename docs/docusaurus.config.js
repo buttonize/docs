@@ -27,6 +27,12 @@ const config = {
 		locales: ['en']
 	},
 
+	markdown: {
+		mermaid: true
+	},
+
+	themes: ['@docusaurus/theme-mermaid'],
+
 	presets: [
 		[
 			'classic',
@@ -127,21 +133,23 @@ const config = {
 			}
 		}),
 	plugins: [
-		[
-			'docusaurus-plugin-remote-content',
-			{
-				name: 'buttonize-cdk',
-				sourceBaseUrl:
-					'https://raw.githubusercontent.com/buttonize/buttonize-cdk/master/',
-				outDir: 'docs/infrastructure-as-code/aws-cdk',
-				documents: ['API.md'],
-				performCleanup: false,
-				modifyContent(filename, content) {
-					switch (filename) {
-						case 'API.md':
-							return {
-								filename: 'api-reference.md',
-								content: `---
+		...(process.env.NODE_ENV !== 'development'
+			? [
+					[
+						'docusaurus-plugin-remote-content',
+						{
+							name: 'buttonize-cdk',
+							sourceBaseUrl:
+								'https://raw.githubusercontent.com/buttonize/buttonize-cdk/master/',
+							outDir: 'docs/infrastructure-as-code/aws-cdk',
+							documents: ['API.md'],
+							performCleanup: false,
+							modifyContent(filename, content) {
+								switch (filename) {
+									case 'API.md':
+										return {
+											filename: 'api-reference.md',
+											content: `---
 sidebar_position: 2
 description: API Reference of Buttonize AWS CDK constructs
 ---
@@ -156,12 +164,14 @@ description: API Reference of Buttonize AWS CDK constructs
 <img src="/img/cdk.png" style={{ height: "100px", marginTop: "10px" }}/>
 `
 		)}`
+										}
+								}
+								return undefined
 							}
-					}
-					return undefined
-				}
-			}
-		],
+						}
+					]
+			  ]
+			: []),
 		[
 			'@cmfcmf/docusaurus-search-local',
 			{

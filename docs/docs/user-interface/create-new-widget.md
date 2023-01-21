@@ -5,50 +5,73 @@ description: Execute and manage your Buttonize widgets.
 
 # Create New Widget
 
-Workspace is the main hub for browsing and executing the widgets.
+This page describes individual parts of widget creation UI.
 
-1. View list of your latest widgets
-2. Search for widgets by name
-3. Filter widgets by tags
-4. Execute widgets
+:::tip
 
-![Worksapce](/img/ui/workspace/workspace.png)
+If you would like to learn more about **how to create widgets with examples**, take a look at the **[Tutorials section](../getting-started/tutorials/overview)**.
 
-## Successful widget execution
+:::
 
-Successful execution has three possible visual formats:
+## Visual setup of a widget
 
-1. Markdown
-2. JSON
-3. Text
+1. Visual preview of how the widget will look like in [Workspace](./workspace.md). *The widget is not interactive at this stage.*
+2. Basic setup of the widgets properties
+    - Type of the widget
+        - Button *- simple button which directly invokes an action*
+        - Form *- pop-up form with arbitrary number of different kinds of input elements*
+    - Name of the widget *- long descriptive name of the action which will be performed by the widget*
+    - Label *- label of the action button, usually one or two words*
+    - Other properties like for example *Color* in case of *Button* widget
 
-The visual format is decided based on the data returned from lambda function or result of custom response template.
+![Create new widget - visual setup](/img/ui/create-new-widget/overview.png)
 
-![Worksapce](/img/ui/workspace/success.png)
 
-*<figcaption align="center">Example of JSON result</figcaption>*
+## AWS Integration setup
 
-## Widget execution errors
+1. AWS Role which will be used for executing the action on your AWS account
+    - See more about how to add new AWS IAM role [here](./organization.md#add-new-aws-role)
+2. Type of integration
+    - Basic *- quick way how to perform simple actions - like for example invoking a lambda function*
+    - Custom *- fully customizable API call to AWS thanks to Javascript request/response resolvers. Call any AWS service with payload of your choice.*
+3. Settings of the integration depending on the choice above
 
-In case of a misconfiguration in AWS it's possible to see couple of errors.
+![Create new widget - integration](/img/ui/create-new-widget/integration.png)
 
-Here are most common errors:
+## Widget preview
 
-### Insufficient permissions of the AWS IAM Role
+1. By clicking on the *Preview* button, you can test your widget setup and eventually see where is the problem.
 
-AWS IAM you set for the widget execution does not have sufficient permissions to perform requested action.
+![Create new widget - open a preview](/img/ui/create-new-widget/preview-start.png)
 
-It can eaither be too restrictive `Action` section or too restrictive `Resource` section in the IAM role.
+### Widget preview debugging
 
-In case you are not sure what permissions you should choose, feel free to contact us.
+1. Visual preview of how the widget will look like in [Workspace](./workspace.md). *The widget is ready to be cliked on.*
+2. Debug console of the execution. You can see wheter the overall execution was successful and what were the individual steps.
+    1. **Input** *- Input data transformed by the request resolver. In case of the *Basic* integration, Buttonize uses a pre-made resolver code.*
+        - Possible errors:
+            - Source code of the resolver is invalid and contains syntax errors.
+            - Resolver funtion timed-out.
+            - Resolver function returned data in invalid format.
+    2. **AWS Authentication** *- Buttonize assumes the selected AWS IAM role in order to access your AWS account securely. Read more about the *assume role* feature in AWS [here](https://docs.aws.amazon.com/sdkref/latest/guide/feature-assume-role-credentials.html)*
+        - Possible errors:
+            - AWS IAM Role on your AWS account has different External ID in the trust policy than entered in Buttonize.
+            - AWS IAM Role on your AWS account has different principal account ID in the trust policy than Buttonize account - `081205402391`.
+            - AWS IAM Role ARN entered into Buttonize contains a typo and thus does not exist. 
+    3. **AWS Invocation** *- Response from AWS API call*
+        - Possible errors:
+            - Request resolver can form invalid AWS API request.
+            - AWS service can be temporarily unavailable at the time.
+    4. **Output** *- Output data transformed by the response resolver. In case of the *Basic* integration, Buttonize uses a pre-made resolver code.*
+        - Possible errors:
+            - Source code of the resolver is invalid and contains syntax errors.
+            - Resolver funtion timed-out.
+            - Resolver function returned data in invalid format.
 
-![Worksapce](/img/ui/workspace/err-insuffperm.png)
+![Create new widget - preview debugging](/img/ui/create-new-widget/preview-overview.png)
 
-### Incorrect trust relationship settings of AWS IAM Role
+### Widget preview example error
 
-This error can happen for example in case when External ID is misspelled in Buttonize and is not matching the value in AWS IAM role's trust relationship policy.
+1. We can see that the invocation on the third step *AWS Invocation* because we are trying to invoke a lambda function which does not exist.
 
-Learn more about how to correctly setup AWS IAM role Trust Relationship [here](./organization.md#add-new-aws-role)
-
-![Worksapce](/img/ui/workspace/err-trustrel.png)
-
+![Create new widget - preview error](/img/ui/create-new-widget/preview-error.png)

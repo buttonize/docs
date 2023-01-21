@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-	title: 'Buttoinze',
-	tagline: 'Buttonize your infrastructure.',
+	title: 'Buttoinze Docs',
+	tagline: 'Buttonize your Serverless infrastructure right now.',
 	url: 'https://docs.buttonize.io',
 	baseUrl: '/',
 	onBrokenLinks: 'throw',
@@ -160,6 +160,12 @@ description: API Reference of Buttonize AWS CDK constructs
 					}
 					return undefined
 				}
+			}
+		],
+		[
+			'@cmfcmf/docusaurus-search-local',
+			{
+				indexBlog: false
 			}
 		]
 	]

@@ -8,7 +8,6 @@ description: Create and manage your organization workspace in Buttonize.
 Buttonize uses the widely used concept of grouping resources and users by "organization".
 An organization is usually created per a whole company or business unit. 
 
-
 ## Features
 
 ### General
@@ -21,6 +20,7 @@ An organization is usually created per a whole company or business unit.
 ![General settings](/img/ui/organization/general.png)
 
 ### Members
+
 Big part of Buttonize is collaboration between colleagues which are coding the widgets and those who are using them. You can invite your colleagues by email.
 
 ![Members](/img/ui/organization/members.png)
@@ -97,6 +97,29 @@ Make sure to **always use least privilege principle** when creating AWS IAM role
 5. External ID - External ID must have min length of 8 characters. If you use the CloudFormation template, Buttonize automatically generates External ID for you. Learn more about External ID in AWS IAM [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html).
 
 ![AWS settings - choice](/img/ui/organization/aws-new.png)
+
+### API Keys
+
+In order to get working Buttonize IaC plugins, you need to create Buttonize API Keys.
+
+:::tip
+
+Learn more about Buttonize AWS CDK Constructs [here](../infrastructure-as-code/aws-cdk/quick-start.md).
+
+:::
+
+![API Keys](/img/ui/organization/api-keys.png)
+
+Once you submit API key creation form, you will see full the **secret** API key. 
+
+:::caution
+
+Once you close the dialog, you won&apos;t be able to see the full API key again. Make sure to store it on a secure place.
+
+:::
+
+![API Keys Popup](/img/ui/organization/api-keys-popup.png)
+
 
 ### Permissions
 

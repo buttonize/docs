@@ -6,59 +6,93 @@ description: Buttonize your infrastructure right now and create your first widge
 
 # Quick start
 
+> There are times when you wish you could just **connect** a simple **button** directly to a **lambda function**.
+
+🚀 You can do that now! Go and Buttonize your infrastructure. 🚀
+
 ## What is Buttonize
 
+- Buttonize is a Low-code tool made for Serverless developers.
+- Buttonize has first-class support for Infrastructure as Code tools.
+- Buttonize is not just buttons. You can also build forms with multiple inputs etc. 
+- Buttonize does not invoke only lambda functions. You can invoke any AWS API call.
+- Buttonize can render output as JSON, Markdown or Text.
+
+## First steps
+
+### Sign-up at [app.buttonize.io](https://app.buttonize.io/)
+
+### [Create widget in UI](../user-interface/create-new-widget.md)
+
+#### Example
+
+[![Create new widget](/img/getting-started/ui.png)](../user-interface/create-new-widget.md)
 
 
-##  Docs under construction &#9888;
+### [Build widgets via IaC](../infrastructure-as-code/aws-cdk/quick-start.md) 
 
-:::caution
+#### Example - AWS CDK
 
-The docs section will be done after AWS re:Invent.
+```typescript
+import * as btnz from '@buttonize/cdk'
+import * as cdk from 'aws-cdk-lib'
+import * as lambda from 'aws-cdk-lib/aws-lambda'
+import { Construct } from 'constructs'
 
-:::
+export class ExamplesStack extends cdk.Stack {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props)
 
-<hr/>
+    btnz.GlobalConfig.init(this, {
+      apiKey: 'YOUR-BUTTONIZE-API-KEY', // Ideally fetch this information from SSM
+      externalId: 'this-is-secret' // Ideally fetch this information from SSM
+    })
 
+    const sendUserPasswordResetEmail = new lambda.Function(
+      this,
+      'SendUserPasswordResetEmail',
+      {
+        handler: 'index.handler',
+        code: lambda.Code.fromInline(`
+        exports.handler = async (event) => {
+          console.log('Sending email... ')
+          return {
+            format: 'markdown',
+            body: \`
+              # Email sent
 
-Let's discover **Docusaurus in less than 5 minutes**.
+              
+            \`
+          }
+        };
+      `),
+        runtime: lambda.Runtime.NODEJS_18_X
+      }
+    )
 
-## Getting Started
+    const form = new btnz.Form({
+      name: 'Send user password reset email',
+      label: 'Send',
+      tags: ['prod', 'users']
+    })
 
-Get started by **creating a new site**.
+    form.addTextField('email', {
+      label: 'E-mail address of the user',
+      placeholder: 'user@example.com'
+    })
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+    form.addTextField('reason', {
+      label: 'Internal reason why this action has been performed',
+      placeholder: 'hacked',
+      regex: '^(hacked|forgot|other)$'
+    })
 
-### What you'll need
+    form.addTextField('note', {
+      label: 'Note'
+    })
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+    sendUserPasswordResetEmail.addEventSource(form)
+  }
+}
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.

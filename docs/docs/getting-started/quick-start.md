@@ -18,7 +18,7 @@ description: Buttonize your infrastructure right now and create your first widge
 - Buttonize widgets do not invoke only lambda functions. You can do any AWS API call.
 - Buttonize can render output as Markdown, JSON or Text.
 
-<iframe width="720" height="405" src="https://www.youtube.com/embed/ChKkyWqkcwQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="720" height="405" src="https://www.youtube.com/embed/ChKkyWqkcwQ" title="YouTube video player" frameborder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## First steps
 

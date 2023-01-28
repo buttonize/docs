@@ -43,9 +43,6 @@ const config = {
 					sidebarCollapsed: false,
 					routeBasePath: '/'
 				},
-				// blog: {
-				// 	showReadingTime: true
-				// },
 				theme: {
 					customCss: require.resolve('./src/css/custom.css')
 				},
@@ -73,7 +70,11 @@ const config = {
 						position: 'left',
 						label: 'Docs'
 					},
-					// { to: '/blog', label: 'Blog', position: 'left' },
+					{
+						href: 'https://blog.buttonize.io',
+						label: 'Blog',
+						position: 'left'
+					},
 					{
 						href: 'https://app.buttonize.io',
 						label: 'Buttonize App',
@@ -83,15 +84,6 @@ const config = {
 			},
 			footer: {
 				links: [
-					// {
-					//   title: 'Docs',
-					//   items: [
-					//     {
-					//       label: 'Tutorial',
-					//       to: '/docs/intro',
-					//     },
-					//   ],
-					// },
 					{
 						title: 'Community',
 						items: [
@@ -108,10 +100,10 @@ const config = {
 					{
 						title: 'More',
 						items: [
-							// {
-							// 	label: 'Blog',
-							// 	to: '/blog'
-							// },
+							{
+								label: 'Blog',
+								href: 'https://blog.buttonize.io'
+							},
 							{
 								label: 'GitHub',
 								href: 'https://github.com/buttonize'
@@ -178,6 +170,13 @@ description: API Reference of Buttonize AWS CDK constructs
 				indexBlog: false
 			}
 		]
+	],
+
+	scripts: [
+		{
+			src: '//code.tidio.co/dtkuzumyqtv5yqjxhkn3dtgxnaco0qwc.js',
+			async: true
+		}
 	]
 }
 

@@ -35,7 +35,7 @@ Coming soon...
 
 ## Example code
 
-You can find more examples on [GitHub](https://github.com/buttonize/buttonize-cdk/tree/master/examples).
+[See more examples at GitHub](https://github.com/buttonize/buttonize-cdk/tree/master/examples#readme)
 
 ```typescript
 import * as btnz from '@buttonize/cdk'

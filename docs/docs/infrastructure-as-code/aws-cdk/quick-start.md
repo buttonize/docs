@@ -38,64 +38,49 @@ Coming soon...
 [See more examples at GitHub](https://github.com/buttonize/buttonize-cdk/tree/master/examples#readme)
 
 ```typescript
+import * as path from 'path'
 import * as btnz from '@buttonize/cdk'
 import * as cdk from 'aws-cdk-lib'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
 import { Construct } from 'constructs'
 
-export class ExamplesStack extends cdk.Stack {
+export class SimpleFormStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
     btnz.GlobalConfig.init(this, {
-      apiKey: 'YOUR-BUTTONIZE-API-KEY', // Ideally fetch this information from SSM
-      externalId: 'this-is-secret' // Ideally fetch this information from SSM
+      apiKey: process.env.BUTTONIZE_API_KEY, // Ideally fetch this information from SSM
+      externalId: 'some-external-id-here123' // Ideally fetch this information from SSM
     })
 
-    const sendUserPasswordResetEmail = new lambda.Function(
+    const simpleFormActionLambda = new NodejsFunction(
       this,
-      'SendUserPasswordResetEmail',
+      'SimpleFormActionLambda',
       {
-        handler: 'index.handler',
-        code: lambda.Code.fromInline(`
-        exports.handler = async (event) => {
-          console.log('Sending email... ')
-          return {
-            format: 'markdown',
-            body: \`
-              # Email sent
-
-              
-            \`
-          }
-        };
-      `),
+        handler: 'handler',
+        entry: path.join(__dirname, `/src/index.ts`),
         runtime: lambda.Runtime.NODEJS_18_X
       }
     )
 
     const form = new btnz.Form({
-      name: 'Send user password reset email',
-      label: 'Send',
-      tags: ['prod', 'users']
+      name: '[Example: simple-form] Invoke the lambda fucntion',
+      label: 'Open form',
+      tags: ['simple', 'button', 'example']
     })
 
-    form.addTextField('email', {
-      label: 'E-mail address of the user',
-      placeholder: 'user@example.com'
-    })
+    form
+      .addTextField('email', {
+        label: 'Email of the user',
+        placeholder: 'user@example.com',
+        regex: '^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$'
+      })
+      .addToggleField('isAdmin', {
+        label: 'Is admin'
+      })
 
-    form.addTextField('reason', {
-      label: 'Internal reason why this action has been performed',
-      placeholder: 'hacked',
-      regex: '^(hacked|forgot|other)$'
-    })
-
-    form.addTextField('note', {
-      label: 'Note'
-    })
-
-    sendUserPasswordResetEmail.addEventSource(form)
+    simpleFormActionLambda.addEventSource(form)
   }
 }
 ```

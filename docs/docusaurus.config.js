@@ -117,7 +117,7 @@ const config = {
 					height: 30,
 					alt: 'Buttonize'
 				},
-				copyright: `Copyright © ${new Date().getFullYear()} Buttonize. Built with Docusaurus.`
+				copyright: `Copyright © ${new Date().getFullYear()} Buttonize OÜ - <i>Tornimäe tn 3 // 5 // 7, Tallinn, 10145, Estonia</i>. Built with Docusaurus.`
 			},
 			prism: {
 				theme: lightCodeTheme,

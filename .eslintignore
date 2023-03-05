@@ -2,5 +2,7 @@ node_modules
 .next
 .build
 .sst
+docs/build
+docs/.docusaurus
 
 package-lock.json

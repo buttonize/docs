@@ -1,5 +1,5 @@
-import { StackContext, StaticSite } from '@serverless-stack/resources'
 import { Certificate } from 'aws-cdk-lib/aws-certificatemanager'
+import { StackContext, StaticSite } from 'sst/constructs'
 
 export function DocsStack({ stack }: StackContext): void {
 	const site = new StaticSite(stack, 'Site', {
@@ -21,6 +21,6 @@ export function DocsStack({ stack }: StackContext): void {
 	})
 
 	stack.addOutputs({
-		URL: site.url
+		URL: `${site.url}`
 	})
 }

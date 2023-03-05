@@ -332,6 +332,7 @@ It's for internal use only.**
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@buttonize/cdk.CustomResourceProvider.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@buttonize/cdk.CustomResourceProvider.property.defaultApiKey">defaultApiKey</a></code> | <code>string</code> | **Do not use this method in your CDK code. |
 | <code><a href="#@buttonize/cdk.CustomResourceProvider.property.serviceToken">serviceToken</a></code> | <code>string</code> | ARN of the custom resource lambda function handler. |
 
 ---
@@ -345,6 +346,20 @@ public readonly node: Node;
 - *Type:* constructs.Node
 
 The tree node.
+
+---
+
+##### `defaultApiKey`<sup>Required</sup> <a name="defaultApiKey" id="@buttonize/cdk.CustomResourceProvider.property.defaultApiKey"></a>
+
+```typescript
+public readonly defaultApiKey: string;
+```
+
+- *Type:* string
+
+**Do not use this method in your CDK code.
+
+It's for internal use only.**
 
 ---
 

@@ -6,19 +6,13 @@ description: Buttonize your infrastructure right now and create your first widge
 
 # Quick start
 
-> There are times when you wish you could just **connect** a simple **button** directly **to** a **lambda function** and give it to your colleagues right away.
- 
-🚀 You can do that now in a matter of seconds! Go and Buttonize your infrastructure. 🚀
+> ### 🚀 Create Serverless internal tools for your apps in minutes, with no pain. 🥷
 
 ## What is Buttonize
 
-- Buttonize is a Low-code SaaS tool made for Serverless developers.
-- Buttonize has first-class support for Infrastructure as Code tools.
-- Buttonize is not just buttons. You can also build forms with multiple inputs and much more. 
-- Buttonize widgets do not invoke only lambda functions. You can do any AWS API call.
-- Buttonize can render output as Markdown, JSON or Text.
+Take a look at example use-case which you can solve by using Buttonize.
 
-<iframe width="720" height="405" src="https://www.youtube.com/embed/ChKkyWqkcwQ" title="YouTube video player" frameborder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="720" height="405" src="https://www.youtube.com/embed/giroZqjTJqE?modestbranding=1&rel=0" title="YouTube video player" frameborder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## First steps
 
@@ -84,4 +78,8 @@ export class SimpleFormStack extends cdk.Stack {
   }
 }
 ```
+### Watch step-by-step tutorial
 
+Watch a full tutorial where we will show you how to setup a widget both via UI or via AWS CDK.
+
+<iframe width="720" height="405" src="https://www.youtube.com/embed/38cHso4csgY?modestbranding=1&rel=0" title="YouTube video player" frameborder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

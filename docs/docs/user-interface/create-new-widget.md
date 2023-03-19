@@ -9,7 +9,7 @@ This page describes individual parts of widget creation UI.
 
 :::tip
 
-If you would like to learn more about **how to create widgets with examples**, take a look at the **[Tutorials section](../getting-started/tutorials/overview)**.
+If you would like to learn more about **how to create widgets with examples**, take a look at the **[Tutorials section](/category/tutorials)**.
 
 :::
 

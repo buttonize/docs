@@ -1,9 +1,8 @@
 {
 	"label": "Tutorials",
 	"position": 2,
-	"collapsed": true,
 	"link": {
 		"type": "generated-index",
-		"description": "Tutorials here"
+		"description": "Learn more on how to use Buttonize with our tutorials."
 	}
 }

@@ -123,17 +123,23 @@ Once you close the dialog, you won&apos;t be able to see the full API key again.
 
 ### Permissions
 
-:::note
+Buttonize features a RBAC permission system which gives you a powerful way how to control access to your widgets and organization preferences. Users can see only widgets which they have permissions to, which provides a comfortable UX to non-technical users.
 
-Coming soon...
+#### Creating a permission group
 
-:::
+1. Name of the permission group
+2. Users *(or invited email addresses)* which are part of the permission group. One user can be member of multiple permission groups.
+3. List of tags of widgets which users can execute. Usually used for non-developers.
+4. List of tags of widgets which users can execute/modify/delete. Usually used for widget admins.
+5. Toggles used for allowing users to perform more sensitive operations at the organization level.
+
+![Permissions](/img/ui/organization/permissions.png)
 
 
 ### Billing
 
 :::note
 
-Coming soon...
+Buttonize is currently free of charge. But we are transparent with our customers and you can read more about our pricing model here: https://buttonize.io/#pricing
 
 :::

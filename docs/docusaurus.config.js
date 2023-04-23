@@ -170,13 +170,6 @@ description: API Reference of Buttonize AWS CDK constructs
 				indexBlog: false
 			}
 		]
-	],
-
-	scripts: [
-		{
-			src: '//code.tidio.co/dtkuzumyqtv5yqjxhkn3dtgxnaco0qwc.js',
-			async: true
-		}
 	]
 }
 

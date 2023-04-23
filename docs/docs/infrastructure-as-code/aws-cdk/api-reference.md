@@ -453,7 +453,7 @@ new ExecutionRole(scope: Construct, id: string, props: ExecutionRoleProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@buttonize/cdk.ExecutionRole.toString">toString</a></code> | Returns a string representation of this construct. |
-| <code><a href="#@buttonize/cdk.ExecutionRole.addLambda">addLambda</a></code> | Allow invocatio of given lambda function to IAM Role inside the ExecutionRole construct. |
+| <code><a href="#@buttonize/cdk.ExecutionRole.addLambda">addLambda</a></code> | Allow invocation of given lambda function to IAM Role inside the ExecutionRole construct. |
 
 ---
 
@@ -471,7 +471,7 @@ Returns a string representation of this construct.
 public addLambda(target: IFunction): void
 ```
 
-Allow invocatio of given lambda function to IAM Role inside the ExecutionRole construct.
+Allow invocation of given lambda function to IAM Role inside the ExecutionRole construct.
 
 ###### `target`<sup>Required</sup> <a name="target" id="@buttonize/cdk.ExecutionRole.addLambda.parameter.target"></a>
 
@@ -579,7 +579,7 @@ executionRole.cdkRole.attachInlinePolicy(yourCustomPolicy)
 | --- | --- | --- |
 | <code><a href="#@buttonize/cdk.ExecutionRole.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#@buttonize/cdk.ExecutionRole.property.cdkRole">cdkRole</a></code> | <code>aws-cdk-lib.aws_iam.Role</code> | Generated AWS IAM role. |
-| <code><a href="#@buttonize/cdk.ExecutionRole.property.externalId">externalId</a></code> | <code>string</code> | External ID used for generated AWS IAM role. |
+| <code><a href="#@buttonize/cdk.ExecutionRole.property.externalId">externalId</a></code> | <code>string</code> | External ID used for the generated Buttonize Execution AWS IAM role. |
 | <code><a href="#@buttonize/cdk.ExecutionRole.property.lambdaPolicy">lambdaPolicy</a></code> | <code>aws-cdk-lib.aws_iam.Policy</code> | IAM Policy used for Lambda functions by widgets implementing *lambda.IEventSource* (e.g. Form and Button). |
 | <code><a href="#@buttonize/cdk.ExecutionRole.property.ref">ref</a></code> | <code>aws-cdk-lib.Reference</code> | ID of the role inside Buttonize. |
 
@@ -619,7 +619,7 @@ public readonly externalId: string;
 
 - *Type:* string
 
-External ID used for generated AWS IAM role.
+External ID used for the generated Buttonize Execution AWS IAM role.
 
 ---
 
@@ -2471,8 +2471,8 @@ const baseWidgetOptions: BaseWidgetOptions = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@buttonize/cdk.BaseWidgetOptions.property.apiKey">apiKey</a></code> | <code>string</code> | API key used **exclusivley** for creation of this particular widget. |
-| <code><a href="#@buttonize/cdk.BaseWidgetOptions.property.role">role</a></code> | <code><a href="#@buttonize/cdk.ExecutionRole">ExecutionRole</a></code> | AWS Role used **exclusivley** for this widget. Supplied role will be used for every widget invocation. |
+| <code><a href="#@buttonize/cdk.BaseWidgetOptions.property.apiKey">apiKey</a></code> | <code>string</code> | API key used **exclusively** for creation of this particular widget. |
+| <code><a href="#@buttonize/cdk.BaseWidgetOptions.property.role">role</a></code> | <code><a href="#@buttonize/cdk.ExecutionRole">ExecutionRole</a></code> | AWS Role used **exclusively** for this widget. Supplied role will be used for every widget invocation. |
 
 ---
 
@@ -2484,7 +2484,7 @@ public readonly apiKey: string;
 
 - *Type:* string
 
-API key used **exclusivley** for creation of this particular widget.
+API key used **exclusively** for creation of this particular widget.
 
 If you don't specify *apiKey*, the default API key from *btnz.GlobalConfig* is used.
 
@@ -2498,7 +2498,7 @@ public readonly role: ExecutionRole;
 
 - *Type:* <a href="#@buttonize/cdk.ExecutionRole">ExecutionRole</a>
 
-AWS Role used **exclusivley** for this widget. Supplied role will be used for every widget invocation.
+AWS Role used **exclusively** for this widget. Supplied role will be used for every widget invocation.
 
 If you don't specify *role*, the default role from *btnz.GlobalConfig* is used.
 
@@ -2695,8 +2695,8 @@ const buttonOptions: ButtonOptions = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@buttonize/cdk.ButtonOptions.property.apiKey">apiKey</a></code> | <code>string</code> | API key used **exclusivley** for creation of this particular widget. |
-| <code><a href="#@buttonize/cdk.ButtonOptions.property.role">role</a></code> | <code><a href="#@buttonize/cdk.ExecutionRole">ExecutionRole</a></code> | AWS Role used **exclusivley** for this widget. Supplied role will be used for every widget invocation. |
+| <code><a href="#@buttonize/cdk.ButtonOptions.property.apiKey">apiKey</a></code> | <code>string</code> | API key used **exclusively** for creation of this particular widget. |
+| <code><a href="#@buttonize/cdk.ButtonOptions.property.role">role</a></code> | <code><a href="#@buttonize/cdk.ExecutionRole">ExecutionRole</a></code> | AWS Role used **exclusively** for this widget. Supplied role will be used for every widget invocation. |
 
 ---
 
@@ -2708,7 +2708,7 @@ public readonly apiKey: string;
 
 - *Type:* string
 
-API key used **exclusivley** for creation of this particular widget.
+API key used **exclusively** for creation of this particular widget.
 
 If you don't specify *apiKey*, the default API key from *btnz.GlobalConfig* is used.
 
@@ -2722,7 +2722,7 @@ public readonly role: ExecutionRole;
 
 - *Type:* <a href="#@buttonize/cdk.ExecutionRole">ExecutionRole</a>
 
-AWS Role used **exclusivley** for this widget. Supplied role will be used for every widget invocation.
+AWS Role used **exclusively** for this widget. Supplied role will be used for every widget invocation.
 
 If you don't specify *role*, the default role from *btnz.GlobalConfig* is used.
 
@@ -2912,9 +2912,9 @@ const executionRoleProps: ExecutionRoleProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@buttonize/cdk.ExecutionRoleProps.property.externalId">externalId</a></code> | <code>string</code> | External ID used when creating the AWS IAM role for this instance. |
+| <code><a href="#@buttonize/cdk.ExecutionRoleProps.property.externalId">externalId</a></code> | <code>string</code> | External ID used when creating the Buttonize execution AWS IAM role for this instance. |
 | <code><a href="#@buttonize/cdk.ExecutionRoleProps.property.label">label</a></code> | <code>string</code> | Label of the AWS role visible in the Buttonize UI. |
-| <code><a href="#@buttonize/cdk.ExecutionRoleProps.property.apiKey">apiKey</a></code> | <code>string</code> | API used when exclusivley for creating this instance. |
+| <code><a href="#@buttonize/cdk.ExecutionRoleProps.property.apiKey">apiKey</a></code> | <code>string</code> | API key used exclusively for creating this role's instance. |
 
 ---
 
@@ -2926,9 +2926,9 @@ public readonly externalId: string;
 
 - *Type:* string
 
-External ID used when creating the AWS IAM role for this instance.
+External ID used when creating the Buttonize execution AWS IAM role for this instance.
 
-**External ID is a secret value. Please make sure to retrieve it via CloudFormation Parameters or AWS SSM or other secure method.**
+**External ID is a secret value. Please make sure to save it to Secrets Manager or SSM or any other secure storage.**
 
 ---
 
@@ -2952,9 +2952,9 @@ public readonly apiKey: string;
 
 - *Type:* string
 
-API used when exclusivley for creating this instance.
+API key used exclusively for creating this role's instance.
 
-**API Key is a secret value. Please make sure to retrieve it via CloudFormation Parameters or AWS SSM or other secure method.**
+**API Key is a secret value. Please make sure to save it to Secrets Manager or SSM or any other secure storage.**
 
 ---
 
@@ -2972,8 +2972,8 @@ const formOptions: FormOptions = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@buttonize/cdk.FormOptions.property.apiKey">apiKey</a></code> | <code>string</code> | API key used **exclusivley** for creation of this particular widget. |
-| <code><a href="#@buttonize/cdk.FormOptions.property.role">role</a></code> | <code><a href="#@buttonize/cdk.ExecutionRole">ExecutionRole</a></code> | AWS Role used **exclusivley** for this widget. Supplied role will be used for every widget invocation. |
+| <code><a href="#@buttonize/cdk.FormOptions.property.apiKey">apiKey</a></code> | <code>string</code> | API key used **exclusively** for creation of this particular widget. |
+| <code><a href="#@buttonize/cdk.FormOptions.property.role">role</a></code> | <code><a href="#@buttonize/cdk.ExecutionRole">ExecutionRole</a></code> | AWS Role used **exclusively** for this widget. Supplied role will be used for every widget invocation. |
 
 ---
 
@@ -2985,7 +2985,7 @@ public readonly apiKey: string;
 
 - *Type:* string
 
-API key used **exclusivley** for creation of this particular widget.
+API key used **exclusively** for creation of this particular widget.
 
 If you don't specify *apiKey*, the default API key from *btnz.GlobalConfig* is used.
 
@@ -2999,7 +2999,7 @@ public readonly role: ExecutionRole;
 
 - *Type:* <a href="#@buttonize/cdk.ExecutionRole">ExecutionRole</a>
 
-AWS Role used **exclusivley** for this widget. Supplied role will be used for every widget invocation.
+AWS Role used **exclusively** for this widget. Supplied role will be used for every widget invocation.
 
 If you don't specify *role*, the default role from *btnz.GlobalConfig* is used.
 
@@ -3107,7 +3107,7 @@ const globalConfigProps: GlobalConfigProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@buttonize/cdk.GlobalConfigProps.property.apiKey">apiKey</a></code> | <code>string</code> | Default API for whole CDK stack. |
-| <code><a href="#@buttonize/cdk.GlobalConfigProps.property.externalId">externalId</a></code> | <code>string</code> | Default External ID for whole CDK stack's role. |
+| <code><a href="#@buttonize/cdk.GlobalConfigProps.property.executionRoleExternalId">executionRoleExternalId</a></code> | <code>string</code> | Default External ID for whole CDK stack's Buttonize execution role. |
 
 ---
 
@@ -3121,21 +3121,21 @@ public readonly apiKey: string;
 
 Default API for whole CDK stack.
 
-**API Key is a secret value. Please make sure to retrieve it via CloudFormation Parameters or AWS SSM or other secure method.**
+**API Key is a secret value. Please make sure to save it to Secrets Manager or SSM or any other secure storage.**
 
 ---
 
-##### `externalId`<sup>Optional</sup> <a name="externalId" id="@buttonize/cdk.GlobalConfigProps.property.externalId"></a>
+##### `executionRoleExternalId`<sup>Optional</sup> <a name="executionRoleExternalId" id="@buttonize/cdk.GlobalConfigProps.property.executionRoleExternalId"></a>
 
 ```typescript
-public readonly externalId: string;
+public readonly executionRoleExternalId: string;
 ```
 
 - *Type:* string
 
-Default External ID for whole CDK stack's role.
+Default External ID for whole CDK stack's Buttonize execution role.
 
-**External ID is a secret value. Please make sure to retrieve it via CloudFormation Parameters or AWS SSM or other secure method.**
+**External ID is a secret value. Please make sure to save it to Secrets Manager or SSM or any other secure storage.**
 
 ---
 
@@ -3724,7 +3724,7 @@ new GlobalConfig()
 | <code><a href="#@buttonize/cdk.GlobalConfig.enableCustomResourceLogs">enableCustomResourceLogs</a></code> | Use this method only in case you encounter any issues with Custom Resources deployment. |
 | <code><a href="#@buttonize/cdk.GlobalConfig.init">init</a></code> | Initialize Buttonize CDK setup. |
 | <code><a href="#@buttonize/cdk.GlobalConfig.setDefaultApiKey">setDefaultApiKey</a></code> | Set default API for whole CDK stack. |
-| <code><a href="#@buttonize/cdk.GlobalConfig.setDefaultExternalId">setDefaultExternalId</a></code> | Set default External ID for whole CDK stack's role. |
+| <code><a href="#@buttonize/cdk.GlobalConfig.setDefaultExecutionRoleExternalId">setDefaultExecutionRoleExternalId</a></code> | Set default External ID for whole CDK stack's Buttonize execution role. |
 
 ---
 
@@ -3760,7 +3760,7 @@ GlobalConfig.init(scope: Construct, props: GlobalConfigProps)
 
 Initialize Buttonize CDK setup.
 
-Make sure to use this method in the beggning of the stack.
+Make sure to use this method in the beginning of the stack.
 
 *Example*
 
@@ -3774,8 +3774,8 @@ constructor(scope: Construct, id: string, props?: cdk.StackProps) {
 super(scope, id, props)
 
 btnz.GlobalConfig.init(this, {
-apiKey: 'YOUR-BUTTONIZE-API-KEY', // Ideally fetch this information from SSM or CfnParameters
-externalId: 'this-is-secret' // Ideally fetch this information from SSM or CfnParameters
+apiKey: process.env.BUTTONIZE_API_KEY, // Ideally use SSM or Secrets Manager
+executionRoleExternalId: 'secret-external-id' // Ideally use SSM or Secrets Manager
 })
 ```
 
@@ -3802,10 +3802,10 @@ GlobalConfig.setDefaultApiKey(scope: Construct, apiKey: string)
 
 Set default API for whole CDK stack.
 
-**API Key is a secret value. Please make sure to retrieve it via CloudFormation Parameters or AWS SSM or other secure method.**
+**API Key is a secret value. Please make sure to save it to Secrets Manager or SSM or any other secure storage.**
 
 *GlobalConfig.setDefaultApiKey or GlobalConfig.init method can be called only once per stack.
-Make sure to call GlobalConfig.setDefaultApiKey only in the beggining of your stack definition.*
+Make sure to call GlobalConfig.setDefaultApiKey only in the beginning of your stack definition.*
 
 ###### `scope`<sup>Required</sup> <a name="scope" id="@buttonize/cdk.GlobalConfig.setDefaultApiKey.parameter.scope"></a>
 
@@ -3825,34 +3825,34 @@ You can get the API key in  {@link https://app.buttonize.io/organization Organiz
 
 ---
 
-##### `setDefaultExternalId` <a name="setDefaultExternalId" id="@buttonize/cdk.GlobalConfig.setDefaultExternalId"></a>
+##### `setDefaultExecutionRoleExternalId` <a name="setDefaultExecutionRoleExternalId" id="@buttonize/cdk.GlobalConfig.setDefaultExecutionRoleExternalId"></a>
 
 ```typescript
 import { GlobalConfig } from '@buttonize/cdk'
 
-GlobalConfig.setDefaultExternalId(scope: Construct, externalId: string)
+GlobalConfig.setDefaultExecutionRoleExternalId(scope: Construct, externalId: string)
 ```
 
-Set default External ID for whole CDK stack's role.
+Set default External ID for whole CDK stack's Buttonize execution role.
 
-**External ID is a secret value. Please make sure to retrieve it via CloudFormation Parameters or AWS SSM or other secure method.**
+**External ID is a secret value. Please make sure to save it to Secrets Manager or SSM or any other secure storage.**
 
-*GlobalConfig.setDefaultExternalId or GlobalConfig.init method can be called only once per stack.
-Make sure to call GlobalConfig.setDefaultExternalId only in the beggining of your stack definition.*
+*GlobalConfig.setDefaultExecutionRoleExternalId or GlobalConfig.init method can be called only once per stack.
+Make sure to call GlobalConfig.setDefaultExecutionRoleExternalId only in the beginning of your stack definition.*
 
 > [{@link https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html Read more about use of External ID in AWS IAM }]({@link https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html Read more about use of External ID in AWS IAM })
 
-###### `scope`<sup>Required</sup> <a name="scope" id="@buttonize/cdk.GlobalConfig.setDefaultExternalId.parameter.scope"></a>
+###### `scope`<sup>Required</sup> <a name="scope" id="@buttonize/cdk.GlobalConfig.setDefaultExecutionRoleExternalId.parameter.scope"></a>
 
 - *Type:* constructs.Construct
 
 ---
 
-###### `externalId`<sup>Required</sup> <a name="externalId" id="@buttonize/cdk.GlobalConfig.setDefaultExternalId.parameter.externalId"></a>
+###### `externalId`<sup>Required</sup> <a name="externalId" id="@buttonize/cdk.GlobalConfig.setDefaultExecutionRoleExternalId.parameter.externalId"></a>
 
 - *Type:* string
 
-Min length of External ID must be 8 chars.
+Min length of External ID value must be 8 chars.
 
 ---
 

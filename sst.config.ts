@@ -11,7 +11,7 @@ const config: SSTConfig = {
 		}
 	},
 	stacks(app) {
-		app.setDefaultRemovalPolicy('destroy') // TODO Change before going to  production
+		app.setDefaultRemovalPolicy('destroy') // TODO Change before going to production
 
 		app.setDefaultFunctionProps({
 			runtime: 'nodejs16.x',

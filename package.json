@@ -3,6 +3,7 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
+		"pnpm:devPreinstall": "./.scripts/useNodeVersion.sh",
 		"prepare": "husky install",
 		"env": "env-cmd -f .env bash -c \"ssocreds -p \\$AWS_PROFILE\" && env-cmd -f .env",
 		"start": "npm run env -- sst start",

@@ -5,7 +5,7 @@ export function DocsStack({ stack }: StackContext): void {
 	const site = new StaticSite(stack, 'Site', {
 		path: 'docs',
 		buildOutput: 'build',
-		buildCommand: 'npm run build',
+		buildCommand: 'pnpm run build',
 		errorPage: '404.html',
 		customDomain: {
 			domainName: 'docs.buttonize.io',

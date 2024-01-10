@@ -24,7 +24,8 @@
 		"editor.defaultFormatter": "attilabuti.vscode-mjml"
 	},
 	"files.associations": {
-		"*.env": "ini"
+		"*.env": "ini",
+		"*.env-cmd": "ini"
 	},
 	"editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

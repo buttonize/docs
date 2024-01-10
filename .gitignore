@@ -34,8 +34,8 @@ node_modules
 .env-cmd
 
 # build output
-dist/
+dist
 # generated types
-.astro/
+.astro
 
 cdk.context.json

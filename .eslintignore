@@ -1,8 +1,5 @@
 node_modules
-.next
-.build
 .sst
-docs/build
-docs/.docusaurus
+dist
 
 package-lock.json

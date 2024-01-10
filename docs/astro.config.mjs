@@ -1,4 +1,5 @@
 import starlight from '@astrojs/starlight'
+import tailwind from '@astrojs/tailwind'
 import { defineConfig } from 'astro/config'
 import aws from 'astro-sst'
 
@@ -8,6 +9,7 @@ export default defineConfig({
 		deploymentStrategy: 'static'
 	}),
 	integrations: [
+		tailwind(),
 		starlight({
 			favicon: 'favicon.ico',
 			logo: {

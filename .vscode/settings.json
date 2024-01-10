@@ -17,12 +17,29 @@
 	"[typescript]": {
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
 	},
+	"[mdx]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
 	"[mjml]": {
 		"editor.defaultFormatter": "attilabuti.vscode-mjml"
 	},
 	"files.associations": {
 		"*.env": "ini"
 	},
+	"editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.options": {
+    "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
+  },
+  "eslint.validate": [
+    "markdown",
+    "mdx",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
 	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
 	"eslint.format.enable": true,
 	"editor.formatOnSave": true,

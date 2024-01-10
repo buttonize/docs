@@ -1,8 +1,0 @@
-{
-	"label": "🛠️ Infrastructure as Code",
-	"position": 3,
-	"link": {
-		"type": "generated-index",
-		"description": "At Buttonize we make sure Infrastructure as Code definitions are first class citizens in our low-code ecosystem and that's why we prepare plugins/extensions for multiple IaC tools so that you can manage Buttonize widgets from your IaC tool of choice."
-	}
-}

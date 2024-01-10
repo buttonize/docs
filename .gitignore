@@ -31,4 +31,11 @@ node_modules
 
 # local env files
 .env*.local
-.env
+.env-cmd
+
+# build output
+dist/
+# generated types
+.astro/
+
+cdk.context.json

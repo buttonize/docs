@@ -1,4 +1,14 @@
 {
-	"extends": "@tsconfig/node16/tsconfig.json",
-	"include": ["stacks"]
+	"extends": "@tsconfig/node18/tsconfig.json",
+	"compilerOptions": {
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"strictFunctionTypes": true,
+		"strictNullChecks": true,
+		"noErrorTruncation": true,
+		"allowSyntheticDefaultImports": true
+	},
+	"include": ["stacks", "sst.config.ts", ".sst/types"]
 }

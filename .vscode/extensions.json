@@ -1,12 +1,11 @@
 {
 	"recommendations": [
 		"dbaeumer.vscode-eslint",
-		"eamodio.gitlens",
 		"editorconfig.editorconfig",
 		"esbenp.prettier-vscode",
-		"styled-components.vscode-styled-components",
-		"GraphQL.vscode-graphql",
 		"vivaxy.vscode-conventional-commits",
-		"bradlc.vscode-tailwindcss"
+		"bradlc.vscode-tailwindcss",
+		"unifiedjs.vscode-mdx",
+		"astro-build.astro-vscode"
 	]
 }

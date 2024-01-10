@@ -1,8 +1,0 @@
-{
-	"label": "🚀 Getting started",
-	"position": 1,
-	"link": {
-		"type": "generated-index",
-		"description": "Start Buttonizing your AWS infrastructure right now! Either setup your widgets through UI editor or via Infrastructure as Code tools. The choice is yours."
-	}
-}

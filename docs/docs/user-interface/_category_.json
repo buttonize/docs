@@ -1,8 +1,0 @@
-{
-	"label": "🎨 User Interface",
-	"position": 2,
-	"link": {
-		"type": "generated-index",
-		"description": "The best way how to start using Buttonize is via user interface. You can easily create Buttonize widgets and integrate them with your AWS infrastructure in just a couple of clicks."
-	}
-}

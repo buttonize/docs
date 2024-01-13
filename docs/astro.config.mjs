@@ -6,8 +6,7 @@ import aws from 'astro-sst'
 // https://astro.build/config
 export default defineConfig({
 	adapter: aws({
-		deploymentStrategy: 'static',
-		serverRoutes: ['pagefind/*']
+		deploymentStrategy: 'static'
 	}),
 	integrations: [
 		tailwind(),

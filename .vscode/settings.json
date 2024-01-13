@@ -28,19 +28,19 @@
 		"*.env-cmd": "ini"
 	},
 	"editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "eslint.options": {
-    "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
-  },
-  "eslint.validate": [
-    "markdown",
-    "mdx",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
+		"source.fixAll.eslint": "explicit"
+	},
+	"eslint.options": {
+		"extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
+	},
+	"eslint.validate": [
+		"markdown",
+		"mdx",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
 	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
 	"eslint.format.enable": true,
 	"editor.formatOnSave": true,

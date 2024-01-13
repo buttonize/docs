@@ -1,0 +1,36 @@
+/* Generated via: https://starlight.astro.build/guides/css-and-tailwind/#color-theme-editor */
+/* Dark mode colors. */
+:root {
+	--sl-color-accent-low: #0a2346;
+	--sl-color-accent: #0064d2;
+	--sl-color-accent-high: #abcbf8;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #eeeeee;
+	--sl-color-gray-2: #c2c2c2;
+	--sl-color-gray-3: #8b8b8b;
+	--sl-color-gray-4: #585858;
+	--sl-color-gray-5: #383838;
+	--sl-color-gray-6: #272727;
+	--sl-color-black: #181818;
+}
+/* Light mode colors. */
+:root[data-theme='light'] {
+	--sl-color-accent-low: #c1d9fb;
+	--sl-color-accent: #0066d6;
+	--sl-color-accent-high: #043068;
+	--sl-color-white: #181818;
+	--sl-color-gray-1: #272727;
+	--sl-color-gray-2: #383838;
+	--sl-color-gray-3: #585858;
+	--sl-color-gray-4: #8b8b8b;
+	--sl-color-gray-5: #c2c2c2;
+	--sl-color-gray-6: #eeeeee;
+	--sl-color-gray-7: #f6f6f6;
+	--sl-color-black: #ffffff;
+}
+
+/* The SVG is always inside <p> element */
+.mermaid-center p {
+	display: flex;
+    justify-content: center;
+}

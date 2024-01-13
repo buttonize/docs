@@ -26,6 +26,7 @@ const remarkMermaidOptions = {
 
 // https://astro.build/config
 export default defineConfig({
+	site: process.env.SITE,
 	adapter: aws({
 		deploymentStrategy: 'static'
 	}),
@@ -62,17 +63,36 @@ export default defineConfig({
 			],
 			sidebar: [
 				{
+					label: 'Getting started',
+					autogenerate: { directory: 'getting-started' }
+				},
+				{
+					label: 'Core concepts',
+					autogenerate: { directory: 'core-concepts' }
+				},
+				{
+					label: 'Components',
+					collapsed: true,
+					autogenerate: { directory: 'components' }
+				},
+				{
+					label: 'Actions',
+					collapsed: true,
+					autogenerate: { directory: 'actions' }
+				},
+				{
 					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' }
-					]
+					autogenerate: { directory: 'guides' }
 				},
 				{
 					label: 'Reference',
 					autogenerate: { directory: 'reference' }
 				}
-			]
+			],
+			components: {
+				// Override the default `SocialIcons` component.
+				SocialIcons: './src/components/SocialIcons.astro'
+			}
 		})
 	]
 })

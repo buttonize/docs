@@ -34,6 +34,7 @@
 		"extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
 	},
 	"eslint.validate": [
+		"astro",
 		"markdown",
 		"mdx",
 		"javascript",

@@ -1,6 +1,8 @@
 ---
-title: Example Reference
+title: CDK Constructs
 description: A reference page in my new Starlight docs site.
+sidebar:
+  order: 1
 ---
 
 Reference pages are ideal for outlining how things work in terse and clear terms.

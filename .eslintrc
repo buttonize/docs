@@ -4,51 +4,83 @@
 		"ecmaVersion": 13,
 		"sourceType": "module"
 	},
-	"plugins": ["@typescript-eslint", "prettier", "simple-import-sort", "react-hooks"],
-	"extends": ["plugin:react/recommended", "plugin:astro/recommended"],
+	"plugins": [
+		"@typescript-eslint",
+		"simple-import-sort",
+		"@stylistic/eslint-plugin-js",
+		"tailwindcss"
+	],
 	"settings": {
-		"mdx/code-blocks": true,
-		"react": {
-			"version": "detect"
+		"tailwindcss": {
+			"config": "./docs/tailwind.config.js"
 		}
-	},
-	"rules": {
-		"react-hooks/exhaustive-deps": "warn",
-		"react-hooks/rules-of-hooks": "error",
-		"react/prop-types": ["off"],
-		"react/react-in-jsx-scope": "off",
-		"prettier/prettier": "error",
-		"simple-import-sort/exports": "error",
-		"simple-import-sort/imports": "error",
-		"@typescript-eslint/ban-ts-comment": [
-			"error",
-			{
-				"ts-expect-error": "allow-with-description",
-				"ts-ignore": "allow-with-description",
-				"ts-nocheck": true,
-				"ts-check": false
-			}
-		],
-		"@typescript-eslint/ban-types": ["off"],
-		"@typescript-eslint/explicit-function-return-type": "warn",
-		"@typescript-eslint/no-explicit-any": ["warn"],
-		"@typescript-eslint/no-unused-vars": "error",
-		"@typescript-eslint/no-use-before-define": ["warn"],
-		"@typescript-eslint/no-non-null-assertion": ["warn"]
 	},
 	"overrides": [
 		{
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx", "*.astro"],
+			"rules": {
+				"simple-import-sort/exports": "error",
+				"simple-import-sort/imports": "error",
+				"@typescript-eslint/ban-ts-comment": [
+					"error",
+					{
+						"ts-expect-error": "allow-with-description",
+						"ts-ignore": "allow-with-description",
+						"ts-nocheck": true,
+						"ts-check": false
+					}
+				],
+				"@typescript-eslint/ban-types": ["off"],
+				"@typescript-eslint/explicit-function-return-type": "warn",
+				"@typescript-eslint/no-explicit-any": ["warn"],
+				"@typescript-eslint/no-unused-vars": "error",
+				"@typescript-eslint/no-use-before-define": ["warn"],
+				"@typescript-eslint/no-non-null-assertion": ["warn"],
+				"@stylistic/js/no-multiple-empty-lines": [
+					"error",
+					{ "max": 1, "maxEOF": 0 }
+				],
+				"@stylistic/js/semi": ["error", "never"],
+				"@stylistic/js/indent": ["error", "tab"],
+				"@stylistic/js/comma-dangle": ["error", "never"],
+				"@stylistic/js/quotes": [
+					"error",
+					"single",
+					{ "avoidEscape": true, "allowTemplateLiterals": true }
+				]
+			}
+		},
+		{
+			"files": ["*.tsx"],
+			"plugins": ["react-hooks"],
+			"extends": ["plugin:react/recommended"],
+			"rules": {
+				"react-hooks/exhaustive-deps": "warn",
+				"react-hooks/rules-of-hooks": "error",
+				"react/prop-types": ["off"],
+				"react/react-in-jsx-scope": "off"
+			},
+			"settings": {
+				"react": {
+					"version": "detect"
+				}
+			}
+		},
+		{
 			"files": ["*.astro"],
 			"parser": "astro-eslint-parser",
+			"extends": ["plugin:astro/recommended"],
 			"parserOptions": {
 				"parser": "@typescript-eslint/parser",
 				"extraFileExtensions": [".astro"]
-			},
-			"rules": {}
+			}
 		},
 		{
 			"files": ["*.mdx", "*.md"],
 			"extends": "plugin:mdx/recommended",
-		  },
+			"settings": {
+				"mdx/code-blocks": true
+			}
+		}
 	]
 }

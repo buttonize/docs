@@ -19,8 +19,7 @@
 		"lint:fix": "eslint 'stacks' 'docs' --quiet --ext .ts,.tsx,.js,.jsx,.json,.md,.mdx,.astro --fix"
 	},
 	"lint-staged": {
-		"*.{ts,tsx,js,jsx,json}": "eslint --quiet --fix",
-		"*.{graphql,gql,html}": "prettier --write"
+		"*.{ts,tsx,js,jsx,json}": "eslint --quiet --fix"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.1.2",

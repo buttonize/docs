@@ -17,6 +17,6 @@ export const appDomain = (app: App): string => {
 		: app.local
 			? 'localhost:3000'
 			: `${app.stage.toLowerCase()}-docs-${
-					process.env.FEATURE_DEPLOYMENT_SECRET
-				}.staging.buttonize.io`
+				process.env.FEATURE_DEPLOYMENT_SECRET
+			}.staging.buttonize.io`
 }

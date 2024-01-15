@@ -13,6 +13,9 @@ export function DocsStack({ stack, app }: StackContext): void {
 
 	new AstroSite(stack, 'Site', {
 		path: 'docs',
+		environment: {
+			SITE: `${app.local ? 'http' : 'https'}://${appDomain(app)}`
+		},
 		customDomain: {
 			domainName: appDomain(app),
 			hostedZone: isProd(app) ? 'buttonize.io' : 'staging.buttonize.io',

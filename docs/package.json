@@ -4,6 +4,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"env": "run-script-os",
+		"postinstall": "playwright install --with-deps chromium",
 		"env:windows": "env-cmd -f ../.env-cmd cmd /C \"ssocreds -p %AWS_PROFILE%\" && env-cmd -f ../.env-cmd",
 		"env:default": "env-cmd -f ../.env-cmd bash -c \"ssocreds -p \\$AWS_PROFILE\" && env-cmd -f ../.env-cmd",
 		"dev": "pnpm run env -- sst bind astro dev",
@@ -16,6 +17,7 @@
 		"@astrojs/starlight": "^0.15.3",
 		"@astrojs/tailwind": "^5.1.0",
 		"astro": "^4.0.1",
+		"remark-mermaidjs": "^6.0.0",
 		"sharp": "^0.32.5",
 		"tailwindcss": "^3.4.1"
 	},
@@ -23,6 +25,7 @@
 		"@astrojs/check": "^0.4.1",
 		"astro-sst": "^2.39.2",
 		"aws-sso-creds-helper": "^1.10.11",
+		"playwright": "^1.40.1",
 		"run-script-os": "^1.1.6",
 		"typescript": "^5.3.3"
 	}

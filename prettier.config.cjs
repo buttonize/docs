@@ -3,6 +3,14 @@ module.exports = {
 	singleQuote: true,
 	useTabs: true,
 	trailingComma: 'none',
-	plugins: ['prettier-plugin-tailwindcss'],
-	tailwindConfig: './docs/tailwind.config.js'
+	plugins: ['prettier-plugin-astro', 'prettier-plugin-astro'],
+	tailwindConfig: './docs/tailwind.config.js',
+	overrides: [
+		{
+			files: '*.astro',
+			options: {
+				parser: 'astro'
+			}
+		}
+	]
 }

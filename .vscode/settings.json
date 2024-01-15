@@ -8,20 +8,20 @@
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"[graphql]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
 	},
 	"[typescript]": {
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
 	},
-	"[mdx]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	"[md]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"[mjml]": {
-		"editor.defaultFormatter": "attilabuti.vscode-mjml"
+	"[mdx]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[astro]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"files.associations": {
 		"*.env": "ini",
@@ -30,22 +30,12 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit"
 	},
-	"eslint.options": {
-		"extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
-	},
-	"eslint.validate": [
-		"astro",
-		"markdown",
-		"mdx",
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact"
-	],
+	"prettier.documentSelectors": ["**/*.astro"],
 	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
 	"eslint.format.enable": true,
 	"editor.formatOnSave": true,
 	"prettier.ignorePath": ".eslintignore",
 	"prettier.useEditorConfig": true,
-	"typescript.tsdk": "node_modules/typescript/lib"
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"mdx.server.enable": false
 }

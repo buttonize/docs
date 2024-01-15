@@ -1,0 +1,58 @@
+---
+title: Display.h1
+description: A guide in my new Starlight docs site.
+---
+
+import { TabItem, Tabs } from '@astrojs/starlight/components'
+import ComponentDemo from '../../../components/ComponentDemo.astro'
+import FrameworkSelect from '../../../components/FrameworkSelect.astro'
+import FrameworkContent from '../../../components/FrameworkContent.astro'
+import PropsField from '../../../components/PropsField.astro'
+
+<FrameworkSelect />
+
+Displays a heading to the action user.
+
+## Usage
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" {8}
+      import { ButtonizeApp, Display } from '@buttonize/cdk'
+      
+      new ButtonizeApp(this, 'MyDemoApp', {
+        label: 'Buttonize Docs Demo App'
+      }).page('DemoPage', {
+        label: 'Docs Demo Page'
+        body: [
+          Display.h1('QR code')
+        ]
+      })
+    ```
+   </Fragment>
+</FrameworkContent>
+
+<ComponentDemo>
+	<span class="text-xl font-bold">QR code</span>
+</ComponentDemo>
+
+## Props
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+      <PropsField name="label" type="string" optional>
+        desc here
+      </PropsField>
+      <PropsField name="karel" type="string | number" required>
+        desc here
+        <br/>
+
+        ```typescript
+          const x = 10
+        ```
+      </PropsField>
+
+   </Fragment>
+</FrameworkContent>
+
+## Examples

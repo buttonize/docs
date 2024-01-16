@@ -78,8 +78,8 @@ importers:
         specifier: ^1.1.6
         version: 1.1.6
       sst:
-        specifier: 2.39.2
-        version: 2.39.2
+        specifier: 2.39.6
+        version: 2.39.6
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -98,9 +98,6 @@ importers:
       astro:
         specifier: ^4.0.1
         version: 4.1.1(@types/node@18.14.6)(typescript@5.3.3)
-      nanostores:
-        specifier: ^0.9.5
-        version: 0.9.5
       remark-mermaidjs:
         specifier: ^6.0.0
         version: 6.0.0
@@ -499,7 +496,7 @@ packages:
     engines: {node: '>=16.0.0'}
     dependencies:
       '@aws-crypto/util': 5.2.0
-      '@aws-sdk/types': 3.342.0
+      '@aws-sdk/types': 3.485.0
       tslib: 2.6.2
     dev: true
 
@@ -520,7 +517,7 @@ packages:
   /@aws-crypto/util@5.2.0:
     resolution: {integrity: sha512-4RkU9EsI6ZpBve5fseQlGNUWKMa1RLPQ1dnjnQoe07ldfIzcsGb5hC5W0Dm7u423KWzawlrpbjXBrXCEv9zazQ==}
     dependencies:
-      '@aws-sdk/types': 3.342.0
+      '@aws-sdk/types': 3.485.0
       '@smithy/util-utf8': 2.0.2
       tslib: 2.6.2
     dev: true
@@ -1564,13 +1561,6 @@ packages:
       tslib: 2.6.2
     transitivePeerDependencies:
       - aws-crt
-    dev: true
-
-  /@aws-sdk/types@3.342.0:
-    resolution: {integrity: sha512-5uyXVda/AgUpdZNJ9JPHxwyxr08miPiZ/CKSMcRdQVjcNnrdzY9m/iM9LvnQT44sQO+IEEkF2IoZIWvZcq199A==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      tslib: 2.6.2
     dev: true
 
   /@aws-sdk/types@3.485.0:
@@ -3907,6 +3897,15 @@ packages:
       '@smithy/node-config-provider': 2.1.9
       '@smithy/property-provider': 2.0.17
       '@smithy/smithy-client': 2.2.1
+      '@smithy/types': 2.8.0
+      tslib: 2.6.2
+    dev: true
+
+  /@smithy/util-endpoints@1.0.5:
+    resolution: {integrity: sha512-K7qNuCOD5K/90MjHvHm9kJldrfm40UxWYQxNEShMFxV/lCCCRIg8R4uu1PFAxRvPxNpIdcrh1uK6I1ISjDXZJw==}
+    engines: {node: '>= 14.0.0'}
+    dependencies:
+      '@smithy/node-config-provider': 2.1.9
       '@smithy/types': 2.8.0
       tslib: 2.6.2
     dev: true
@@ -9895,11 +9894,6 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  /nanostores@0.9.5:
-    resolution: {integrity: sha512-Z+p+g8E7yzaWwOe5gEUB2Ox0rCEeXWYIZWmYvw/ajNYX8DlXdMvMDj8DWfM/subqPAcsf8l8Td4iAwO1DeIIRQ==}
-    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
-    dev: false
-
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
     dev: false
@@ -11647,8 +11641,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /sst@2.39.2:
-    resolution: {integrity: sha512-lWtdSIoaZLa+pNzuwGmfExj6lvRFv6flT0Zrja+jlZt7eMJ8GPMUqFQoX4simkfNaKCDWSgHrQhexuDvFgEDJQ==}
+  /sst@2.39.6:
+    resolution: {integrity: sha512-7g02hLh/pnMfVh5Q+qv5roreD+no3OP2kbdNdrWwxpWKlQn/pp7IBpU3TvWw2+MNKR8VE7QqbVyKsMjier5VCQ==}
     hasBin: true
     peerDependencies:
       '@sls-next/lambda-at-edge': ^3.7.0
@@ -11684,6 +11678,7 @@ packages:
       '@babel/generator': 7.23.6
       '@babel/plugin-syntax-typescript': 7.21.4(@babel/core@7.23.7)
       '@smithy/signature-v4': 2.0.19
+      '@smithy/util-endpoints': 1.0.5
       '@trpc/server': 9.16.0
       adm-zip: 0.5.10
       aws-cdk-lib: 2.110.1(constructs@10.3.0)
@@ -11720,10 +11715,10 @@ packages:
       remeda: 1.8.1
       sst-aws-cdk: 2.110.1-1
       tree-kill: 1.2.2
-      undici: 5.20.0
+      undici: 5.28.2
       uuid: 9.0.0
       ws: 8.12.1
-      yargs: 17.7.1
+      yargs: 17.7.2
       zod: 3.22.4
     transitivePeerDependencies:
       - '@types/react'
@@ -12393,13 +12388,6 @@ packages:
       has-bigints: 1.0.2
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
-    dev: true
-
-  /undici@5.20.0:
-    resolution: {integrity: sha512-J3j60dYzuo6Eevbawwp1sdg16k5Tf768bxYK4TUJRH7cBM4kFCbf3mOnM/0E3vQYXvpxITbbWmBafaDbxLDz3g==}
-    engines: {node: '>=12.18'}
-    dependencies:
-      busboy: 1.6.0
     dev: true
 
   /undici@5.28.2:

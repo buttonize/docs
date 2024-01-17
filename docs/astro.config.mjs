@@ -1,7 +1,11 @@
+import { URL } from 'node:url'
+
 import starlight from '@astrojs/starlight'
 import tailwind from '@astrojs/tailwind'
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 import { defineConfig } from 'astro/config'
 import aws from 'astro-sst'
+import rehypeExternalLinks from 'rehype-external-links'
 import remarkMermaid from 'remark-mermaidjs'
 
 /** @type {import('remark-mermaidjs').RemarkMermaidOptions} */
@@ -24,6 +28,17 @@ const remarkMermaidOptions = {
 	}
 }
 
+/** @type {import('rehype-external-links').Options} */
+const rehypeExternalLinksOptions = {
+	target: '_blank',
+	rel: 'external',
+	test: (element) => {
+		return !/(buttonize\.io|localhost)/.test(
+			new URL(element?.properties?.href ?? '').hostname
+		)
+	}
+}
+
 // https://astro.build/config
 export default defineConfig({
 	site: process.env.SITE,
@@ -31,12 +46,16 @@ export default defineConfig({
 		deploymentStrategy: 'static'
 	}),
 	markdown: {
-		remarkPlugins: [[remarkMermaid, remarkMermaidOptions]]
+		remarkPlugins: [[remarkMermaid, remarkMermaidOptions]],
+		rehypePlugins: [[rehypeExternalLinks, rehypeExternalLinksOptions]]
 	},
 	integrations: [
 		tailwind(),
 		starlight({
 			favicon: 'favicon.ico',
+			expressiveCode: {
+				plugins: [pluginCollapsibleSections()]
+			},
 			logo: {
 				dark: './src/assets/logo_dark.svg',
 				light: './src/assets/logo.svg',
@@ -78,7 +97,7 @@ export default defineConfig({
 				{
 					label: 'Actions',
 					collapsed: true,
-					autogenerate: { directory: 'actions' }
+					autogenerate: { directory: 'actions', collapsed: false }
 				},
 				{
 					label: 'Guides',

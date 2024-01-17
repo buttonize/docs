@@ -1,0 +1,92 @@
+---
+title: lambda.invoke
+description: A guide in my new Starlight docs site.
+---
+
+import FrameworkContent from '@components/FrameworkContent.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+<FrameworkSelect />
+
+Invoke a Lambda function.
+
+```ansi
+[38;5;39mAction.aws.lambda.invoke[0m(lambdaFunction, inputProps?, actionProps?)
+```
+
+## Usage
+
+<FrameworkContent>
+  <Fragment slot="cdk">
+    ```typescript title="lib/MyStack.ts" "lambda.invoke" collapse={1-12}
+    import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
+    import { Action, ButtonizeApp, Input } from '@buttonize/cdk'
+
+    new ButtonizeApp(this, 'MyDemoApp', {
+    		label: 'Buttonize Docs Demo App'
+    	}).page('DemoPage', {
+    		label: 'Docs Demo Page',
+    		body: [
+    			Input.text({
+    				id: 'name',
+    				label: 'What is your name?'
+    			}),
+    			Input.submit({
+    				id: 'SaveToDB',
+    				label: 'Save to database',
+    				nextPage: 'DemoPage',
+    				action: Action.aws.lambda.invoke(
+    					new NodejsFunction(this, 'MyLambda', {
+    						handler: 'handler',
+    						entry: path.join(__dirname, `lambdaHandler.ts`),
+    						runtime: lambda.Runtime.NODEJS_18_X
+    					}),
+    					{
+    						Payload: {
+    							saveToDb: true,
+    							userName: '{{name}}'
+    						}
+    					}
+    				)
+    			})
+    		]
+    	})
+    ```
+
+  </Fragment>
+</FrameworkContent>
+
+## Props
+
+You can include also other props than those mentioned below. Read more about [Invoke Command](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-lambda/Interface/InvocationRequest/) props in AWS SDK Docs.
+
+We mention here only the most frequently used props.
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+    <PropDescription>
+      <Fragment slot="title">
+        ### Payload
+      </Fragment>
+      <PropMarker slot="markers" type="optional" />
+      <Fragment slot="type">object | string</Fragment>
+      <Fragment slot="description">
+         Buttonize resolves variables in the `Payload` object and stringifies the whole object to JSON before sending the request to AWS.
+
+        ```ts
+          {
+            Payload: {
+              someParameter: {
+                yes: false
+              },
+              userName: '{{name}}'
+            }
+          }
+        ```
+      </Fragment>
+    </PropDescription>
+
+  </Fragment>
+</FrameworkContent>

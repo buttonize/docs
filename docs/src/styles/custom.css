@@ -39,3 +39,10 @@
 .site-title img {
 	padding: 0.5rem 0;
 }
+
+/* due to tailwind defaults reset */
+.sl-markdown-content ul:not(:where(.not-content *)) {
+	list-style: disc;
+	margin: 0.5em !important;
+	padding: 0 0 0 20px;
+}

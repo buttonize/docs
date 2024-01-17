@@ -12,7 +12,7 @@
 	],
 	"overrides": [
 		{
-			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx", "*.mjs", "*.cjs"],
 			"rules": {
 				"simple-import-sort/exports": "error",
 				"simple-import-sort/imports": "error",

@@ -4,20 +4,25 @@ description: A guide in my new Starlight docs site.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
-import ComponentDemo from '../../../components/ComponentDemo.astro'
-import FrameworkSelect from '../../../components/FrameworkSelect.astro'
-import FrameworkContent from '../../../components/FrameworkContent.astro'
-import PropsField from '../../../components/PropsField.astro'
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
 
 <FrameworkSelect />
 
-Displays a heading to the action user.
+Displays H1 heading with bold font and large font size.
+
+```ansi frame="none"
+[38;5;39mDisplay.h1[0m(text)
+```
 
 ## Usage
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" {8}
+    ```ts title="lib/MyStack.ts" collapse={1-6}
       import { ButtonizeApp, Display } from '@buttonize/cdk'
       
       new ButtonizeApp(this, 'MyDemoApp', {
@@ -32,6 +37,8 @@ Displays a heading to the action user.
    </Fragment>
 </FrameworkContent>
 
+## Demo
+
 <ComponentDemo>
 	<span class="text-xl font-bold">QR code</span>
 </ComponentDemo>
@@ -39,20 +46,7 @@ Displays a heading to the action user.
 ## Props
 
 <FrameworkContent>
-   <Fragment slot="cdk">
-      <PropsField name="label" type="string" optional>
-        desc here
-      </PropsField>
-      <PropsField name="karel" type="string | number" required>
-        desc here
-        <br/>
-
-        ```typescript
-          const x = 10
-        ```
-      </PropsField>
-
-   </Fragment>
+	<Fragment slot="cdk">
+		<span class="italic">none</span>
+	</Fragment>
 </FrameworkContent>
-
-## Examples

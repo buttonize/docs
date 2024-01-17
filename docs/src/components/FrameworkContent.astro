@@ -1,5 +1,5 @@
 ---
-import { frameworkWhitelist } from '../lib/frameworkSelect'
+import { frameworkWhitelist } from '@lib/frameworkSelect'
 const slots = frameworkWhitelist
 	.filter((name) => Astro.slots.has(name))
 	.map((name) => ({ name, slot: Astro.slots.render(name) }))

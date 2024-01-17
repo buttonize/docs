@@ -1,7 +1,7 @@
 const storageKey = 'docs-framework'
 const eventKey = 'frameworkValue'
 
-export const frameworkWhitelist = ['cdk', 'terraform'] as const
+export const frameworkWhitelist = ['cdk'] as const
 
 export const setFramework = (value: string): void => {
 	localStorage.setItem(

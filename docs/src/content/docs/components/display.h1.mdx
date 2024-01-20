@@ -39,9 +39,16 @@ Displays H1 heading with bold font and large font size.
 
 ## Demo
 
-<ComponentDemo>
-	<span class="text-xl font-bold">QR code</span>
-</ComponentDemo>
+<ComponentDemo
+	components={[
+		{
+			typeName: 'display.h1',
+			props: {
+				label: 'QR code'
+			}
+		}
+	]}
+/>
 
 ## Props
 

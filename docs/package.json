@@ -24,6 +24,7 @@
 		"tailwindcss": "^3.4.1"
 	},
 	"devDependencies": {
+		"@buttonize/cli": "latest",
 		"@astrojs/check": "^0.4.1",
 		"astro-sst": "^2.39.2",
 		"aws-sso-creds-helper": "^1.10.11",

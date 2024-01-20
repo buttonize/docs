@@ -14,7 +14,8 @@ export function DocsStack({ stack, app }: StackContext): void {
 	new AstroSite(stack, 'Site', {
 		path: 'docs',
 		environment: {
-			SITE: `${app.local ? 'http' : 'https'}://${appDomain(app)}`
+			SITE: `${app.local ? 'http' : 'https'}://${appDomain(app)}`,
+			STAGE: app.stage
 		},
 		customDomain: {
 			domainName: appDomain(app),

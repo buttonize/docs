@@ -8,7 +8,13 @@ import FrameworkSelect from '@components/FrameworkSelect.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
-<FrameworkSelect />
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/actions/lambda/invoke.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
 
 Invoke a Lambda function.
 

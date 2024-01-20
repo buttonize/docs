@@ -10,7 +10,13 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
-<FrameworkSelect />
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/components/display/text.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
 
 Simple text input field.
 

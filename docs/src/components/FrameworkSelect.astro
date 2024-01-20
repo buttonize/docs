@@ -2,7 +2,7 @@
 
 ---
 
-<div class="not-content">
+<div class="flex items-center">
 	<select
 		framework-select
 		value="cdk"
@@ -10,6 +10,13 @@
 	>
 		<option value="cdk">AWS CDK</option>
 	</select>
+	{
+		Astro.slots.has('default') ? (
+			<div class="framework-select-slot ml-3 !mt-0">
+				<slot />
+			</div>
+		) : null
+	}
 </div>
 
 <script>
@@ -34,4 +41,8 @@
 	})
 </script>
 
-<style></style>
+<style is:global>
+	.framework-select-slot :where(div, p) {
+		margin: 0 !important;
+	}
+</style>

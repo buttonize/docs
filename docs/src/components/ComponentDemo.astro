@@ -1,5 +1,17 @@
 ---
+import type { Apps } from '@buttonize/cli/lib/_ws.cjs'
 
+interface Props {
+	components: Apps[string][string]['pages'][number]['body']
+	runtimeStorage?: Record<string, any>
+}
+
+const { components, runtimeStorage } = Astro.props
+
+const baseUrl =
+	import.meta.env.STAGE === 'master'
+		? 'https://app.buttonize.io'
+		: 'https://v2-app-zjxpw.staging.buttonize.io'
 ---
 
 <div class="not-content">
@@ -32,8 +44,13 @@
 				>
 			</div>
 		</div><div class="flicker-fix">
-			<div class="overflow-x-auto bg-white pt-3 pb-20 pl-3">
-				<slot />
+			<div class="overflow-x-auto bg-white p-3">
+				<slot>
+					<iframe
+						class="w-full"
+						src={`${baseUrl}/internal/preview?components=${encodeURIComponent(JSON.stringify(components))}${typeof runtimeStorage !== 'undefined' ? `&runtimeStorage=${encodeURIComponent(JSON.stringify(runtimeStorage))}` : ''}`}
+					></iframe>
+				</slot>
 			</div>
 		</div>
 	</div>

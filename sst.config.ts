@@ -22,6 +22,8 @@ const config: SSTConfig = {
 			runtime: 'nodejs18.x',
 			architecture: 'arm_64',
 			logRetention: 'three_months',
+			tracing: 'disabled',
+			logRetentionRetryOptions: { maxRetries: 100 },
 			nodejs: {
 				format: 'esm'
 			}

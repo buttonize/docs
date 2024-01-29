@@ -4,6 +4,7 @@ import type { Apps } from '@buttonize/cli/lib/_ws.cjs'
 interface Props {
 	components: Apps[string][string]['pages'][number]['body']
 	runtimeStorage?: Record<string, any>
+	height?: number
 }
 
 const { components, runtimeStorage } = Astro.props
@@ -47,7 +48,14 @@ const baseUrl =
 			<div class="overflow-x-auto bg-white p-3">
 				<slot>
 					<iframe
+						data-component-demo
 						class="w-full"
+						style={{
+							height:
+								typeof Astro.props.height !== 'undefined'
+									? `${Astro.props.height}px`
+									: undefined
+						}}
 						src={`${baseUrl}/internal/preview?components=${encodeURIComponent(JSON.stringify(components))}${typeof runtimeStorage !== 'undefined' ? `&runtimeStorage=${encodeURIComponent(JSON.stringify(runtimeStorage))}` : ''}`}
 					></iframe>
 				</slot>

@@ -33,9 +33,13 @@ const rehypeExternalLinksOptions = {
 	target: '_blank',
 	rel: 'external',
 	test: (element) => {
-		return !/(buttonize\.io|localhost)/.test(
-			new URL(element?.properties?.href ?? '').hostname
-		)
+		try {
+			return !/(buttonize\.io|localhost)/.test(
+				new URL(element?.properties?.href ?? '').hostname
+			)
+		} catch {
+			return false
+		}
 	}
 }
 

@@ -1,13 +1,284 @@
 ---
 title: Apps & Pages
-description: How Buttonize works under the hood.
+description: Apps and pages are the main building blocks of Buttonize. Every app is composed of one or more pages and every page is then composed of one or more components.
 sidebar:
   order: 1
 ---
 
-Guides lead a user through a specific task they want to accomplish, often with a sequence of steps.
-Writing a good guide requires thinking about what your users are trying to do.
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
 
-## Further reading
+<FrameworkSelect />
 
-- Read [about how-to guides](https://diataxis.fr/how-to-guides/) in the Diátaxis framework
+Apps and pages are the main building blocks of Buttonize. Every app is composed of one or more pages and every page is then composed of one or more [components](/core-concepts/components).
+
+:::note
+
+- You can add and remove pages as you like but make sure there is at least one page in the application.
+- Make sure the page ID is always unique in context of a single application. If not, CDK will throw an error.
+- The first page is always displayed as the initial page.
+
+:::
+
+## Code example
+
+<FrameworkContent>
+  <Fragment slot="cdk">
+		```ts title="lib/MyStack.ts"
+		import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+
+    	Buttonize.init(this, {
+    		apiKey: 'btnz_mybuttonizekey1234567',
+    		externalId: 'this-is-super-secret-99'
+    	})
+
+    	new ButtonizeApp(this, 'MyButtonizeApp')
+    		.page('MyButtonizePage', {
+    			body: [
+    				Display.h1('Hello, this is my page'),
+    				Input.submit({
+    					id: 'nextPage',
+    					label: 'Next page',
+    					onSubmit: Action.buttonize.app.changePage('SecondPage')
+    				})
+    			]
+    		})
+    		.page('SecondPage', {
+    			body: [
+    				Display.h1('This is second page.'),
+    				Input.text({
+    					id: 'name',
+    					label: 'What is your name?',
+    					placeholder: 'Joe'
+    				}),
+    				Display.text('Hello: {{name}}'),
+    				Input.submit({
+    					id: 'prevPage',
+    					label: 'Go back',
+    					onSubmit: Action.buttonize.app.changePage('MyButtonizePage')
+    				})
+    			]
+    		})
+    	```
+    </Fragment>
+
+</FrameworkContent>
+
+## Visual example
+
+#### First page contents
+
+<span class="block py-2 text-sm text-gray-500">
+	_The buttons are not interactive in this example._
+</span>
+<ComponentDemo
+	components={[
+		{
+			typeName: 'display.h1',
+			props: {
+				label: 'Hello, this is my page'
+			}
+		},
+		{
+			typeName: 'input.submit',
+			props: {
+				id: 'nextPage',
+				label: 'Next page',
+				onSubmit: {
+					type: 'buttonize',
+					service: 'app',
+					command: 'changePage',
+					input: {
+						newPageId: 'SecondPage'
+					}
+				}
+			}
+		}
+	]}
+/>
+
+#### Second page contents
+
+<span class="block py-2 text-sm text-gray-500">
+	_The buttons are not interactive in this example._
+</span>
+<ComponentDemo
+	height={250}
+	components={[
+		{
+			typeName: 'display.h1',
+			props: {
+				label: 'This is second page.'
+			}
+		},
+		{
+			typeName: 'input.text',
+			props: {
+				id: 'name',
+				label: 'What is your name?',
+				placeholder: 'Joe'
+			}
+		},
+		{
+			typeName: 'display.text',
+			props: {
+				label: 'Hello: {{name}}, nice to meet you'
+			}
+		},
+		{
+			typeName: 'input.submit',
+			props: {
+				id: 'prevPage',
+				label: 'Go back',
+				onSubmit: {
+					type: 'buttonize',
+					service: 'app',
+					command: 'changePage',
+					input: {
+						newPageId: 'MyButtonizePage'
+					}
+				}
+			}
+		}
+	]}
+/>
+
+## Page Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+    <PropDescription>
+      <Fragment slot="title">
+        ### body
+      </Fragment>
+      <PropMarker slot="markers" type="required" />
+      <Fragment slot="type">Component[]</Fragment>
+      <Fragment slot="description">
+         Every page is composed of one or more components. Components are of type `Display` or `Input`. [Learn more about components.](/core-concepts/components/)
+
+    		```ts
+    		new ButtonizeApp(this, 'MyApp')
+    			.page('MyButtonizePage', {
+    				body: [
+    					Display.h1('My Great APp'),
+    					Display.text('Hello there.')
+    				]
+    			})
+    		```
+      </Fragment>
+    </PropDescription>
+
+    	<PropDescription>
+      <Fragment slot="title">
+        ### initialState
+      </Fragment>
+      <PropMarker slot="markers" type="optional" />
+      <Fragment slot="type">\{ [key: string]: ActionIntent }</Fragment>
+      <Fragment slot="description">
+         Initial state defines actions which will be executed when the page is displayed to the user. The returned values from the actions will be stored in the state under the respective keys.
+
+    		```ts collapse={1-11,18-19}
+    			const myLambdaFunction = new NodejsFunction(
+    				this,
+    				'MyLambdaFunction',
+    				{
+    					handler: 'handler',
+    					entry: path.join(__dirname, `lambdaHandler.ts`),
+    					runtime: lambda.Runtime.NODEJS_20_X
+    				}
+    			)
+
+    		new ButtonizeApp(this, 'MyApp')
+    			.page('MyPage', {
+    				initialState: {
+    					myInitData: Action.aws.lambda.invoke(
+    						myLambdaFunction
+    					)
+    				},
+    				body: []
+    			})
+    		```
+      </Fragment>
+    </PropDescription>
+
+  </Fragment>
+</FrameworkContent>
+
+## App Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+    <PropDescription>
+      <Fragment slot="title">
+        ### name
+      </Fragment>
+      <PropMarker slot="markers" type="optional" />
+      <Fragment slot="type">string</Fragment>
+      <Fragment slot="description">
+         Name of the application which is then visible in the apps list when users are searching for the apps.
+      </Fragment>
+    </PropDescription>
+
+    <PropDescription>
+      <Fragment slot="title">
+        ### tags
+      </Fragment>
+      <PropMarker slot="markers" type="optional" />
+      <Fragment slot="type">string[]</Fragment>
+      <Fragment slot="description">
+         Tags that will be applied to this app. Tags can be used for filtering the apps or for managing access via [permission system](/core-concepts/permissions/).
+      </Fragment>
+    </PropDescription>
+
+    <PropDescription>
+      <Fragment slot="title">
+        ### description
+      </Fragment>
+      <PropMarker slot="markers" type="optional" />
+      <Fragment slot="type">string[]</Fragment>
+      <Fragment slot="description">
+         Short description of the application's purpose which is then visible in the apps list next to app name.
+      </Fragment>
+    </PropDescription>
+
+     	<PropDescription>
+      <Fragment slot="title">
+        ### stage
+      </Fragment>
+      <PropMarker slot="markers" type="optional" />
+      <Fragment slot="type">string</Fragment>
+      <Fragment slot="description">
+         If you are using production/staging/feature deployments, you can distinguish between them by setting a value to this property.
+    			 Stage value can be used for filtering the apps or for managing access via [permission system](/core-concepts/permissions/).
+      </Fragment>
+    </PropDescription>
+
+    <PropDescription>
+      <Fragment slot="title">
+        ### apiKey
+      </Fragment>
+      <PropMarker slot="markers" type="optional" />
+    		<PropMarker slot="markers" type="special" />
+      <Fragment slot="type">string</Fragment>
+      <Fragment slot="description">
+         We recommend using `Buttonize.init` where you can set the default API key for all the apps in a CDK stack. But if you need to use different API keys for different apps in a single stack, you can use this property.
+      </Fragment>
+    </PropDescription>
+
+    	 <PropDescription>
+      <Fragment slot="title">
+        ### executionRole
+      </Fragment>
+      <PropMarker slot="markers" type="optional" />
+    		<PropMarker slot="markers" type="special" />
+      <Fragment slot="type">iam.Role | \{ roleArn: string; externalId: string }</Fragment>
+      <Fragment slot="description">
+         We recommend using the default execution IAM role generated by Buttonize. But if you want Buttonize to use your custom IAM role, you can use this property.
+      </Fragment>
+    </PropDescription>
+
+  </Fragment>
+</FrameworkContent>

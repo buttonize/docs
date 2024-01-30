@@ -1,13 +1,81 @@
 ---
 title: Components
-description: Get started with Buttonize.
+description: Components are the visible parts of Buttonize apps. Learn more how Buttonize Components work.
 sidebar:
   order: 2
 ---
 
-Guides lead a user through a specific task they want to accomplish, often with a sequence of steps.
-Writing a good guide requires thinking about what your users are trying to do.
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+import PagesList from '@components/PagesList.astro'
 
-## Further reading
+<FrameworkSelect />
 
-- Read [about how-to guides](https://diataxis.fr/how-to-guides/) in the Diátaxis framework
+Components are the visible parts of Buttonize apps.
+
+There are two types of components
+
+- `Display` - read-only components displaying text and data. For example [Display.h1](/components/displayh1/).
+- `Input` - read-write components with possibility to hook up [Actions](/core-concepts/actions/) to them. For example [Input.text](/components/input-text/).
+
+## Code example
+
+<FrameworkContent>
+  <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-7} {11-16}
+    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+
+      Buttonize.init(this, {
+        apiKey: 'btnz_mybuttonizekey1234567',
+        externalId: 'this-is-super-secret-99'
+      })
+
+      new ButtonizeApp(this, 'MyButtonizeApp')
+        .page('MyButtonizePage', {
+          body: [
+            Display.h1('Hello {{name}}, this is my page'),
+            Input.text({
+              id: 'name',
+              label: 'What is your name?',
+              placeholder: 'Joe'
+            }),
+          ]
+        })
+    ```
+    </Fragment>
+
+</FrameworkContent>
+
+## Visual example
+
+#### First page contents
+
+<span class="block py-2 text-sm text-gray-500">
+	_The buttons are not interactive in this example._
+</span>
+<ComponentDemo
+	height={200}
+	components={[
+		{
+			typeName: 'display.h1',
+			props: {
+				label: 'Hello {{name}}, this is my page'
+			}
+		},
+		{
+			typeName: 'input.text',
+			props: {
+				id: 'name',
+				label: 'What is your name?',
+				placeholder: 'Joe'
+			}
+		}
+	]}
+/>
+
+## Available components
+
+<PagesList idPrefix="components/" />

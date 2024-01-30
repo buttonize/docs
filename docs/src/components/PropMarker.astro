@@ -12,6 +12,10 @@ const markers = {
 	optional: {
 		text: 'Optional',
 		style: 'bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
+	},
+	special: {
+		text: 'Special Use',
+		style: 'text-red-800 bg-red-100'
 	}
 }
 
@@ -24,7 +28,7 @@ if (!(type in markers)) {
 
 <span
 	class:list={[
-		'iv-status-pill flex-shrink-0 inline-flex items-center h-6 px-2 text-[12px] font-medium rounded-xl leading-4 relative -top-px ml-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300',
+		'iv-status-pill mr-1 flex-shrink-0 inline-flex items-center h-6 px-2 text-[12px] font-medium rounded-xl leading-4 relative -top-px ml-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300',
 		markers[type].style
 	]}
 >

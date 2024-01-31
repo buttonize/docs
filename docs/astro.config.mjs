@@ -95,13 +95,11 @@ export default defineConfig({
 				},
 				{
 					label: 'Components',
-					collapsed: true,
 					autogenerate: { directory: 'components' }
 				},
 				{
 					label: 'Actions',
-					collapsed: true,
-					autogenerate: { directory: 'actions', collapsed: false }
+					autogenerate: { directory: 'actions' }
 				},
 				{
 					label: 'Guides',

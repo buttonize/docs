@@ -1,0 +1,24 @@
+---
+import { LinkCard, CardGrid } from '@astrojs/starlight/components'
+import { getCollection } from 'astro:content'
+
+interface Props {
+	idPrefix: string
+}
+
+const collections = (await getCollection('docs')).filter((collection) =>
+	collection.id.startsWith(Astro.props.idPrefix)
+)
+---
+
+<CardGrid>
+	{
+		collections.map((item) => (
+			<LinkCard
+				title={item.data.title}
+				description={item.data.description ?? ''}
+				href={`/${item.slug}`}
+			/>
+		))
+	}
+</CardGrid>

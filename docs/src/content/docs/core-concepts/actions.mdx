@@ -1,19 +1,86 @@
 ---
 title: Actions
-description: Get started with Buttonize.
+description: Actions are user-defined responses to certain events. It can be for example click on a button or load of a page. Learn more about how Buttonize Actions work.
 sidebar:
   order: 3
 ---
 
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
 import PagesList from '@components/PagesList.astro'
 
-Guides lead a user through a specific task they want to accomplish, often with a sequence of steps.
-Writing a good guide requires thinking about what your users are trying to do.
+<FrameworkSelect />
 
-## Further reading
+Actions are user-defined responses to certain events. It can be for example click on a button or load of a page. If a component has property with prefix `on` like for example `onSubmit` you can define an action there.
 
-- Read [about how-to guides](https://diataxis.fr/how-to-guides/) in the Diátaxis framework
+Currently there are two main groups of of actions:
+
+- `AWS` - invocation of certain AWS services like for example [`Action.aws.lambda.invoke`](/actions/aws/lambda-invoke/)
+- `Buttonize` - lifecycle events of the Buttonize apps like for example [`Action.buttonize.changePage`](/actions/buttonize/change-page/)
+
+## Code example
+
+<FrameworkContent>
+  <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-12,18-27} {16,32-44}
+    import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
+    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+
+    Buttonize.init(this, {
+      apiKey: 'btnz_mybuttonizekey1234567',
+      externalId: 'this-is-super-secret-99'
+    })
+
+    new ButtonizeApp(this, 'MyButtonizeApp')
+      .page('MyButtonizePage', {
+        body: [
+          Display.h1('Hello, this is my page'),
+          Input.submit({
+            id: 'nextPage',
+            label: 'Next page',
+            onSubmit: Action.buttonize.app.changePage('SecondPage')
+          })
+        ]
+      })
+      .page('SecondPage', {
+        body: [
+          Display.h1('This is second page.'),
+          Input.text({
+            id: 'name',
+            label: 'What is your name?',
+            placeholder: 'Joe'
+          }),
+          Input.submit({
+            id: 'registerUser',
+            label: 'Register',
+            variant: 'secondary',
+            onSubmit: Action.aws.lambda.invoke(
+              new NodejsFunction(this, 'MyLambda', {
+                handler: 'handler',
+                entry: path.join(__dirname, `lambdaHandler.ts`),
+                runtime: lambda.Runtime.NODEJS_20_X
+              }),
+              {
+                Payload: {
+                  saveToDb: true,
+                  userName: '{{name}}'
+                }
+              }
+            )
+          })
+        ]
+      })
+      ```
+    </Fragment>
+
+</FrameworkContent>
 
 ## Available actions
 
-<PagesList idPrefix="actions" />
+### AWS
+
+<PagesList idPrefix="actions/AWS" />
+
+### Buttonize
+
+<PagesList idPrefix="actions/Buttonize" />

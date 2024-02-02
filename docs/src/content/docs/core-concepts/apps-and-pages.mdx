@@ -23,53 +23,53 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 
 :::
 
-## Code example
+## Example
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" {8,9,19,}
+    ```ts title="lib/MyStack.ts" {8-9,19}
     import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
 
-      Buttonize.init(this, {
-        apiKey: 'btnz_mybuttonizekey1234567',
-        externalId: 'this-is-super-secret-99'
-      })
+    Buttonize.init(this, {
+      apiKey: 'btnz_mybuttonizekey1234567',
+      externalId: 'this-is-super-secret-99'
+    })
 
-      new ButtonizeApp(this, 'MyButtonizeApp')
-        .page('MyButtonizePage', {
-          body: [
-            Display.h1('Hello, this is my page'),
-            Input.submit({
-              id: 'nextPage',
-              label: 'Next page',
-              onSubmit: Action.buttonize.app.changePage('SecondPage')
-            })
-          ]
-        })
-        .page('SecondPage', {
-          body: [
-            Display.h1('This is second page.'),
-            Input.text({
-              id: 'name',
-              label: 'What is your name?',
-              placeholder: 'Joe'
-            }),
-            Display.text('Hello: {{name}}'),
-            Input.submit({
-              id: 'prevPage',
-              label: 'Go back',
-              onSubmit: Action.buttonize.app.changePage('MyButtonizePage')
-            })
-          ]
-        })
+    new ButtonizeApp(this, 'MyButtonizeApp')
+      .page('MyButtonizePage', {
+        body: [
+          Display.h1('Hello, this is my page'),
+          Input.submit({
+            id: 'nextPage',
+            label: 'Next page',
+            onSubmit: Action.buttonize.app.changePage('SecondPage')
+          })
+        ]
+      })
+      .page('SecondPage', {
+        body: [
+          Display.h1('This is second page.'),
+          Input.text({
+            id: 'name',
+            label: 'What is your name?',
+            placeholder: 'Joe'
+          }),
+          Display.text('Hello: {{name}}'),
+          Input.submit({
+            id: 'prevPage',
+            label: 'Go back',
+            onSubmit: Action.buttonize.app.changePage('MyButtonizePage')
+          })
+        ]
+      })
       ```
     </Fragment>
 
 </FrameworkContent>
 
-## Visual example
+### Preview
 
-#### First page contents
+#### First page
 
 <span class="block py-2 text-sm text-gray-500">
 	_The buttons are not interactive in this example._
@@ -100,7 +100,7 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 	]}
 />
 
-#### Second page contents
+#### Second page
 
 <span class="block py-2 text-sm text-gray-500">
 	_The buttons are not interactive in this example._
@@ -181,15 +181,15 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
          Initial state defines actions which will be executed when the page is displayed to the user. The returned values from the actions will be stored in the state under the respective keys. [Learn more about Runtime State.](/core-concepts/runtime-state/)
 
         ```ts collapse={1-11,18-19}
-          const myLambdaFunction = new lambda.NodejsFunction(
-            this,
-            'MyLambdaFunction',
-            {
-              handler: 'handler',
-              entry: path.join(__dirname, `lambdaHandler.ts`),
-              runtime: lambda.Runtime.NODEJS_20_X
-            }
-          )
+        const myLambdaFunction = new lambda.NodejsFunction(
+          this,
+          'MyLambdaFunction',
+          {
+            handler: 'handler',
+            entry: path.join(__dirname, `lambdaHandler.ts`),
+            runtime: lambda.Runtime.NODEJS_20_X
+          }
+        )
 
         new ButtonizeApp(this, 'MyApp')
           .page('MyPage', {

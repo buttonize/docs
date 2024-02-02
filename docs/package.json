@@ -14,10 +14,10 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/starlight": "^0.15.4",
+		"@astrojs/starlight": "^0.17.2",
 		"@astrojs/tailwind": "^5.1.0",
 		"@expressive-code/plugin-collapsible-sections": "^0.31.0",
-		"astro": "^4.0.1",
+		"astro": "^4.3.2",
 		"rehype-external-links": "^3.0.0",
 		"remark-mermaidjs": "^6.0.0",
 		"sharp": "^0.32.5",
@@ -26,7 +26,7 @@
 	"devDependencies": {
 		"@buttonize/cli": "latest",
 		"@astrojs/check": "^0.4.1",
-		"astro-sst": "^2.39.2",
+		"astro-sst": "^2.40.1",
 		"aws-sso-creds-helper": "^1.10.11",
 		"playwright": "^1.40.1",
 		"run-script-os": "^1.1.6",

@@ -29,21 +29,21 @@ Displays H1 heading with bold font and large font size.
 <FrameworkContent>
    <Fragment slot="cdk">
     ```ts title="lib/MyStack.ts" collapse={1-6}
-      import { ButtonizeApp, Display } from '@buttonize/cdk'
-      
-      new ButtonizeApp(this, 'MyDemoApp', {
-        label: 'Buttonize Docs Demo App'
-      }).page('DemoPage', {
-        label: 'Docs Demo Page'
-        body: [
-          Display.h1('QR code')
-        ]
-      })
+    import { ButtonizeApp, Display } from '@buttonize/cdk'
+    
+    new ButtonizeApp(this, 'MyDemoApp', {
+      label: 'Buttonize Docs Demo App'
+    }).page('DemoPage', {
+      label: 'Docs Demo Page'
+      body: [
+        Display.h1('QR code')
+      ]
+    })
     ```
    </Fragment>
 </FrameworkContent>
 
-## Demo
+## Preview
 
 <ComponentDemo
 	components={[

@@ -21,41 +21,36 @@ There are two types of components
 - `Display` - read-only components displaying text and data. For example [Display.h1](/components/displayh1/).
 - `Input` - read-write components with the possibility to hook up [Actions](/core-concepts/actions/) to them. For example [Input.text](/components/input-text/).
 
-## Code example
+## Example
 
 <FrameworkContent>
   <Fragment slot="cdk">
     ```ts title="lib/MyStack.ts" collapse={1-7} {11-16}
     import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
 
-      Buttonize.init(this, {
-        apiKey: 'btnz_mybuttonizekey1234567',
-        externalId: 'this-is-super-secret-99'
-      })
+    Buttonize.init(this, {
+      apiKey: 'btnz_mybuttonizekey1234567',
+      externalId: 'this-is-super-secret-99'
+    })
 
-      new ButtonizeApp(this, 'MyButtonizeApp')
-        .page('MyButtonizePage', {
-          body: [
-            Display.h1('Hello {{name}}, this is my page'),
-            Input.text({
-              id: 'name',
-              label: 'What is your name?',
-              placeholder: 'Joe'
-            }),
-          ]
-        })
+    new ButtonizeApp(this, 'MyButtonizeApp')
+      .page('MyButtonizePage', {
+        body: [
+          Display.h1('Hello {{name}}, this is my page'),
+          Input.text({
+            id: 'name',
+            label: 'What is your name?',
+            placeholder: 'Joe'
+          }),
+        ]
+      })
     ```
     </Fragment>
 
 </FrameworkContent>
 
-## Visual example
+### Preview
 
-#### First page contents
-
-<span class="block py-2 text-sm text-gray-500">
-	_The buttons are not interactive in this example._
-</span>
 <ComponentDemo
 	height={200}
 	components={[

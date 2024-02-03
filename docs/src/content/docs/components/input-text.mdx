@@ -29,25 +29,25 @@ Simple text input field.
 <FrameworkContent>
    <Fragment slot="cdk">
     ```ts title="lib/MyStack.ts" collapse={1-6}
-      import { ButtonizeApp, Display } from '@buttonize/cdk'
-      
-      new ButtonizeApp(this, 'MyDemoApp', {
-        label: 'Buttonize Docs Demo App'
-      }).page('DemoPage', {
-        label: 'Docs Demo Page'
-        body: [
-          Input.text({
-            id: 'name',
-            label: 'What is your name?',
-            placeholder: 'John Doe'
-          })
-        ]
-      })
+    import { ButtonizeApp, Display } from '@buttonize/cdk'
+    
+    new ButtonizeApp(this, 'MyDemoApp', {
+      label: 'Buttonize Docs Demo App'
+    }).page('DemoPage', {
+      label: 'Docs Demo Page'
+      body: [
+        Input.text({
+          id: 'name',
+          label: 'What is your name?',
+          placeholder: 'John Doe'
+        })
+      ]
+    })
     ```
    </Fragment>
 </FrameworkContent>
 
-## Demo
+## Preview
 
 <ComponentDemo
 	components={[
@@ -102,9 +102,9 @@ Simple text input field.
 	</Fragment>
 </FrameworkContent>
 
-## Runtime Storage
+## Runtime State
 
-The value in the runtime storage is string value of the text input.
+The value in the runtime state is string value of the text input.
 
 ```ts title="lib/MyStack.ts" "'name'"
 Input.text({
@@ -113,7 +113,7 @@ Input.text({
 })
 ```
 
-```json title="Runtime storage" frame="terminal" ""name""
+```json title="Runtime state" frame="terminal" ""name""
 {
 	"name": "David Copperfield"
 }

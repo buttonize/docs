@@ -31,19 +31,16 @@ Invoke a Lambda function.
     import { Action, ButtonizeApp, Input } from '@buttonize/cdk'
 
     new ButtonizeApp(this, 'MyDemoApp', {
-        label: 'Buttonize Docs Demo App'
+        name: 'Buttonize Docs Demo App'
       }).page('DemoPage', {
-        label: 'Docs Demo Page',
         body: [
           Input.text({
             id: 'name',
             label: 'What is your name?'
           }),
-          Input.submit({
-            id: 'SaveToDB',
+          Display.button({
             label: 'Save to database',
-            nextPage: 'DemoPage',
-            action: Action.aws.lambda.invoke(
+            onClick: Action.aws.lambda.invoke(
               new NodejsFunction(this, 'MyLambda', {
                 handler: 'handler',
                 entry: path.join(__dirname, `lambdaHandler.ts`),
@@ -55,7 +52,8 @@ Invoke a Lambda function.
                   userName: '{{name}}'
                 }
               }
-            )
+            ),
+            onClickFinished: Action.buttonize.app.changePage('DemoPage')
           })
         ]
       })

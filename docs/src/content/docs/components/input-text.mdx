@@ -28,18 +28,18 @@ Simple text input field.
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-6}
+    ```ts title="lib/MyStack.ts" collapse={1-5}
     import { ButtonizeApp, Display } from '@buttonize/cdk'
     
     new ButtonizeApp(this, 'MyDemoApp', {
-      label: 'Buttonize Docs Demo App'
+      name: 'Buttonize Docs Demo App'
     }).page('DemoPage', {
-      label: 'Docs Demo Page'
       body: [
         Input.text({
           id: 'name',
           label: 'What is your name?',
-          placeholder: 'John Doe'
+          placeholder: 'John Doe',
+          initialValue: 'David Copperfield'
         })
       ]
     })
@@ -56,13 +56,11 @@ Simple text input field.
 			props: {
 				id: 'name',
 				label: 'What is your name?',
-				placeholder: 'John Doe'
+				placeholder: 'John Doe',
+				initialValue: 'David Copperfield'
 			}
 		}
 	]}
-	runtimeStorage={{
-		name: 'David Copperfield'
-	}}
 />
 
 ## Props
@@ -98,6 +96,18 @@ Simple text input field.
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">Placeholder of the input element.</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### initialValue
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">
+				The initial value for the input set in the [Runtime
+				State](/core-concepts/runtime-state/).
+			</Fragment>
 		</PropDescription>
 	</Fragment>
 </FrameworkContent>

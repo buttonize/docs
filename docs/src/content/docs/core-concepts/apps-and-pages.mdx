@@ -27,7 +27,7 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" {8-9,19}
+    ```ts title="lib/MyStack.ts" {8-9,18}
     import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
 
     Buttonize.init(this, {
@@ -38,27 +38,25 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
     new ButtonizeApp(this, 'MyButtonizeApp')
       .page('MyButtonizePage', {
         body: [
-          Display.h1('Hello, this is my page'),
-          Input.submit({
-            id: 'nextPage',
+          Display.heading('Hello, this is my page'),
+          Display.button({
             label: 'Next page',
-            onSubmit: Action.buttonize.app.changePage('SecondPage')
+            onClick: Action.buttonize.app.changePage('SecondPage')
           })
         ]
       })
       .page('SecondPage', {
         body: [
-          Display.h1('This is second page.'),
+          Display.heading('This is second page.'),
           Input.text({
             id: 'name',
             label: 'What is your name?',
             placeholder: 'Joe'
           }),
           Display.text('Hello: {{name}}'),
-          Input.submit({
-            id: 'prevPage',
+          Display.button({
             label: 'Go back',
-            onSubmit: Action.buttonize.app.changePage('MyButtonizePage')
+            onClick: Action.buttonize.app.changePage('MyButtonizePage')
           })
         ]
       })
@@ -77,17 +75,16 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 <ComponentDemo
 	components={[
 		{
-			typeName: 'display.h1',
+			typeName: 'display.heading',
 			props: {
 				label: 'Hello, this is my page'
 			}
 		},
 		{
-			typeName: 'input.submit',
+			typeName: 'display.button',
 			props: {
-				id: 'nextPage',
 				label: 'Next page',
-				onSubmit: {
+				onClick: {
 					type: 'buttonize',
 					service: 'app',
 					command: 'changePage',
@@ -109,7 +106,7 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 	height={250}
 	components={[
 		{
-			typeName: 'display.h1',
+			typeName: 'display.heading',
 			props: {
 				label: 'This is second page.'
 			}
@@ -129,11 +126,10 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 			}
 		},
 		{
-			typeName: 'input.submit',
+			typeName: 'display.button',
 			props: {
-				id: 'prevPage',
 				label: 'Go back',
-				onSubmit: {
+				onClick: {
 					type: 'buttonize',
 					service: 'app',
 					command: 'changePage',
@@ -163,7 +159,7 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
         new ButtonizeApp(this, 'MyApp')
           .page('MyButtonizePage', {
             body: [
-              Display.h1('My Great APp'),
+              Display.heading('My Great APp'),
               Display.text('Hello there.')
             ]
           })

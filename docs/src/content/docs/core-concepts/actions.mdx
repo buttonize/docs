@@ -22,7 +22,7 @@ Currently there are two main groups of of actions:
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-12,18-27} {16,32-44}
+    ```ts title="lib/MyStack.ts" collapse={1-11,17-26} {15,30-42}
     import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
     import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
 
@@ -34,27 +34,25 @@ Currently there are two main groups of of actions:
     new ButtonizeApp(this, 'MyButtonizeApp')
       .page('MyButtonizePage', {
         body: [
-          Display.h1('Hello, this is my page'),
-          Input.submit({
-            id: 'nextPage',
+          Display.heading('Hello, this is my page'),
+          Display.button({
             label: 'Next page',
-            onSubmit: Action.buttonize.app.changePage('SecondPage')
+            onClick: Action.buttonize.app.changePage('SecondPage')
           })
         ]
       })
       .page('SecondPage', {
         body: [
-          Display.h1('This is second page.'),
+          Display.heading('This is second page.'),
           Input.text({
             id: 'name',
             label: 'What is your name?',
             placeholder: 'Joe'
           }),
-          Input.submit({
-            id: 'registerUser',
+          Display.button({
             label: 'Register',
             variant: 'secondary',
-            onSubmit: Action.aws.lambda.invoke(
+            onClick: Action.aws.lambda.invoke(
               new NodejsFunction(this, 'MyLambda', {
                 handler: 'handler',
                 entry: path.join(__dirname, `lambdaHandler.ts`),

@@ -237,3 +237,41 @@ You can define set of [Actions](/core-concepts/actions/) that will be invoked on
 This can be useful when you need to pre-fetch data that will be displayed to the user like for example dynamic options for select box.
 
 ### Example
+
+<FrameworkContent>
+  <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-17} "myInitDataExample"
+    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+
+    Buttonize.init(this, {
+      apiKey: 'btnz_mybuttonizekey1234567',
+      externalId: 'this-is-super-secret-99'
+    })
+
+    const myLambdaFunction = new lambda.NodejsFunction(
+      this,
+      'MyLambdaFunction',
+      {
+        handler: 'handler',
+        entry: path.join(__dirname, `lambdaHandler.ts`),
+        runtime: lambda.Runtime.NODEJS_20_X
+      }
+    )
+
+    new ButtonizeApp(this, 'MyButtonizeApp')
+      .page('MyPage', {
+        initialState: {
+          myInitDataExample: Action.aws.lambda.invoke(
+            myLambdaFunction
+          )
+        },
+        body: [
+          Display.json({
+            dataFromLambda: '{{myInitDataExample}}'
+          })
+        ]
+      })
+      ```
+    </Fragment>
+
+</FrameworkContent>

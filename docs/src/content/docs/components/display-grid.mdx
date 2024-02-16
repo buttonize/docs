@@ -1,0 +1,102 @@
+---
+title: Display.grid
+description: Display.grid can be used to precisely determine the layout of your Buttonize components.
+---
+
+import { TabItem, Tabs } from '@astrojs/starlight/components'
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/components/display/grid.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
+
+Displays the given components with the specified, grid-based layout.
+
+```ansi frame="none"
+[38;5;39mDisplay.grid[0m(columns, props)
+```
+
+## Usage
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-5}
+    import { ButtonizeApp, Display } from '@buttonize/cdk'
+    
+    new ButtonizeApp(this, 'MyDemoApp', {
+      name: 'Buttonize Docs Demo App'
+    }).page('DemoPage', {
+      body: [
+        Display.grid([
+          {size: 1, body: [Display.heading('Title')]},
+          {size: 2, body: [Display.text('Some description to right instead of below')]}
+        ])
+      ]
+    })
+    ```
+   </Fragment>
+</FrameworkContent>
+
+## Preview
+
+<ComponentDemo
+	components={[
+		{
+			typeName: 'display.grid',
+			props: {
+				columns: [
+					{
+						size: 1,
+						body: [{ typeName: 'display.heading', props: { label: 'Title' } }]
+					},
+					{
+						size: 2,
+						body: [
+							{
+								typeName: 'display.text',
+								props: { label: 'Some description to right instead of below' }
+							}
+						]
+					}
+				]
+			}
+		}
+	]}
+/>
+
+## Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### spacingTop
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">'sm' | 'md' | 'lg' | 'xl'</Fragment>
+			<Fragment slot="description">
+				The amount of space to give above the grid.
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### spacingBottom
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">'sm' | 'md' | 'lg' | 'xl'</Fragment>
+			<Fragment slot="description">
+				The amount of space to give below the grid.
+			</Fragment>
+		</PropDescription>
+	</Fragment>
+</FrameworkContent>

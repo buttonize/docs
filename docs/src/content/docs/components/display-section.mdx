@@ -1,0 +1,100 @@
+---
+title: Display.section
+description: Display.section displays a collapsible section.
+---
+
+import { TabItem, Tabs } from '@astrojs/starlight/components'
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/components/display/section.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
+
+Displays a collapsible section with a label and body content.
+
+```ansi frame="none"
+[38;5;39mDisplay.section[0m(props)
+```
+
+## Usage
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-5}
+    import { ButtonizeApp, Display } from '@buttonize/cdk'
+
+    new ButtonizeApp(this, 'MyDemoApp', {
+      name: 'Demo App'
+    }).page('DemoPage', {
+      body: [
+        Display.section({
+          label: 'Title',
+          body: [
+            Display.heading('Hello, world!')
+          ],
+          collapsed: true
+        })
+      ]
+    })
+    ```
+
+   </Fragment>
+</FrameworkContent>
+Preview
+<ComponentDemo
+  components={[
+    {
+      typeName: 'display.section',
+      props: {
+      label: 'Section Title',
+      body: [
+        {
+          typeName: 'display.heading',
+          props: {
+            label: 'Hello, world!'
+          }
+        }
+      ],
+        collapsed: true,
+      }
+    }
+  ]}
+/>
+
+## Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+		<PropDescription>
+			<Fragment slot="title">### label</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">The label/title of the section.</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">### body</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">IComponent[]</Fragment>
+			<Fragment slot="description">
+				An array of `IComponent` objects representing the content of the
+				section.
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">### collapsed</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">boolean</Fragment>
+			<Fragment slot="description">
+				Optional: Initial collapsed state of the section. Default is `false`.
+			</Fragment>
+		</PropDescription>
+	</Fragment>
+</FrameworkContent>

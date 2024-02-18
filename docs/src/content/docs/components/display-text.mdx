@@ -1,0 +1,57 @@
+---
+title: Display.text
+description: Display.text shows plain text.
+---
+
+import { TabItem, Tabs } from '@astrojs/starlight/components'
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/components/display/text.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
+
+Shows plain text on a Buttonize page.
+
+```ansi frame="none"
+[38;5;39mDisplay.text[0m(label, props)
+```
+
+## Usage
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-5}
+    import { ButtonizeApp, Display } from '@buttonize/cdk'
+
+    new ButtonizeApp(this, 'DemoApp', {
+      name: 'Demo App'
+    }).page('DemoPage', {
+      body: [
+        Display.text('Hello, World!')
+      ]
+    })
+    ```
+
+   </Fragment>
+</FrameworkContent>
+
+## Preview
+
+<ComponentDemo
+	components={[
+		{
+			typeName: 'display.text',
+			props: {
+				label: 'Hello, World!'
+			}
+		}
+	]}
+/>

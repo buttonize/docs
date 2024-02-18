@@ -1,0 +1,101 @@
+---
+title: Input.toggle
+description: Input.toggle displays a checkbox.
+---
+
+import { TabItem, Tabs } from '@astrojs/starlight/components'
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/components/input/toggle.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
+
+Displays an interactable checkbox within a Buttonize page.
+
+```ansi frame="none"
+[38;5;39mInput.toggle[0m(props)
+```
+
+## Usage
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-5}
+    import { ButtonizeApp, Input } from '@buttonize/cdk'
+
+    new ButtonizeApp(this, 'DemoApp', {
+      name: 'Demo App'
+    }).page('DemoPage', {
+      body: [
+        Input.toggle({
+          id: 'toggleSwitch',
+          label: 'Enable Feature',
+        })
+      ]
+    })
+    ```
+
+   </Fragment>
+</FrameworkContent>
+
+## Preview
+
+<ComponentDemo
+	components={[
+		{
+			typeName: 'input.toggle',
+			props: {
+				id: 'toggleSwitch',
+				label: 'Enable Feature'
+			}
+		}
+	]}
+/>
+
+## Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+		<PropDescription>
+			<Fragment slot="title">### id</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">
+				The name of the variable containing the selected option. This variable
+				can then be referenced elsewhere in your Buttonize app.
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">### label</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">
+				The text displayed by the checkbox.
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">### initialValue</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">boolean</Fragment>
+			<Fragment slot="description">
+				The initial state of the checkbox. Default is `false`.
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">### disabled</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">boolean</Fragment>
+			<Fragment slot="description">
+				Whether or not the checkbox is disable. Default is `false`.
+			</Fragment>
+		</PropDescription>
+	</Fragment>
+</FrameworkContent>

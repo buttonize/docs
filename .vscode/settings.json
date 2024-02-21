@@ -37,5 +37,8 @@
 	"prettier.ignorePath": ".eslintignore",
 	"prettier.useEditorConfig": true,
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"mdx.server.enable": false
+	"mdx.server.enable": false,
+	"[markdown]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }

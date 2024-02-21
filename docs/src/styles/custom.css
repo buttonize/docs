@@ -32,9 +32,8 @@
 /* The SVG is always inside <p> element */
 .mermaid-center p {
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 }
-
 
 .site-title img {
 	padding: 0.5rem 0;
@@ -45,4 +44,23 @@
 	list-style: disc;
 	margin: 0.5em !important;
 	padding: 0 0 0 20px;
+}
+
+h1 {
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
+article.card {
+	padding: 20px;
+	border-radius: 16px;
+	border-color: #dedede;
+}
+
+.content-panel {
+	border-top: 0 !important;
+}
+
+.right-sidebar {
+	border: 0;
 }

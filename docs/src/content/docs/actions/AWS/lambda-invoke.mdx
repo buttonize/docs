@@ -30,8 +30,8 @@ Invoke a Lambda function.
     import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
     import { Action, ButtonizeApp, Input } from '@buttonize/cdk'
 
-    new ButtonizeApp(this, 'MyDemoApp', {
-        name: 'Buttonize Docs Demo App'
+    new ButtonizeApp(this, 'DemoApp', {
+        name: 'Demo App'
       }).page('DemoPage', {
         body: [
           Input.text({

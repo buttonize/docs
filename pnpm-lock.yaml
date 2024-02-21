@@ -92,6 +92,9 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.17.2
         version: 0.17.2(astro@4.3.2)
+      '@astrojs/starlight-tailwind':
+        specifier: ^2.0.1
+        version: 2.0.1(@astrojs/starlight@0.17.2)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1)
       '@astrojs/tailwind':
         specifier: ^5.1.0
         version: 5.1.0(astro@4.3.2)(tailwindcss@3.4.1)(ts-node@10.9.2)
@@ -119,7 +122,7 @@ importers:
         version: 0.4.1(prettier-plugin-astro@0.12.3)(prettier@3.2.2)(typescript@5.3.3)
       '@buttonize/cli':
         specifier: latest
-        version: 1.4.1
+        version: 1.6.0
       astro-sst:
         specifier: ^2.40.1
         version: 2.40.1
@@ -312,6 +315,18 @@ packages:
     dependencies:
       sitemap: 7.1.1
       zod: 3.22.4
+    dev: false
+
+  /@astrojs/starlight-tailwind@2.0.1(@astrojs/starlight@0.17.2)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-niMgFcR7NHcsBVy8UAN3F2gqhmoN5v83st5Hu4YzvUL+6SNwjQmIipXppXdN9+iVneRjPr6PLGzDfI+wnjSBWQ==}
+    peerDependencies:
+      '@astrojs/starlight': '>=0.9.0'
+      '@astrojs/tailwind': ^5.0.0
+      tailwindcss: ^3.3.3
+    dependencies:
+      '@astrojs/starlight': 0.17.2(astro@4.3.2)
+      '@astrojs/tailwind': 5.1.0(astro@4.3.2)(tailwindcss@3.4.1)(ts-node@10.9.2)
+      tailwindcss: 3.4.1(ts-node@10.9.2)
     dev: false
 
   /@astrojs/starlight@0.17.2(astro@4.3.2):
@@ -1920,8 +1935,8 @@ packages:
     resolution: {integrity: sha512-s3jaWicZd0pkP0jf5ysyHUI/RE7MHos6qlToFcGWXVp+ykHOy77OUMrfbgJ9it2C5bow7OIQwYYaHjk9XlBQ2A==}
     dev: false
 
-  /@buttonize/cli@1.4.1:
-    resolution: {integrity: sha512-rKFBvARCs/vvFg9EKfy+vBDx0kBNVjSuatahE+RSnBLUeh8MKLNQALMvnbp5IV7F9rRMAqw0B0DO9hx9oFRfAw==}
+  /@buttonize/cli@1.6.0:
+    resolution: {integrity: sha512-PprGiciWMF64wFcy/NiAH9iiwIiVLt45TnTKYar93L3ERp5VbJAk6bCt5g6znWQTyW4zCzdZnMks7ldXUY1MiA==}
     engines: {node: '>= 18.16.0'}
     hasBin: true
     dependencies:
@@ -2956,10 +2971,10 @@ packages:
       '@types/ws': 8.5.4
       duplexify: 3.7.1
       inherits: 2.0.4
-      isomorphic-ws: 4.0.1(ws@8.12.1)
+      isomorphic-ws: 4.0.1(ws@8.16.0)
       readable-stream: 2.3.8
       safe-buffer: 5.2.1
-      ws: 8.12.1
+      ws: 8.16.0
       xtend: 4.0.2
     transitivePeerDependencies:
       - bufferutil
@@ -8468,12 +8483,12 @@ packages:
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  /isomorphic-ws@4.0.1(ws@8.12.1):
+  /isomorphic-ws@4.0.1(ws@8.16.0):
     resolution: {integrity: sha512-BhBvN2MBpWTaSHdWRb/bwdZJ1WaehQ2L1KngkCkfLUGF0mAWAT1sQUQacEmQ0jXkFw/czDXPNQSL5u2/Krsz1w==}
     peerDependencies:
       ws: '*'
     dependencies:
-      ws: 8.12.1
+      ws: 8.16.0
     dev: true
 
   /iterator.prototype@1.1.2:

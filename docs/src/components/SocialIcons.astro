@@ -10,21 +10,26 @@ const links = Object.entries(config.social ?? {}) as [Platform, SocialConfig][]
 {
 	links.length > 0 ? (
 		<>
-			<div>
+			{links.map(([platform, { label, url }]) => (
 				<a
-					class="action font-bold"
-					href="https://app.buttonize.io"
+					href={url}
+					rel="me"
+					class="sl-flex text-black dark:text-gray-100"
 					target="_blank"
 				>
-					Sign-in
-				</a>
-			</div>
-			{links.map(([platform, { label, url }]) => (
-				<a href={url} rel="me" class="sl-flex" target="_blank">
 					<span class="sr-only">{label}</span>
 					<Icon name={platform} />
 				</a>
 			))}
+			<div>
+				<a
+					class="action font-medium text-sm rounded-sm bg-black text-white mx-4 flex items-center justify-center gap-2 no-underline"
+					href="https://app.buttonize.io"
+					target="_blank"
+				>
+					Go to Buttonize <Icon name="right-arrow" size="16" />
+				</a>
+			</div>
 		</>
 	) : null
 }
@@ -37,17 +42,6 @@ const links = Object.entries(config.social ?? {}) as [Platform, SocialConfig][]
 	}
 	a:hover {
 		opacity: 0.66;
-	}
-
-	.action {
-		border-radius: 0.75rem;
-		padding: 0.1rem 0.1rem;
-		color: var(--sl-color-white);
-		line-height: 1.1875;
-		text-decoration: none;
-		font-size: var(--sl-text-sm);
-		background: var(--sl-color-text-accent);
-		color: var(--sl-color-black);
 	}
 
 	@media (min-width: 50rem) {

@@ -54,7 +54,6 @@ export default defineConfig({
 		rehypePlugins: [[rehypeExternalLinks, rehypeExternalLinksOptions]]
 	},
 	integrations: [
-		tailwind(),
 		starlight({
 			favicon: 'favicon.ico',
 			expressiveCode: {
@@ -67,7 +66,8 @@ export default defineConfig({
 				replacesTitle: true
 			},
 			title: 'Buttonize Docs',
-			tagline: 'Build UI for your AWS CDK apps', // IDK what's the difference between tagline and description
+			tagline: 'Build UI for your AWS CDK apps',
+			// IDK what's the difference between tagline and description
 			description:
 				'Build user interface in AWS CDK for your AWS cloud-native apps',
 			lastUpdated: true,
@@ -82,38 +82,55 @@ export default defineConfig({
 			},
 			customCss: [
 				// Relative path to your custom CSS file
+				'./src/styles/tailwind.css',
 				'./src/styles/custom.css'
 			],
 			sidebar: [
 				{
 					label: 'Getting started',
-					autogenerate: { directory: 'getting-started' }
+					autogenerate: {
+						directory: 'getting-started'
+					}
 				},
 				{
 					label: 'Core concepts',
-					autogenerate: { directory: 'core-concepts' }
+					autogenerate: {
+						directory: 'core-concepts'
+					}
 				},
 				{
 					label: 'Components',
-					autogenerate: { directory: 'components' }
+					autogenerate: {
+						directory: 'components'
+					}
 				},
 				{
 					label: 'Actions',
-					autogenerate: { directory: 'actions' }
+					autogenerate: {
+						directory: 'actions'
+					}
 				},
 				{
 					label: 'Guides',
-					autogenerate: { directory: 'guides' }
+					autogenerate: {
+						directory: 'guides'
+					}
 				},
 				{
 					label: 'Reference',
-					autogenerate: { directory: 'reference' }
+					autogenerate: {
+						directory: 'reference'
+					}
 				}
 			],
 			components: {
 				// Override the default `SocialIcons` component.
 				SocialIcons: './src/components/SocialIcons.astro'
 			}
+		}),
+		tailwind({
+			// Disable the default base styles:
+			applyBaseStyles: false
 		})
 	]
 })

@@ -1,0 +1,29 @@
+---
+title: spacing-props
+---
+
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+<PropDescription>
+	<Fragment slot="title">
+		{/* keep-good-prettier-formatting */}
+		### spacingTop
+	</Fragment>
+	<PropMarker slot="markers" type="optional" />
+	<Fragment slot="type">'sm' | 'md' | 'lg' | 'xl'</Fragment>
+	<Fragment slot="description">
+		The amount of space to give above the component.
+	</Fragment>
+</PropDescription>
+<PropDescription>
+	<Fragment slot="title">
+		{/* keep-good-prettier-formatting */}
+		### spacingBottom
+	</Fragment>
+	<PropMarker slot="markers" type="optional" />
+	<Fragment slot="type">'sm' | 'md' | 'lg' | 'xl'</Fragment>
+	<Fragment slot="description">
+		The amount of space to give below the component.
+	</Fragment>
+</PropDescription>

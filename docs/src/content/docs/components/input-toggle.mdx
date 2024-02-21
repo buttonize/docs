@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -65,7 +67,10 @@ Displays an interactable checkbox within a Buttonize page.
 <FrameworkContent>
 	<Fragment slot="cdk">
 		<PropDescription>
-			<Fragment slot="title">### id</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### id
+			</Fragment>
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
@@ -74,7 +79,10 @@ Displays an interactable checkbox within a Buttonize page.
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### label</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### label
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
@@ -82,7 +90,10 @@ Displays an interactable checkbox within a Buttonize page.
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### initialValue</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### initialValue
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">boolean</Fragment>
 			<Fragment slot="description">
@@ -90,12 +101,16 @@ Displays an interactable checkbox within a Buttonize page.
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### disabled</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### disabled
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">boolean</Fragment>
 			<Fragment slot="description">
 				Whether or not the checkbox is disable. Default is `false`.
 			</Fragment>
 		</PropDescription>
+		<SpacingProps />
 	</Fragment>
 </FrameworkContent>

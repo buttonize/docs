@@ -11,6 +11,8 @@ import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 import { Image } from 'astro:assets'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -86,28 +88,6 @@ Displays the given components with the specified, grid-based layout.
 
 <FrameworkContent>
 	<Fragment slot="cdk">
-		<PropDescription>
-			<Fragment slot="title">
-				{/* keep-good-prettier-formatting */}
-				### spacingTop
-			</Fragment>
-			<PropMarker slot="markers" type="optional" />
-			<Fragment slot="type">'sm' | 'md' | 'lg' | 'xl'</Fragment>
-			<Fragment slot="description">
-				The amount of space to give above the grid.
-			</Fragment>
-		</PropDescription>
-		<PropDescription>
-			<Fragment slot="title">
-				{/* keep-good-prettier-formatting */}
-				### spacingBottom
-			</Fragment>
-			<PropMarker slot="markers" type="optional" />
-			<Fragment slot="type">'sm' | 'md' | 'lg' | 'xl'</Fragment>
-			<Fragment slot="description">
-				The amount of space to give below the grid.
-			</Fragment>
-		</PropDescription>
+		<SpacingProps />
 	</Fragment>
 </FrameworkContent>
-````

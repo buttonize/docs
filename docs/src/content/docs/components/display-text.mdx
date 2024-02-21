@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -55,3 +57,11 @@ Shows plain text on a Buttonize page.
 		}
 	]}
 />
+
+## Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+		<SpacingProps />
+	</Fragment>
+</FrameworkContent>

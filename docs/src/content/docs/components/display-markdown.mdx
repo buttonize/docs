@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -56,3 +58,11 @@ Displays content formatted with Markdown.
 		}
 	]}
 />
+
+## Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+		<SpacingProps />
+	</Fragment>
+</FrameworkContent>

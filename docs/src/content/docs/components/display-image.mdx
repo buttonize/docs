@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -64,18 +66,25 @@ Displays an image within your Buttonize app.
 <FrameworkContent>
 	<Fragment slot="cdk">
 		<PropDescription>
-			<Fragment slot="title">### url</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### url
+			</Fragment>
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">The URL of the image to show.</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### alt</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### alt
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
 				A description for the image for accessibility.
 			</Fragment>
 		</PropDescription>
+		<SpacingProps />
 	</Fragment>
 </FrameworkContent>

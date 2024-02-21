@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -68,7 +70,10 @@ Renders code within your Buttonize app with syntax highlighting.
 <FrameworkContent>
 	<Fragment slot="cdk">
 		<PropDescription>
-			<Fragment slot="title">### code</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### code
+			</Fragment>
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
@@ -76,7 +81,10 @@ Renders code within your Buttonize app with syntax highlighting.
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### language</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### language
+			</Fragment>
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
@@ -84,18 +92,25 @@ Renders code within your Buttonize app with syntax highlighting.
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### title</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### title
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">Optional title for the code block.</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### frame</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### frame
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">'code' | 'terminal' | 'none' | 'auto'</Fragment>
 			<Fragment slot="description">
 				Frame type for the code block. Default is 'code'.
 			</Fragment>
 		</PropDescription>
+		<SpacingProps />
 	</Fragment>
 </FrameworkContent>

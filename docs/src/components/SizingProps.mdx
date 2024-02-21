@@ -1,0 +1,16 @@
+---
+title: sizing-props
+---
+
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+<PropDescription>
+	<Fragment slot="title">
+		{/* keep-good-prettier-formatting */}
+		### width
+	</Fragment>
+	<PropMarker slot="markers" type="optional" />
+	<Fragment slot="type">1 | 2 | 3 | 4</Fragment>
+	<Fragment slot="description">The width of the component.</Fragment>
+</PropDescription>

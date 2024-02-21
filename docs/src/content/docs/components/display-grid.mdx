@@ -9,6 +9,7 @@ import FrameworkSelect from '@components/FrameworkSelect.astro'
 import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
+import { Image } from 'astro:assets'
 
 <FrameworkSelect>
 	<FrameworkContent>
@@ -24,13 +25,21 @@ Displays the given components with the specified, grid-based layout.
 [38;5;39mDisplay.grid[0m(columns, props)
 ```
 
+<br />
+
+### Creating layouts with Grid component
+
+`Display.Grid` component can be used to create layouts with ease. It allows you to specify the size of each column (1-4).
+
+![Grid component](/public/images/grid_layout.png)
+
 ## Usage
 
 <FrameworkContent>
    <Fragment slot="cdk">
     ```ts title="lib/MyStack.ts" collapse={1-5}
     import { ButtonizeApp, Display } from '@buttonize/cdk'
-    
+
     new ButtonizeApp(this, 'MyDemoApp', {
       name: 'Buttonize Docs Demo App'
     }).page('DemoPage', {
@@ -42,6 +51,7 @@ Displays the given components with the specified, grid-based layout.
       ]
     })
     ```
+
    </Fragment>
 </FrameworkContent>
 
@@ -100,3 +110,4 @@ Displays the given components with the specified, grid-based layout.
 		</PropDescription>
 	</Fragment>
 </FrameworkContent>
+````

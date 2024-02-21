@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -78,7 +80,10 @@ Displays an input field that can be used to interact with a chatbot.
 <FrameworkContent>
 	<Fragment slot="cdk">
 		<PropDescription>
-			<Fragment slot="title">### id</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### id
+			</Fragment>
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
@@ -87,7 +92,10 @@ Displays an input field that can be used to interact with a chatbot.
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### onMessage</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### onMessage
+			</Fragment>
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">function</Fragment>
 			<Fragment slot="description">
@@ -95,18 +103,25 @@ Displays an input field that can be used to interact with a chatbot.
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### placeholder</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### placeholder
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">Placeholder for the input field.</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### disabled</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### disabled
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">boolean</Fragment>
 			<Fragment slot="description">
 				Whether or not the input is disabled. Default is `false`.
 			</Fragment>
 		</PropDescription>
+		<SpacingProps />
 	</Fragment>
 </FrameworkContent>

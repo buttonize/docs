@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -79,7 +81,10 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 <FrameworkContent>
 	<Fragment slot="cdk">
 		<PropDescription>
-			<Fragment slot="title">### id</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### id
+			</Fragment>
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
@@ -88,7 +93,10 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### options</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### options
+			</Fragment>
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">object</Fragment>
 			<Fragment slot="description">
@@ -97,7 +105,10 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### label</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### label
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
@@ -105,7 +116,10 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### disabled</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### disabled
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">boolean</Fragment>
 			<Fragment slot="description">
@@ -113,7 +127,10 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### placeholder</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### placeholder
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
@@ -121,7 +138,10 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### multi</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### multi
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">boolean</Fragment>
 			<Fragment slot="description">
@@ -129,7 +149,10 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### initialValue</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### initialValue
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
@@ -137,5 +160,6 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 				multi-select.
 			</Fragment>
 		</PropDescription>
+		<SpacingProps />
 	</Fragment>
 </FrameworkContent>

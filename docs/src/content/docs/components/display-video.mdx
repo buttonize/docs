@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -61,12 +63,16 @@ Displays a video within your Buttonize app.
 <FrameworkContent>
 	<Fragment slot="cdk">
 		<PropDescription>
-			<Fragment slot="title">### muted</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### muted
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">boolean</Fragment>
 			<Fragment slot="description">
-				Optional: Initial muted state of the video. Default is `false`.
+				Initial muted state of the video. Default is `false`.
 			</Fragment>
 		</PropDescription>
+		<SpacingProps />
 	</Fragment>
 </FrameworkContent>

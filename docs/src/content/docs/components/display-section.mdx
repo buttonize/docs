@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -74,13 +76,19 @@ Preview
 <FrameworkContent>
 	<Fragment slot="cdk">
 		<PropDescription>
-			<Fragment slot="title">### label</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### label
+			</Fragment>
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">The label/title of the section.</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### body</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### body
+			</Fragment>
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">IComponent[]</Fragment>
 			<Fragment slot="description">
@@ -89,12 +97,16 @@ Preview
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
-			<Fragment slot="title">### collapsed</Fragment>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### collapsed
+			</Fragment>
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">boolean</Fragment>
 			<Fragment slot="description">
 				Optional: Initial collapsed state of the section. Default is `false`.
 			</Fragment>
 		</PropDescription>
+		<SpacingProps />
 	</Fragment>
 </FrameworkContent>

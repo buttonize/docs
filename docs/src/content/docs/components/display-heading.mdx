@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -31,8 +33,8 @@ Displays bold heading with large font size.
     ```ts title="lib/MyStack.ts" collapse={1-5}
     import { ButtonizeApp, Display } from '@buttonize/cdk'
     
-    new ButtonizeApp(this, 'MyDemoApp', {
-      name: 'Buttonize Docs Demo App'
+    new ButtonizeApp(this, 'DemoApp', {
+      name: 'Demo App'
     }).page('DemoPage', {
       body: [
         Display.heading('QR code')
@@ -81,5 +83,6 @@ Displays bold heading with large font size.
 				Level of the heading. Default level is `1`.
 			</Fragment>
 		</PropDescription>
+		<SpacingProps />
 	</Fragment>
 </FrameworkContent>

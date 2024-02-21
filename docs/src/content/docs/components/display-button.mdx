@@ -10,6 +10,8 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
+import SpacingProps from '../../../components/SpacingProps.mdx'
+
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
@@ -125,7 +127,8 @@ The button can be used to trigger a lambda, change pages within a Buttonize app,
 
         This is also often used to redirect to the next page via `Action.buttonize.app.changePage`.
     		</Fragment>
-    	</PropDescription>
-    </Fragment>
+    </PropDescription>
+    <SpacingProps />
 
+  </Fragment>
 </FrameworkContent>

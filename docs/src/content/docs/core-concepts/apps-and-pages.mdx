@@ -39,7 +39,7 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
       .page('MyButtonizePage', {
         body: [
           Display.heading('Hello, this is my page'),
-          Display.button({
+          Input.button({
             label: 'Next page',
             onClick: Action.buttonize.app.changePage('SecondPage')
           })
@@ -54,7 +54,7 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
             placeholder: 'Joe'
           }),
           Display.text('Hello: {{name}}'),
-          Display.button({
+          Input.button({
             label: 'Go back',
             onClick: Action.buttonize.app.changePage('MyButtonizePage')
           })
@@ -81,7 +81,7 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 			}
 		},
 		{
-			typeName: 'display.button',
+			typeName: 'input.button',
 			props: {
 				label: 'Next page',
 				onClick: {
@@ -126,7 +126,7 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 			}
 		},
 		{
-			typeName: 'display.button',
+			typeName: 'input.button',
 			props: {
 				label: 'Go back',
 				onClick: {

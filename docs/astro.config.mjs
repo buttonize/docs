@@ -99,15 +99,15 @@ export default defineConfig({
 					}
 				},
 				{
-					label: 'Components',
-					autogenerate: {
-						directory: 'components'
-					}
-				},
-				{
 					label: 'Actions',
 					autogenerate: {
 						directory: 'actions'
+					}
+				},
+				{
+					label: 'Components',
+					autogenerate: {
+						directory: 'components'
 					}
 				},
 				{

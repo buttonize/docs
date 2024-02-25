@@ -1,0 +1,42 @@
+---
+title: Build your first App
+description: What is Buttonize?
+sidebar:
+  order: 1
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+
+Make sure to first sign up at [app.buttonize.io](https://app.buttonize.io) and create or join an organization.
+
+## Create starter project
+
+<Tabs>
+	<TabItem label="npm">
+
+```bash
+$ npx create-buttonize
+$ cd my-buttonize-app && npm install
+$ npx buttonize dev --profile=YOUR_AWS_PROFILE
+```
+
+  </TabItem>
+	<TabItem label="pnpm">
+
+```bash
+$ pnpm create buttonize
+$ cd my-buttonize-app && pnpm install
+$ pnpm buttonize dev --profile=YOUR_AWS_PROFILE
+```
+
+  </TabItem>
+	<TabItem label="yarn">
+  
+```bash
+$ yarn create buttonize
+$ cd my-buttonize-app && yarn install
+$ yarn buttonize dev --profile=YOUR_AWS_PROFILE
+```
+
+  </TabItem>
+</Tabs>

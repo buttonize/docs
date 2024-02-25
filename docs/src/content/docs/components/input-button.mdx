@@ -1,6 +1,6 @@
 ---
-title: Display.button
-description: Display.button displays a button with which a user can trigger an action.
+title: Input.button
+description: Input.button displays a button with which a user can trigger an action.
 ---
 
 import { TabItem, Tabs } from '@astrojs/starlight/components'
@@ -16,7 +16,7 @@ import SizingProps from '../../../components/SizingProps.mdx'
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
-			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/components/display/button.ts)
+			[Source](https://github.com/buttonize/buttonize/blob/master/cdk/components/input/button.ts)
 		</Fragment>
 	</FrameworkContent>
 </FrameworkSelect>
@@ -26,7 +26,7 @@ Renders an interactable button.
 The button can be used to trigger a lambda, change pages within a Buttonize app, or interact with some other AWS services via Buttonize [Actions](/core-concepts/actions/#available-actions).
 
 ```ansi frame="none"
-[38;5;39mDisplay.button[0m(props)
+[38;5;39mInput.button[0m(props)
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ The button can be used to trigger a lambda, change pages within a Buttonize app,
       name: 'Demo App'
     }).page('DemoPage', {
       body: [
-        Display.button({
+        Input.button({
           label: 'Next Page',
           onClick: Action.aws.lambda.invoke(yourFunction)
         })
@@ -55,7 +55,7 @@ The button can be used to trigger a lambda, change pages within a Buttonize app,
 <ComponentDemo
 	components={[
 		{
-			typeName: 'display.button',
+			typeName: 'input.button',
 			props: {
 				label: 'Next Page',
 				onClick: {

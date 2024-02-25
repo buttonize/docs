@@ -11,7 +11,7 @@ import PropMarker from '@components/PropMarker.astro'
 <FrameworkSelect>
 	<FrameworkContent>
 		<Fragment slot="cdk">
-			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/actions/lambda/invoke.ts)
+			[Source](https://github.com/buttonize/buttonize/blob/master/cdk/actions/lambda/invoke.ts)
 		</Fragment>
 	</FrameworkContent>
 </FrameworkSelect>
@@ -38,7 +38,7 @@ Invoke a Lambda function.
             id: 'name',
             label: 'What is your name?'
           }),
-          Display.button({
+          Input.button({
             label: 'Save to database',
             onClick: Action.aws.lambda.invoke(
               new NodejsFunction(this, 'MyLambda', {

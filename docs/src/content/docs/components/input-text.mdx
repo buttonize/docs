@@ -1,0 +1,135 @@
+---
+title: Input.text
+description: A guide in my new Starlight docs site.
+---
+
+import { TabItem, Tabs } from '@astrojs/starlight/components'
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+import SpacingProps from '../../../components/SpacingProps.mdx'
+import SizingProps from '../../../components/SizingProps.mdx'
+
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/components/display/text.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
+
+Simple text input field.
+
+```ansi frame="none"
+[38;5;39mInput.text[0m(props)
+```
+
+## Usage
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-5}
+    import { ButtonizeApp, Display } from '@buttonize/cdk'
+    
+    new ButtonizeApp(this, 'DemoApp', {
+      name: 'Demo App'
+    }).page('DemoPage', {
+      body: [
+        Input.text({
+          id: 'name',
+          label: 'What is your name?',
+          placeholder: 'John Doe',
+          initialValue: 'David Copperfield'
+        })
+      ]
+    })
+    ```
+   </Fragment>
+</FrameworkContent>
+
+## Preview
+
+<ComponentDemo
+	components={[
+		{
+			typeName: 'input.text',
+			props: {
+				id: 'name',
+				label: 'What is your name?',
+				placeholder: 'John Doe',
+				initialValue: 'David Copperfield'
+			}
+		}
+	]}
+/>
+
+## Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### id
+			</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">
+				Key used for storing value of the text input in the [Runtime
+				Storage](http://localhost:4321/core-concepts/runtime-storage/).
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### label
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">Text above the input element.</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### placeholder
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">Placeholder of the input element.</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### initialValue
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">
+				The initial value for the input set in the [Runtime
+				State](/core-concepts/runtime-state/).
+			</Fragment>
+		</PropDescription>
+		<SpacingProps />
+		<SizingProps />
+	</Fragment>
+</FrameworkContent>
+
+## Runtime State
+
+The value in the runtime state is string value of the text input.
+
+```ts title="lib/MyStack.ts" "'name'"
+Input.text({
+	id: 'name',
+	label: 'What is your name?'
+})
+```
+
+```json title="Runtime state" frame="terminal" ""name""
+{
+	"name": "David Copperfield"
+}
+```

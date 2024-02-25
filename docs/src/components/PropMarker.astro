@@ -1,0 +1,36 @@
+---
+interface Props {
+	type?: string
+	text?: string
+}
+
+const markers = {
+	required: {
+		text: 'Required',
+		style: 'text-orange-800 bg-orange-100'
+	},
+	optional: {
+		text: 'Optional',
+		style: 'bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
+	},
+	special: {
+		text: 'Special Use',
+		style: 'text-red-800 bg-red-100'
+	}
+}
+
+let type = (Astro.props.type ?? 'optional') as keyof typeof markers
+
+if (!(type in markers)) {
+	throw new Error(`Unknown marker of type "${type}"`)
+}
+---
+
+<span
+	class:list={[
+		'iv-status-pill mr-1 flex-shrink-0 inline-flex items-center h-6 px-2 text-[12px] font-medium rounded-xl leading-4 relative -top-px ml-1 bg-gray-100 dark:bg-gray-700 dark:text-gray-300',
+		markers[type].style
+	]}
+>
+	{Astro.props.text ?? markers[type].text}
+</span>

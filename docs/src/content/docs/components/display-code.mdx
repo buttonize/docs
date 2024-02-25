@@ -1,0 +1,118 @@
+---
+title: Display.code
+description: Display.code renders code with syntax highlighting.
+---
+
+import { TabItem, Tabs } from '@astrojs/starlight/components'
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+import SpacingProps from '../../../components/SpacingProps.mdx'
+import SizingProps from '../../../components/SizingProps.mdx'
+
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/components/display/code.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
+
+Renders code within your Buttonize app with syntax highlighting.
+
+```ansi frame="none"
+[38;5;39mDisplay.code[0m(code, props)
+```
+
+## Usage
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-5}
+    import { ButtonizeApp, Display } from '@buttonize/cdk'
+
+    new ButtonizeApp(this, 'DemoApp', {
+      name: 'Demo App'
+    }).page('DemoPage', {
+      body: [
+        Display.code('const message = "Hello, World!"', {
+          language: 'typescript',
+          title: 'Code Example',
+          frame: 'code'
+        })
+      ]
+    })
+    ```
+
+   </Fragment>
+</FrameworkContent>
+
+## Preview
+
+<ComponentDemo
+	components={[
+		{
+			typeName: 'display.code',
+			props: {
+				code: 'const message = "Hello, World!"',
+				language: 'typescript',
+				title: 'Code Example',
+				frame: 'code'
+			}
+		}
+	]}
+/>
+
+## Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### code
+			</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">
+				The code to be rendered with syntax highlighting.
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### language
+			</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">
+				The programming language of the code for proper syntax highlighting.
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### title
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">Optional title for the code block.</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### frame
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">'code' | 'terminal' | 'none' | 'auto'</Fragment>
+			<Fragment slot="description">
+				Frame type for the code block. Default is 'code'.
+			</Fragment>
+		</PropDescription>
+		<SpacingProps />
+		<SizingProps />
+	</Fragment>
+</FrameworkContent>

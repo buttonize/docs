@@ -1,0 +1,47 @@
+---
+title: Welcome to Buttonize docs!
+tableOfContents: false
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components'
+
+<CardGrid>
+	<Card title="Quickstarts & Tutorials" icon="rocket">
+		[Get started](/getting-started/installation/) in few minutes. Use what you
+		already have and love.
+	</Card>
+	<Card title="Components" icon="laptop">
+		[Visit component library](/core-concepts/components/). No need to do
+		click-ops with Buttonize. Everything is code here.
+	</Card>
+	<Card title="Plug-and-play" icon="approve-check-circle">
+		[Just use our CDK constructs.](https://github.com/buttonize/buttonize-cdk)
+		Simply add your API key and deploy your first Buttonize app with `cdk
+		deploy` in 2 minutes.
+	</Card>
+	<Card title="Community" icon="discord">
+		[Join our Discord community](https://discord.gg/2quY4Vz5BM) and share your
+		ideas, needs and get help if you get stuck.
+	</Card>
+</CardGrid>
+
+<br />
+
+## How Buttonize works?
+
+Buttonize allows you to create UI apps with AWS CDK directly hooked up to your AWS infrastructure.
+
+<div className="w-3/4 mermaid-center m-auto" >
+
+```mermaid
+sequenceDiagram
+    actor Developer
+    participant CDK
+    participant AWS
+    participant Buttonize as Buttonize
+    Developer->>CDK: $ cdk deploy
+    CDK->>AWS: Deploy CDK to AWS
+    AWS->>Buttonize: Create App in Buttonize.io
+```
+
+</div>

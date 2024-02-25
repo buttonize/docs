@@ -1,0 +1,80 @@
+---
+title: Display.video
+description: Display.video displays a video.
+---
+
+import { TabItem, Tabs } from '@astrojs/starlight/components'
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+import SpacingProps from '../../../components/SpacingProps.mdx'
+import SizingProps from '../../../components/SizingProps.mdx'
+
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/components/display/video.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
+
+Displays a video within your Buttonize app.
+
+```ansi frame="none"
+[38;5;39mDisplay.video[0m(url, props)
+```
+
+## Usage
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-5}
+    import { ButtonizeApp, Display } from '@buttonize/cdk'
+
+    new ButtonizeApp(this, 'DemoApp', {
+      name: 'Demo App'
+    }).page('DemoPage', {
+      body: [
+        Display.video('https://www.youtube.com/watch?v=giroZqjTJqE')
+      ]
+    })
+    ```
+
+   </Fragment>
+</FrameworkContent>
+
+## Preview
+
+<ComponentDemo
+	components={[
+		{
+			typeName: 'display.video',
+			props: {
+				url: 'https://www.youtube.com/watch?v=giroZqjTJqE'
+			}
+		}
+	]}
+/>
+
+## Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### muted
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">boolean</Fragment>
+			<Fragment slot="description">
+				Initial muted state of the video. Default is `false`.
+			</Fragment>
+		</PropDescription>
+		<SpacingProps />
+		<SizingProps />
+	</Fragment>
+</FrameworkContent>

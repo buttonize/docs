@@ -1,0 +1,88 @@
+---
+import type { Apps } from '@buttonize/cli/lib/_ws.cjs'
+
+interface Props {
+	components: Apps[string][string]['pages'][number]['body']
+	runtimeStorage?: Record<string, any>
+	height?: number
+}
+
+const { components, runtimeStorage } = Astro.props
+
+const baseUrl = import.meta.env.APP_BASE_URL
+---
+
+<div class="not-content">
+	{
+		/* https://starlight.astro.build/guides/components/#compatibility-with-starlights-styles */
+	}
+	<div
+		class="browser-window browser-window--shadow font-sans text-left text-gray-900 relative flicker-fix overflow-hidden bg-gray-50"
+	>
+		<div class="relative py-1.5">
+			<div class="absolute top-0 left-0 pl-3 pt-3 inline-flex space-x-[7px]">
+				<span class="browser-window-control bg-gray-300"></span><span
+					class="browser-window-control bg-gray-300"></span><span
+					class="browser-window-control bg-gray-300"></span>
+			</div><div class="flex items-center justify-center">
+				<span
+					class="border w-[140px] text-[12px] text-center h-6 flex items-center justify-center relative bg-white rounded-full border-gray-100 text-gray-700"
+					><span class="flex items-center px-1 flex-none"
+						><svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-3 w-3 mr-1 opacity-40"
+							viewBox="0 0 20 20"
+							fill="currentColor"
+							><path
+								fill-rule="evenodd"
+								d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+								clip-rule="evenodd"></path></svg
+						>app.buttonize.io</span
+					></span
+				>
+			</div>
+		</div><div class="flicker-fix">
+			<div class="overflow-x-auto bg-white p-3">
+				<slot>
+					<iframe
+						data-component-demo
+						class="w-full"
+						style={{
+							height:
+								typeof Astro.props.height !== 'undefined'
+									? `${Astro.props.height}px`
+									: undefined
+						}}
+						src={`${baseUrl}/internal/preview?components=${encodeURIComponent(JSON.stringify(components))}${typeof runtimeStorage !== 'undefined' ? `&runtimeStorage=${encodeURIComponent(JSON.stringify(runtimeStorage))}` : ''}`}
+					></iframe>
+				</slot>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.browser-window {
+		--tw-shadow: 0 1px 2px 0 #0000000d;
+		--tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+		border: 1px solid #00000014;
+		border-radius: 0.5rem;
+	}
+	.browser-window {
+		--tw-ring-offset-shadow: 0 0 #0000;
+		--tw-ring-offset-shadow: 0 0 #0000;
+		box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+			var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+	}
+
+	.browser-window-control {
+		border-radius: 9999px;
+		box-sizing: border-box;
+		height: 0.75rem;
+		width: 0.75rem;
+	}
+
+	.browser-window-control {
+		border: 0.5px solid #0000001f;
+	}
+</style>

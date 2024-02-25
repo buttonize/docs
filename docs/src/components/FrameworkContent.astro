@@ -1,0 +1,42 @@
+---
+import { frameworkWhitelist } from '@lib/frameworkSelect'
+const slots = frameworkWhitelist
+	.filter((name) => Astro.slots.has(name))
+	.map((name) => ({ name, slot: Astro.slots.render(name) }))
+---
+
+<div data-framework-content>
+	{
+		slots.map(({ name, slot }, i) => (
+			<div data-framework={name} class:list={[{ hidden: i !== 0 }]}>
+				<Fragment set:html={slot} />
+			</div>
+		))
+	}
+</div>
+
+<script>
+	import { getFramework, onFrameworkChange } from '../lib/frameworkSelect'
+
+	const contents = document.querySelectorAll('[data-framework-content]')
+
+	const setNewValue = (newValue: string) => {
+		contents.forEach((content) => {
+			content
+				.querySelectorAll('[data-framework]')
+				.forEach((c) => c.classList.add('hidden'))
+
+			content
+				.querySelectorAll(`[data-framework="${newValue}"]`)
+				.forEach((c) => c.classList.remove('hidden'))
+		})
+	}
+
+	onFrameworkChange((newValue) => {
+		setNewValue(newValue)
+	})
+
+	setNewValue(getFramework())
+</script>
+
+<style></style>

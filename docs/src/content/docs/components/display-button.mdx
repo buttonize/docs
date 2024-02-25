@@ -1,0 +1,136 @@
+---
+title: Display.button
+description: Display.button displays a button with which a user can trigger an action.
+---
+
+import { TabItem, Tabs } from '@astrojs/starlight/components'
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+
+import SpacingProps from '../../../components/SpacingProps.mdx'
+import SizingProps from '../../../components/SizingProps.mdx'
+
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize-cdk/blob/master/src/components/display/button.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
+
+Renders an interactable button.
+
+The button can be used to trigger a lambda, change pages within a Buttonize app, or interact with some other AWS services via Buttonize [Actions](/core-concepts/actions/#available-actions).
+
+```ansi frame="none"
+[38;5;39mDisplay.button[0m(props)
+```
+
+## Usage
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-5}
+    import { Action, ButtonizeApp, Display } from '@buttonize/cdk'
+    
+    new ButtonizeApp(this, 'DemoApp', {
+      name: 'Demo App'
+    }).page('DemoPage', {
+      body: [
+        Display.button({
+          label: 'Next Page',
+          onClick: Action.aws.lambda.invoke(yourFunction)
+        })
+      ]
+    })
+    ```
+   </Fragment>
+</FrameworkContent>
+
+## Preview
+
+<ComponentDemo
+	components={[
+		{
+			typeName: 'display.button',
+			props: {
+				label: 'Next Page',
+				onClick: {
+					type: 'aws',
+					region: 'eu-central-1',
+					service: 'lambda',
+					command: 'hi'
+				}
+			}
+		}
+	]}
+/>
+
+## Props
+
+<FrameworkContent>
+	<Fragment slot="cdk">
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### label
+			</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">
+				The text to display inside the button.
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### onClick
+			</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">function</Fragment>
+			<Fragment slot="description">
+				The function to call when the user clicks the button.
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### variant
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">"primary" | "secondary" | "tertiary"</Fragment>
+			<Fragment slot="description">The color variant for the button.</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### disabled
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">boolean</Fragment>
+			<Fragment slot="description">
+				Whether or not the button can be interacted with.
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### onClickFinished
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">function</Fragment>
+			<Fragment slot="description">
+				A callback that will be invoked when the `onClick` function is finished
+				executing.
+
+        This is also often used to redirect to the next page via `Action.buttonize.app.changePage`.
+    		</Fragment>
+    </PropDescription>
+    <SpacingProps />
+    <SizingProps />
+
+  </Fragment>
+</FrameworkContent>

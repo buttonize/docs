@@ -1,0 +1,76 @@
+---
+title: Components
+description: Components are the visible parts of Buttonize apps. Learn more about how Buttonize Components work.
+sidebar:
+  order: 2
+---
+
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+import PropDescription from '@components/PropDescription.astro'
+import PropMarker from '@components/PropMarker.astro'
+import PagesList from '@components/PagesList.astro'
+
+<FrameworkSelect />
+
+Components are the visible parts of Buttonize apps.
+
+There are two types of components
+
+- `Display` - read-only components displaying text and data. For example [Display.heading](/components/display-heading/).
+- `Input` - read-write components with the possibility to hook up [Actions](/core-concepts/actions/) to them. For example [Input.text](/components/input-text/).
+
+## Example
+
+<FrameworkContent>
+  <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-7} {11-16}
+    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+
+    Buttonize.init(this, {
+      apiKey: 'btnz_mybuttonizekey1234567',
+      externalId: 'this-is-super-secret-99'
+    })
+
+    new ButtonizeApp(this, 'MyButtonizeApp')
+      .page('MyButtonizePage', {
+        body: [
+          Display.heading('Hello {{name}}, this is my page'),
+          Input.text({
+            id: 'name',
+            label: 'What is your name?',
+            placeholder: 'Joe'
+          }),
+        ]
+      })
+    ```
+    </Fragment>
+
+</FrameworkContent>
+
+### Preview
+
+<ComponentDemo
+	height={200}
+	components={[
+		{
+			typeName: 'display.heading',
+			props: {
+				label: 'Hello {{name}}, this is my page'
+			}
+		},
+		{
+			typeName: 'input.text',
+			props: {
+				id: 'name',
+				label: 'What is your name?',
+				placeholder: 'Joe'
+			}
+		}
+	]}
+/>
+
+## Available components
+
+<PagesList idPrefix="components/" />

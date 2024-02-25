@@ -1,0 +1,48 @@
+---
+
+---
+
+<div class="flex items-center">
+	<select
+		framework-select
+		value="cdk"
+		class="border py-3 px-4 block border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+	>
+		<option value="cdk">AWS CDK</option>
+	</select>
+	{
+		Astro.slots.has('default') ? (
+			<div class="framework-select-slot ml-3 !mt-0">
+				<slot />
+			</div>
+		) : null
+	}
+</div>
+
+<script>
+	import {
+		setFramework,
+		getFramework,
+		onFrameworkChange
+	} from '../lib/frameworkSelect'
+
+	const selectElements =
+		document.querySelectorAll<HTMLSelectElement>('[framework-select]')
+
+	selectElements.forEach((selectElement) => {
+		selectElement.addEventListener('change', () => {
+			setFramework(selectElement?.value ?? 'cdk')
+		})
+		selectElement.value = getFramework()
+	})
+
+	onFrameworkChange((newValue) => {
+		selectElements.forEach((selectElement) => (selectElement.value = newValue))
+	})
+</script>
+
+<style is:global>
+	.framework-select-slot :where(div, p) {
+		margin: 0 !important;
+	}
+</style>

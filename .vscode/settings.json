@@ -1,0 +1,44 @@
+{
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"[md]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[mdx]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[astro]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"files.associations": {
+		"*.env": "ini",
+		"*.env-cmd": "ini"
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"prettier.documentSelectors": ["**/*.astro"],
+	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"eslint.format.enable": true,
+	"editor.formatOnSave": true,
+	"prettier.ignorePath": ".eslintignore",
+	"prettier.useEditorConfig": true,
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"mdx.server.enable": false,
+	"[markdown]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+}

@@ -1,0 +1,133 @@
+---
+title: Architecture Q&A
+description: How Buttonize works under the hood.
+sidebar:
+  order: 1
+---
+
+## How Buttonize accesses your AWS account
+
+Our AWS CDK constructs generate an AWS IAM execution role with the least privilege principle
+and assign the role a [trust policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#delegation) which allows Buttonize's AWS account (`081205402391`)
+to [assume it](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) while providing [External ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) secret value which is also generated during the
+deployment (_or provided as a constant value via `Buttonize.init`_).
+
+Buttonize CDK constructs then send [ARN of the IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns)
+together with the [External ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html)
+secret to Buttonize servers to store it and use it when end-users are interacting with the deployed Buttonize apps built by your developers.
+
+## Monitoring access with AWS CloudTrail
+
+Since Buttonize uses AWS STS to access your AWS accounts, you can track these operations in [AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html).
+
+:::note
+In order to propagate Buttonize user's identity to AWS STS, the execution role must allow [`sts:SetSourceIdentity` and `sts:TagSession`](https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecuritytokenservice.html#awssecuritytokenservice-actions-as-permissions)
+in the [trust policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#delegation).
+:::
+
+##### Example CloudTrail event
+
+```json collapse={1-13,48-90} {24-25}
+{
+	"eventVersion": "1.08",
+	"userIdentity": {
+		"type": "AWSAccount",
+		"principalId": "HIDDEN",
+		"accountId": "081205402391"
+	},
+	"eventTime": "2024-02-25T20:53:34Z",
+	"eventSource": "sts.amazonaws.com",
+	"eventName": "AssumeRole",
+	"awsRegion": "eu-central-1",
+	"sourceIPAddress": "HIDDEN",
+	"userAgent": "aws-sdk-js/3.398.0 ua/2.0 os/linux#5.10.205-215.807.amzn2.aarch64 lang/js md/nodejs#20.11.0 api/sts#3.398.0 exec-env/AWS_Lambda_nodejs20.x",
+	"requestParameters": {
+		"roleArn": "arn:aws:iam::HIDDEN:role/DemoExampleCdkStack-AiAppExecutionRoleDB83D099-I6RH5ROvfN9t",
+		"durationSeconds": 900,
+		/*
+      "roleSessionName" and "sourceIdentity" are both composed of three parts:
+
+      "btnz" - Buttonize prefix
+      "-WYJ-Zz7_Qyho2yXshuzV" - ID of the user
+      "fpyrek" - name of the user
+    */
+		"roleSessionName": "btnz__-WYJ-Zz7_Qyho2yXshuzV__fpyrek",
+		"sourceIdentity": "btnz__-WYJ-Zz7_Qyho2yXshuzV__fpyrek",
+		"tags": [
+			{
+				"key": "buttonize-app-id",
+				"value": "OkwkbtMtbxp6l1cc_00AU"
+			},
+			{
+				"key": "buttonize-local-development",
+				"value": "false"
+			},
+			{
+				"key": "buttonize-user-id",
+				"value": "-WYJ-Zz7_Qyho2yXshuzV"
+			},
+			{
+				"key": "buttonize-organization-id",
+				"value": "3dT3R56T69vQY6fE1xH2v"
+			},
+			{
+				"key": "buttonize-user-name",
+				"value": "fpyrek"
+			}
+		],
+		"transitiveTagKeys": [
+			"buttonize-local-development",
+			"buttonize-user-id",
+			"buttonize-organization-id",
+			"buttonize-user-name",
+			"buttonize-app-id"
+		],
+		"externalId": "HIDDEN"
+	},
+	"responseElements": {
+		"credentials": {
+			"accessKeyId": "HIDDEN",
+			"sessionToken": "HIDDEN",
+			"expiration": "Feb 25, 2024, 9:08:34 PM"
+		},
+		"assumedRoleUser": {
+			"assumedRoleId": "HIDDEN:btnz__-WYJ-Zz7_Qyho2yXshuzV__fpyrek",
+			"arn": "arn:aws:sts::HIDDEN:assumed-role/DemoExampleCdkStack-AiAppExecutionRoleDB83D099-I6RH5ROvfN9t/btnz__-WYJ-Zz7_Qyho2yXshuzV__fpyrek"
+		},
+		"packedPolicySize": 41,
+		"sourceIdentity": "btnz__-WYJ-Zz7_Qyho2yXshuzV__fpyrek"
+	},
+	"requestID": "HIDDEN",
+	"eventID": "HIDDEN",
+	"readOnly": true,
+	"resources": [
+		{
+			"accountId": "HIDDEN",
+			"type": "AWS::IAM::Role",
+			"ARN": "arn:aws:iam::HIDDEN:role/DemoExampleCdkStack-AiAppExecutionRoleDB83D099-I6RH5ROvfN9t"
+		}
+	],
+	"eventType": "AwsApiCall",
+	"managementEvent": true,
+	"recipientAccountId": "HIDDEN",
+	"sharedEventID": "HIDDEN",
+	"eventCategory": "Management",
+	"tlsDetails": {
+		"tlsVersion": "TLSv1.3",
+		"cipherSuite": "TLS_AES_128_GCM_SHA256",
+		"clientProvidedHostHeader": "sts.eu-central-1.amazonaws.com"
+	}
+}
+```
+
+## Directly invoking AWS API from browser
+
+When we were designing architecture of Buttonize we didn't want to anyhow technically
+limit our customers and we wanted to make sure we minimize any potential risks.
+
+That's why we decided to use power of AWS IAM and AWS STS and invoke AWS services such as AWS Lambda
+directly from the user's browser. This way **no data goes through our infrastructure**.
+
+Before any request, frontend calls Buttonize API to assume the role and return the credentials.
+Then Buttonize uses these credentials to perform all the necessary operations declared in the customer's
+application such as invoke AWS Lambda functions.

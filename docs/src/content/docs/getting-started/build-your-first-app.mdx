@@ -1,12 +1,18 @@
 ---
-title: Build your first App
-description: What is Buttonize?
+title: Build your first app
+description: Let's build and deploy your first Buttonize App in 5 minutes.
 sidebar:
   order: 1
+next:
+  link: /core-concepts/apps-and-pages/
+  label: Apps & Pages
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
 import ScreenImage from '@components/ScreenImage.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+
+<FrameworkSelect />
 
 Make sure to first sign up at [app.buttonize.io](https://app.buttonize.io) and create or join an organization.
 
@@ -60,10 +66,20 @@ In case you don't see the API key or you don't want to go through the onboarding
 
 Once you have the API key, make sure to call `Buttonize.init` at the beginning of your CDK stack.
 
-```ts
-Buttonize.init(this, {
-	apiKey: 'PUT_API_KEY_HERE'
-})
+```ts collapse={1-4} ins={9-11}
+import * as cdk from 'aws-cdk-lib'
+import { Buttonize } from 'buttonize/cdk'
+import { Construct } from 'constructs'
+
+export class ExampleStack extends cdk.Stack {
+	constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+		super(scope, id, props)
+
+		Buttonize.init(this, {
+			apiKey: 'PUT_API_KEY_HERE'
+		})
+	}
+}
 ```
 
 ### Local development
@@ -88,7 +104,7 @@ This will refetch all data necessary to invoke your AWS resources even during lo
 
 <ScreenImage>
 	![Local development
-	screen](../../../../public/images/build-your-first-app/live-local-dev.png)
+	screen](../../../../public/images/getting-started/live-local-dev.png)
 </ScreenImage>
 
 ### App deployment
@@ -102,16 +118,15 @@ cdk deploy
 Once you deploy the app, you can go to [app.buttonize.io](https://app.buttonize.io) and you will see your app right there.
 
 <ScreenImage>
-	![List of the
-	apps](../../../../public/images/build-your-first-app/apps-list.png)
+	![List of the apps](../../../../public/images/getting-started/apps-list.png)
 </ScreenImage>
 
 And the application itself looks like this.
 
 <ScreenImage>
-	![App view](../../../../public/images/build-your-first-app/app-view.png)
+	![App view](../../../../public/images/getting-started/app-view.png)
 </ScreenImage>
 
 ### You have deployed your first Buttonize app
 
-Congrats!
+Congrats! Let us know how you liked it [on Discord](https://discord.gg/2quY4Vz5BM).

@@ -1,50 +1,81 @@
 ---
-title: Welcome to Buttonize docs!
+title: What is Buttonize
+description: Hook-up UI components directly to AWS Lambda functions. Just install Buttonize and deploy your CDK. That's it.
 tableOfContents: false
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components'
+import { LinkCard, CardGrid } from '@astrojs/starlight/components'
 import IntroCard from '../../components/IntroCard.astro'
 
-Buttonize is a fully managed SaaS platform connected directly to your cloud environment providing you with an Infrastructure as Code abstraction such as AWS CDK over rich set of frontend components and actions.
+Buttonize is a **fully managed** SaaS platform **connected directly to your AWS environment**
+providing you with an Infrastructure as Code abstraction such as **AWS CDK** over rich
+set of **UI components** and actions in order to build **internal tools** on top of the cloud.
+
+<br />
+<br />
 
 <CardGrid>
-	<IntroCard title="Quickstarts & Tutorials" icon="rocket">
-		[Get started](/getting-started/installation/) in few minutes. Use what you
-		already have and love.
+	<IntroCard title="Getting started" icon="rocket">
+		Build and deploy your first Buttonize app in minutes. All by using AWS CDK
+		and Buttonize CDK Constructs. <br /> [Get
+		started](/getting-started/getting-started/).
 	</IntroCard>
-	<IntroCard title="Components" icon="laptop">
-		[Visit component library](/core-concepts/components/). No need to do
-		click-ops with Buttonize. Everything is code here.
+	<IntroCard title="Components" icon="open-book">
+		Buttonize allow you to create internal tools composed of many different
+		components. All by using AWS CDK. <br /> [Explore
+		components](/core-concepts/components/#available-components).
 	</IntroCard>
-	<IntroCard title="Plug-and-play" icon="approve-check-circle">
-		[Just use our CDK constructs.](https://github.com/buttonize/buttonize-cdk)
-		Simply add your API key and deploy your first Buttonize app with `cdk
-		deploy` in 2 minutes.
-	</IntroCard>
-	<IntroCard title="Community" icon="discord">
-		[Join our Discord community](https://discord.gg/2quY4Vz5BM) and share your
-		ideas, needs and get help if you get stuck.
-	</IntroCard>
+	<IntroCard title="Local development" icon="laptop">
+      Develop Buttonize apps with comfort of hot-reloading and instantly seeing the changes. The future is now.<br/>
+    	[Learn more](/core-concepts/local-development/).
+    </IntroCard>
+    <IntroCard title="Community" icon="discord">
+      We want to hear from you. Join our community and report us any bugs and feature requests and ideas. <br/>
+    	[Join Discord community](https://discord.gg/2quY4Vz5BM).
+    </IntroCard>
+
 </CardGrid>
 
 <br />
 
-## How Buttonize works?
+## How Buttonize can help you
 
-Buttonize allows you to create UI apps with AWS CDK directly hooked up to your AWS infrastructure.
+Buttonize helps developers and companies using AWS cloud to solve a painful problem of internal tooling.
 
-<div className="w-3/4 mermaid-center m-auto" >
+### Problems with internal tooling
 
-```mermaid
-sequenceDiagram
-    actor Developer
-    participant CDK
-    participant AWS
-    participant Buttonize as Buttonize
-    Developer->>CDK: $ cdk deploy
-    CDK->>AWS: Deploy CDK to AWS
-    AWS->>Buttonize: Create App in Buttonize.io
-```
+Internal tooling is indefinite problem. We all have in our companies all these "temporary" tools that
+have been here forever and have many different funny names and everybody is afraid to touch their code.
 
-</div>
+When deciding about building internal tooling companies usually have three options
+
+1. Build the app from scratch - API + auth + frontend + indefinite maintenance
+2. Use drag-and-drop platform such as Retool - all developers hat no-code tools
+3. Create Slack bots - text interface is sufficient only fir a small number of use-cases
+
+### Buttonize comes to the rescue
+
+We think these three principles are important when solving business problem via internal tools.
+
+- Minimize future maintenance
+- Build it quickly
+- Don't reinvent the wheel
+
+Buttonize gives you a way to build and deploy internal apps via tools you already use. We provide your with
+[CDK Constructs](https://github.com/buttonize/buttonize) with simple interface that allow you to define UI components
+and connect them to AWS. No need to worry about anything else. Just run `cdk deploy`. That's it.
+
+## Let's try for yourself
+
+<CardGrid>
+	<LinkCard
+		title="Build your first app"
+		description="Let's build and deploy your first Buttonize App in 5 minutes."
+		href="/getting-started/getting-started/"
+	/>
+	<LinkCard
+		title="Add Buttonize to existing project"
+		description="Do you already have existing CDK project? Buttonize plugs in very easily."
+		href="/getting-started/add-buttonize-to-existing-project/"
+	/>
+</CardGrid>

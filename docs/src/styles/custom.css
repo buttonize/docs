@@ -29,6 +29,10 @@
 	--sl-color-black: #ffffff;
 }
 
+:root {
+	--sl-content-width: 50rem;
+}
+
 /* The SVG is always inside <p> element */
 .mermaid-center p {
 	display: flex;
@@ -48,7 +52,22 @@
 
 h1 {
 	font-size: 1.5rem;
-	font-weight: 400;
+}
+
+.sl-markdown-content h2 {
+	font-size: 1.25rem; /* 20px */
+	line-height: 1.75rem; /* 28px */
+}
+
+.sl-markdown-content h3 {
+	font-size: 1.125rem; /* 18px */
+	line-height: 1.75rem; /* 28px */
+}
+
+/* Do not use lower values than h3. h4 is there as backwards compatibility fix */
+.sl-markdown-content h4 {
+	font-size: 1.125rem; /* 18px */
+	line-height: 1.75rem; /* 28px */
 }
 
 article.card {
@@ -63,4 +82,8 @@ article.card {
 
 .right-sidebar {
 	border: 0;
+}
+
+header.header {
+	background: #fff;
 }

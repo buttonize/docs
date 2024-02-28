@@ -30,7 +30,7 @@
 }
 
 :root {
-	--sl-content-width: 50rem;
+	--sl-content-width: 44rem;
 }
 
 /* The SVG is always inside <p> element */
@@ -70,6 +70,16 @@ h1 {
 	line-height: 1.75rem; /* 28px */
 }
 
+.sl-markdown-content h5 {
+	font-size: 1.125rem; /* 18px */
+	line-height: 1.75rem; /* 28px */
+}
+
+.sl-markdown-content h6 {
+	font-size: 1.125rem; /* 18px */
+	line-height: 1.75rem; /* 28px */
+}
+
 article.card {
 	padding: 20px;
 	border-radius: 16px;
@@ -85,5 +95,22 @@ article.card {
 }
 
 header.header {
-	background: #fff;
+	background: var(--sl-color-bg);
+	border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.sidebar-content {
+	background: var(--sl-color-bg);
+	border-right: 1px solid var(--sl-color-hairline);
+}
+
+.sidebar-pane {
+	border-right: 0 !important;
+	border-inline-end: 0 !important;
+}
+
+.sl-markdown-content
+	:not(h1, h2, h3, h4, h5, h6)
+	+ :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content *)) {
+	margin-top: 4em;
 }

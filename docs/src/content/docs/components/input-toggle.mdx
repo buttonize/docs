@@ -39,9 +39,10 @@ Displays an interactable checkbox within a Buttonize page.
     }).page('DemoPage', {
       body: [
         Input.toggle({
-          id: 'toggleSwitch',
+          id: 'toggleSwitch', // the name of the variable in the runtime state
           label: 'Enable Feature',
-        })
+        }),
+        Display.text("toggleSwitch's value: {{toggleSwitch}}"),
       ]
     })
     ```
@@ -59,9 +60,35 @@ Displays an interactable checkbox within a Buttonize page.
 				id: 'toggleSwitch',
 				label: 'Enable Feature'
 			}
+		},
+		{
+			typeName: 'display.text',
+			props: {
+				label: "toggleSwitch's value: {{toggleSwitch}}"
+			}
 		}
 	]}
 />
+
+## Runtime State
+
+The value in the runtime state is the boolean value of the toggle input.
+
+```ts title="lib/MyStack.ts" "'name'"
+Input.toggle({
+	id: 'bool',
+	label: 'My Checkbox'
+})
+```
+
+```json title="Runtime state" frame="terminal" ""name""
+{
+	"bool": true
+}
+```
+
+As demonstrated by the Usage example above, you can access variables from the Runtime State
+via the "\{\{bool\}\}" syntax from elsewhere in your Buttonize app.
 
 ## Props
 

@@ -39,11 +39,13 @@ Simple text input field.
     }).page('DemoPage', {
       body: [
         Input.text({
-          id: 'name',
+          id: 'name', // the name of the variable in the runtime state
           label: 'What is your name?',
           placeholder: 'John Doe',
           initialValue: 'David Copperfield'
-        })
+        }),
+        // since the id of the input above is "name", access the value like so
+        Display.text("You entered: {{name}}")
       ]
     })
     ```
@@ -62,9 +64,35 @@ Simple text input field.
 				placeholder: 'John Doe',
 				initialValue: 'David Copperfield'
 			}
+		},
+		{
+			typeName: 'display.text',
+			props: {
+				label: 'You entered: {{name}}'
+			}
 		}
 	]}
 />
+
+## Runtime State
+
+The value in the runtime state is string value of the text input.
+
+```ts title="lib/MyStack.ts" "'name'"
+Input.text({
+	id: 'name',
+	label: 'What is your name?'
+})
+```
+
+```json title="Runtime state" frame="terminal" ""name""
+{
+	"name": "David Copperfield"
+}
+```
+
+As demonstrated by the Usage example above, you can access variables from the Runtime State
+via the "\{\{name\}\}" syntax from elsewhere in your Buttonize app.
 
 ## Props
 
@@ -116,20 +144,3 @@ Simple text input field.
 		<SizingProps />
 	</Fragment>
 </FrameworkContent>
-
-## Runtime State
-
-The value in the runtime state is string value of the text input.
-
-```ts title="lib/MyStack.ts" "'name'"
-Input.text({
-	id: 'name',
-	label: 'What is your name?'
-})
-```
-
-```json title="Runtime state" frame="terminal" ""name""
-{
-	"name": "David Copperfield"
-}
-```

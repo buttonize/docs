@@ -5,7 +5,7 @@
 <div class="!mt-0">
 	<div class="py-4 border-t border-gray-200">
 		<div class="not-content flex items-center mb-2">
-			<h4 class="font-semibold text-gray-900 mr-2 py-1">
+			<h4 class="font-semibold text-gray-900 dark:text-gray-100 mr-2 py-1">
 				<span class="not-content">
 					<slot name="title" />
 				</span>
@@ -15,11 +15,13 @@
 			</p>
 		</div>
 		<div class="not-content !mt-0 text-gray-500 mb-2">
-			<span class="font-mono text-[13px] text-gray-500">
+			<span class="font-mono text-[13px] text-gray-500 dark:text-gray-400">
 				<slot name="type" />
 			</span>
 		</div>
-		<div class="!mt-0 sl-markdown-content text-gray-600 leading-5">
+		<div
+			class="!mt-0 sl-markdown-content text-gray-600 dark:text-gray-300 leading-5"
+		>
 			<slot name="description" />
 		</div>
 	</div>

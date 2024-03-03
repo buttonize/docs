@@ -35,14 +35,28 @@ The button can be used to trigger a lambda, change pages within a Buttonize app,
    <Fragment slot="cdk">
     ```ts title="lib/MyStack.ts" collapse={1-5}
     import { Action, ButtonizeApp, Display } from '@buttonize/cdk'
+    import * as lambda from "aws-cdk-lib/aws-lambda";
+    import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
     
     new ButtonizeApp(this, 'DemoApp', {
       name: 'Demo App'
     }).page('DemoPage', {
       body: [
+        // changing pages within a Buttonize app
         Input.button({
           label: 'Next Page',
-          onClick: Action.aws.lambda.invoke(yourFunction)
+          onClick: Action.buttonize.app.changePage('SecondPage')
+        }),
+        // invoking an AWS service
+        Input.button({
+          label: 'Invoke Lambda',
+          onClick: Action.aws.lambda.invoke(
+            new NodejsFunction(this, 'ExampleLambda', {
+              handler: 'handler',
+              entry: 'exampleLambda.ts',
+              runtime: lambda.Runtime.NODEJS_20_X
+            })
+          )
         })
       ]
     })
@@ -58,6 +72,18 @@ The button can be used to trigger a lambda, change pages within a Buttonize app,
 			typeName: 'input.button',
 			props: {
 				label: 'Next Page',
+				onClick: {
+					type: 'buttonize',
+					region: 'eu-central-1',
+					service: 'lambda',
+					command: 'hi'
+				}
+			}
+		},
+		{
+			typeName: 'input.button',
+			props: {
+				label: 'Invoke Lambda',
 				onClick: {
 					type: 'aws',
 					region: 'eu-central-1',

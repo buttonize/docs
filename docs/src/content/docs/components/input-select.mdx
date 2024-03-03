@@ -31,7 +31,7 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-5}
+    ```ts title="lib/MyStack.ts" collapse={1-5} {"     since the id of the input is selectInput, access the option's values like so":19}
     import { ButtonizeApp, Input } from '@buttonize/cdk'
 
     new ButtonizeApp(this, 'DemoApp', {
@@ -50,11 +50,8 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
             { label: 'Option 1', value: 'option1' }
           ],
         }),
-        // since the id of the input above is "selectInput",
-        // access the option's label like so
+
         Display.text("Selected label: {{selectInput.label}}"),
-        // since the id of the input above is "selectInput",
-        // access the option's value like so
         Display.text("Selected value: {{selectInput.value}}")
       ]
     })
@@ -97,8 +94,8 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 
 ## Runtime State
 
-The value in the runtime state is the string value of the select input, using dot notation to
-access the desired property.
+The value in the runtime state is the selected object from the select input. You can use dot notation to
+access the desired property for either the label or the value.
 
 ```ts title="lib/MyStack.ts" "'name'"
 Input.select({

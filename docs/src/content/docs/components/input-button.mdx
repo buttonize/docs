@@ -29,34 +29,21 @@ The button can be used to trigger a lambda, change pages within a Buttonize app,
 [38;5;39mInput.button[0m(props)
 ```
 
-## Usage
+## Usage - changing the page
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-5}
+    ```ts title="lib/MyStack.ts" collapse={1-5} {"     changing pages within a Buttonize app": 7}
     import { Action, ButtonizeApp, Display } from '@buttonize/cdk'
-    import * as lambda from "aws-cdk-lib/aws-lambda";
-    import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
     
     new ButtonizeApp(this, 'DemoApp', {
       name: 'Demo App'
     }).page('DemoPage', {
       body: [
-        // changing pages within a Buttonize app
+        
         Input.button({
           label: 'Next Page',
           onClick: Action.buttonize.app.changePage('SecondPage')
-        }),
-        // invoking an AWS service
-        Input.button({
-          label: 'Invoke Lambda',
-          onClick: Action.aws.lambda.invoke(
-            new NodejsFunction(this, 'ExampleLambda', {
-              handler: 'handler',
-              entry: 'exampleLambda.ts',
-              runtime: lambda.Runtime.NODEJS_20_X
-            })
-          )
         })
       ]
     })
@@ -65,6 +52,8 @@ The button can be used to trigger a lambda, change pages within a Buttonize app,
 </FrameworkContent>
 
 ## Preview
+
+The buttons are not interactable in this example.
 
 <ComponentDemo
 	components={[
@@ -79,7 +68,47 @@ The button can be used to trigger a lambda, change pages within a Buttonize app,
 					command: 'hi'
 				}
 			}
-		},
+		}
+	]}
+/>
+
+## Usage - invoking a lambda
+
+<FrameworkContent>
+   <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-7} {"     invoking an AWS service": 9}
+    import { Action, ButtonizeApp, Display } from '@buttonize/cdk'
+    import * as lambda from "aws-cdk-lib/aws-lambda";
+    import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
+    
+    new ButtonizeApp(this, 'DemoApp', {
+      name: 'Demo App'
+    }).page('DemoPage', {
+      body: [
+
+        Input.button({
+          label: 'Invoke Lambda',
+          onClick: Action.aws.lambda.invoke(
+            new NodejsFunction(this, 'ExampleLambda', {
+              handler: 'handler',
+              entry: 'exampleLambda.ts',
+              runtime: lambda.Runtime.NODEJS_20_X
+            })
+          )
+        })
+      ]
+    })
+    ```
+
+   </Fragment>
+</FrameworkContent>
+
+## Preview
+
+The buttons are not interactable in this example.
+
+<ComponentDemo
+	components={[
 		{
 			typeName: 'input.button',
 			props: {

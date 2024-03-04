@@ -99,14 +99,9 @@ header.header {
 	border-bottom: 1px solid var(--sl-color-hairline);
 }
 
-.sidebar-content {
-	background: var(--sl-color-bg);
-	border-right: 1px solid var(--sl-color-hairline);
-}
-
 .sidebar-pane {
-	border-right: 0 !important;
-	border-inline-end: 0 !important;
+	border-right: 1px solid var(--sl-color-hairline);
+	background: var(--sl-color-bg);
 }
 
 .sl-markdown-content

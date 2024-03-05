@@ -1,6 +1,6 @@
 ---
 title: Local development
-description: Develop Buttonize apps with comfort of instant hot reloading.
+description: Develop Buttonize apps with the comfort of hot reloading.
 sidebar:
   order: 4
 ---
@@ -12,9 +12,9 @@ import { LinkCard, CardGrid } from '@astrojs/starlight/components'
 
 <FrameworkSelect />
 
-Thanks to Buttonize's feature called "live local development", you can enjoy comfort of instant hot reloading when developing Buttonize apps.
+Thanks to Buttonize's "live local development" feature, you can enjoy the comfort of hot reloading when developing Buttonize apps locally.
 
-You can start the live local development by pressing "Live dev" button at the top right corner of any Buttonize screen.
+You can start live local development by pressing the "Live dev" button at the top right corner of any Buttonize screen.
 
 <ScreenImage>
 	<span class="flex justify-center">
@@ -25,19 +25,19 @@ You can start the live local development by pressing "Live dev" button at the to
 ## How to develop locally
 
 :::caution
-At the moment Buttonize **doesn't handle redeployment of your CDK code and lambda handlers**. So if you will make any changes to your lambda functions or other resources
-they won't get deployed. For that we recommend using `cdk watch` in parallel with Buttonize CLI.
+At the moment, Buttonize **doesn't handle the redeployment of your CDK code and lambda handlers**. So if you make any changes to your lambda functions or other resources,
+they won't get deployed. For that we recommend using `cdk watch` in parallel with the Buttonize CLI.
 :::
 
 :::note
 At this stage, the app is not deployed to AWS yet. So invoking any [Actions](/core-concepts/actions/) won't work.
 
-You can deploy your app with `$ cdk deploy` and then click on `Rebuild` button in Buttonize.
+You can deploy your app with `$ cdk deploy` and then click on the `Rebuild` button in Buttonize.
 
-This will refetch all data necessary to invoke your AWS resources even during local development.
+This will refetch all the necessary data to invoke your AWS resources even during local development.
 :::
 
-In order to develop Buttonize apps locally you must first sign-up at [app.buttonize.io](https://app.buttonize.io).
+In order to develop Buttonize apps locally, you must first sign-up at [app.buttonize.io](https://app.buttonize.io).
 
 Once you are signed in and [you have your Buttonize app](/getting-started/build-your-first-app/) in your CDK project, you can run:
 
@@ -65,11 +65,11 @@ yarn buttonize dev --profile=YOUR_AWS_PROFILE bin/your-cdk.ts
   </TabItem>
 </Tabs>
 
-Once you run the command, Buttonize starts processing the CDK code and once you see the green checkmark, it's ready to go.
+Once you run the command, Buttonize starts processing the CDK code and after you see the green checkmark, it's ready to go.
 
-After every save to your CDK code Buttonize will rebuild the CDK projects and withing seconds show you the updated view.
+After every save of your CDK code, Buttonize will rebuild the CDK projects and show you the updated view within seconds.
 
-You can quit the CLI by clicking on the terminal and pressing `q` or `esc` key.
+You can quit the CLI by clicking on the terminal and pressing the `q` or `esc` key.
 
 <ScreenImage>
 	![Buttonize CLI](../../../../public/images/live-dev-cli.png)
@@ -82,20 +82,20 @@ You can quit the CLI by clicking on the terminal and pressing `q` or `esc` key.
 
 ### Controls
 
-There are couple of controls you can use during the live local development.
+There are a couple of controls you can use during live local development.
 
 - **Restart state**
 
-  This button resets and empties the [runtime state](/core-concepts/runtime-state/) of the application and returns you to the first page of the application.
+  This button resets and empties the [Runtime State](/core-concepts/runtime-state/) of the application and returns you to the first page of the application.
 
 - **Rebuild**
 
-  This button is useful for example when you deploy your application with `cdk deploy` and you want Buttonize to refetch the metadata from AWS such as
-  execution role ARN or Lambda function ARNs.
+  This button is useful when, for example, you deploy your application with `cdk deploy` and you want Buttonize to refetch the metadata from AWS, such as the
+  execution role ARN or the Lambda function ARNs.
 
 - **State**
 
-  This tab shows the current runtime state of the application.
+  This tab shows the current Runtime State of the application.
 
 - **"Write JMESPath here to search in the state..."**
 
@@ -103,7 +103,7 @@ There are couple of controls you can use during the live local development.
 
 - **Logs**
 
-  You can view here what operations Buttonize performed in the background such as fetching of IAM credentials or invoking [Actions](/core-concepts/actions/).
+  Here, you can view which operations Buttonize performed in the background, such as fetching of IAM credentials or invoking [Actions](/core-concepts/actions/).
 
 ## How it works under the hood
 
@@ -111,12 +111,12 @@ There are couple of controls you can use during the live local development.
   1. creates a directory in your system's temp folder
   2. copies your project files to the temp folder
   3. watches for any changes in your project and copies the changes to the temp folder
-  4. starts TypeScript compiler in watch mode to compile the project to JS
-  5. dynamically imports the CDK project file and searches for exported variable which is of type `cdk.App`
+  4. starts the TypeScript compiler in watch mode to compile the project to JS
+  5. dynamically imports the CDK project file and searches for an exported variable which is of the type `cdk.App`
   6. searches the stacks to find Buttonize CDK resources
   7. extracts the Buttonize resources
-  8. tried to fetch from AWS the stack metadata and resources, if the stack has been deployed
-  9. puts everything together and waits for local connection from [app.buttonize.io/live](https://app.buttonize.io/live)
+  8. tries to fetch the stack metadata and resources from AWS, if the stack has been deployed
+  9. puts everything together and waits for the local connection from [app.buttonize.io/live](https://app.buttonize.io/live)
 - Buttonize Live Local Development UI...
   1. tries to connect to the local dev server
   2. pulls the data and watches for any changes

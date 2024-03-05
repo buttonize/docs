@@ -13,11 +13,11 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 
 Every application has some kind of runtime "state" and Buttonize apps are no exception.
 
-When app is loaded it starts with an empty state and once the browser tab is closed or refreshed the state is destroyed.
+When an app is loaded it starts with an empty state. Once the browser tab is closed or refreshed, the state is destroyed.
 
-Every `Input` [component](/core-concepts/components/#available-components) stores some relevant data in the runtime state. You can learn more in "Runtime State" section of each component.
+Every `Input` [component](/core-concepts/components/#available-components) stores some data in the runtime state. You can learn more in the "Runtime State" section of each component.
 
-You can access the runtime state value in your app by using [variables](/core-concepts/variables/) expressions.
+You can access the runtime state value in your app by using [variable](/core-concepts/variables/) expressions.
 
 ## Example
 
@@ -80,7 +80,7 @@ You can access the runtime state value in your app by using [variables](/core-co
 
 ## Initial State
 
-You can define set of [Actions](/core-concepts/actions/) that will be invoked once the page loads.
+You can define a set of [Actions](/core-concepts/actions/) that will be invoked once the page loads.
 
 This can be useful when you need to pre-fetch data that will be displayed to the user like for example dynamic options for select box.
 

@@ -1,76 +1,127 @@
 ---
 title: Local development
-description: Components are the visible parts of Buttonize apps. Learn more about how Buttonize Components work.
+description: Develop Buttonize apps with comfort of instant hot reloading.
 sidebar:
   order: 4
 ---
 
-import ComponentDemo from '@components/ComponentDemo.astro'
 import FrameworkSelect from '@components/FrameworkSelect.astro'
-import FrameworkContent from '@components/FrameworkContent.astro'
-import PropDescription from '@components/PropDescription.astro'
-import PropMarker from '@components/PropMarker.astro'
-import PagesList from '@components/PagesList.astro'
+import ScreenImage from '@components/ScreenImage.astro'
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { LinkCard, CardGrid } from '@astrojs/starlight/components'
 
 <FrameworkSelect />
 
-Components are the visible parts of Buttonize apps.
+Thanks to Buttonize's feature called "live local development", you can enjoy comfort of instant hot reloading when developing Buttonize apps.
 
-There are two types of components
+You can start the live local development by pressing "Live dev" button at the top right corner of any Buttonize screen.
 
-- `Display` - read-only components displaying text and data. For example [Display.heading](/components/display-heading/).
-- `Input` - read-write components with the possibility to hook up [Actions](/core-concepts/actions/) to them. For example [Input.text](/components/input-text/).
+<ScreenImage>
+	<span class="flex justify-center">
+		![Live dev](../../../../public/images/live-dev.png)
+	</span>
+</ScreenImage>
 
-## Example
+## How to develop locally
 
-<FrameworkContent>
-  <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {11-16}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+:::caution
+At the moment Buttonize **doesn't handle redeployment of your CDK code and lambda handlers**. So if you will make any changes to your lambda functions or other resources
+they won't get deployed. For that we recommend using `cdk watch` in parallel with Buttonize CLI.
+:::
 
-    Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
-    })
+:::note
+At this stage, the app is not deployed to AWS yet. So invoking any [Actions](/core-concepts/actions/) won't work.
 
-    new ButtonizeApp(this, 'MyButtonizeApp')
-      .page('MyButtonizePage', {
-        body: [
-          Display.heading('Hello {{name}}, this is my page'),
-          Input.text({
-            id: 'name',
-            label: 'What is your name?',
-            placeholder: 'Joe'
-          }),
-        ]
-      })
-    ```
-    </Fragment>
+You can deploy your app with `$ cdk deploy` and then click on `Rebuild` button in Buttonize.
 
-</FrameworkContent>
+This will refetch all data necessary to invoke your AWS resources even during local development.
+:::
 
-### Preview
+In order to develop Buttonize apps locally you must first sign-up at [app.buttonize.io](https://app.buttonize.io).
 
-<ComponentDemo
-	height={200}
-	components={[
-		{
-			typeName: 'display.heading',
-			props: {
-				label: 'Hello {{name}}, this is my page'
-			}
-		},
-		{
-			typeName: 'input.text',
-			props: {
-				id: 'name',
-				label: 'What is your name?',
-				placeholder: 'Joe'
-			}
-		}
-	]}
-/>
+Once you are signed in and [you have your Buttonize app](/getting-started/build-your-first-app/) in your CDK project, you can run:
 
-## Available components
+<Tabs>
+  <TabItem label="npm">
 
-<PagesList idPrefix="components/" />
+```bash
+npx buttonize dev --profile=YOUR_AWS_PROFILE bin/your-cdk.ts
+```
+
+  </TabItem>
+  <TabItem label="pnpm">
+
+```bash
+pnpm buttonize dev --profile=YOUR_AWS_PROFILE bin/your-cdk.ts
+```
+
+  </TabItem>
+  <TabItem label="yarn">
+
+```bash
+yarn buttonize dev --profile=YOUR_AWS_PROFILE bin/your-cdk.ts
+```
+
+  </TabItem>
+</Tabs>
+
+Once you run the command, Buttonize starts processing the CDK code and once you see the green checkmark, it's ready to go.
+
+After every save to your CDK code Buttonize will rebuild the CDK projects and withing seconds show you the updated view.
+
+You can quit the CLI by clicking on the terminal and pressing `q` or `esc` key.
+
+<ScreenImage>
+	![Buttonize CLI](../../../../public/images/live-dev-cli.png)
+</ScreenImage>
+
+<ScreenImage>
+	![Local development
+	screen](../../../../public/images/getting-started/live-local-dev.png)
+</ScreenImage>
+
+### Controls
+
+There are couple of controls you can use during the live local development.
+
+- **Restart state**
+
+  This button resets and empties the [runtime state](/core-concepts/runtime-state/) of the application and returns you to the first page of the application.
+
+- **Rebuild**
+
+  This button is useful for example when you deploy your application with `cdk deploy` and you want Buttonize to refetch the metadata from AWS such as
+  execution role ARN or Lambda function ARNs.
+
+- **State**
+
+  This tab shows the current runtime state of the application.
+
+- **"Write JMESPath here to search in the state..."**
+
+  You can use this input to debug your JMESPath expressions for [variables](/core-concepts/variables/).
+
+- **Logs**
+
+  You can view here what operations Buttonize performed in the background such as fetching of IAM credentials or invoking [Actions](/core-concepts/actions/).
+
+## How it works under the hood
+
+- The CLI...
+  1. creates a directory in your system's temp folder
+  2. copies your project files to the temp folder
+  3. watches for any changes in your project and copies the changes to the temp folder
+  4. starts TypeScript compiler in watch mode to compile the project to JS
+  5. dynamically imports the CDK project file and searches for exported variable which is of type `cdk.App`
+  6. searches the stacks to find Buttonize CDK resources
+  7. extracts the Buttonize resources
+  8. tried to fetch from AWS the stack metadata and resources, if the stack has been deployed
+  9. puts everything together and waits for local connection from [app.buttonize.io/live](https://app.buttonize.io/live)
+- Buttonize Live Local Development UI...
+  1. tries to connect to the local dev server
+  2. pulls the data and watches for any changes
+  3. renders the application
+
+---
+
+In case you encounter any issues, please let us know [on Discord](https://discord.gg/2quY4Vz5BM). We will do our best to make the live local development work with your CDK project.

@@ -1,15 +1,76 @@
 ---
-title: Permissions
-description: Get started with Buttonize.
+title: Permission System
+description: Explore Buttonize permission system.
 sidebar:
-  order: 6
+  order: 7
 ---
 
-TODO once permission system implemented.
+import ScreenImage from '@components/ScreenImage.astro'
 
-Guides lead a user through a specific task they want to accomplish, often with a sequence of steps.
-Writing a good guide requires thinking about what your users are trying to do.
+Buttonize offers three levels of permission system based on the pricing tier.
 
-## Further reading
+1. **No permission system**
 
-- Read [about how-to guides](https://diataxis.fr/how-to-guides/) in the Diátaxis framework
+   The Free tier has a flat permission system. There is a single default permission group called "Admins" containing all users in the organization.
+
+2. **Basic permission system**
+
+   The Team tier contains three default permission groups "Admins", "Developers" and "Users".
+
+3. **Advanced permission system**
+
+   The Business tier has the three default aforementioned permission groups and in addition to that there can be created arbitrary number of custom permission groups.
+
+## Default permission groups
+
+Buttonize creates default permission groups which can't be customized or deleted.
+
+**Here is the default configuration:**
+
+- **Admins**
+  - Have access to apps with any tag
+  - Can use live local development
+  - Can manage API Keys
+  - Can manage billing
+  - Can manage members
+  - Can manage permissions
+- **Developers**
+  - Have access to apps with any tag
+  - Can use live local development
+  - Can manage API Keys
+  - Can **not** manage billing
+  - Can **not** manage members
+  - Can **not** manage permissions
+- **Users**
+  - Have access to apps with any tag
+  - Can **not** use live local development
+  - Can **not** manage API Keys
+  - Can **not** manage billing
+  - Can **not** manage members
+  - Can **not** manage permissions
+
+## Creating a custom permission group
+
+If you have a Business tier, you can create a custom permission group in the [Permissions](https://app.buttonize.io/organization?scene=permissions) settings.
+
+**Demo**
+
+<ScreenImage>
+	![Create permission
+	group](../../../../public/images/create-permission-group.png)
+</ScreenImage>
+
+## Organization owner
+
+Every organization has an owner. By default it's the one who created it. Owner has permissions to do everything regardless being in any permission group.
+
+### Organization ownership transfer
+
+You can find the organization ownership transfer in the [General](https://app.buttonize.io/organization?scene=general) settings. You can see the option only if you are the owner.
+
+**Demo**
+
+<ScreenImage>
+	![Organization ownership
+	transfer](../../../../public/images/org-owner-transfer.png)
+</ScreenImage>

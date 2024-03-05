@@ -1,6 +1,6 @@
 ---
 title: Variables
-description: Every application has some sort of runtime "state" and Buttonize apps are no exception. Learn more about how Buttonize Runtime State works.
+description: You can reference outputs of the actions with a variables syntax.
 sidebar:
   order: 6
 ---
@@ -8,40 +8,45 @@ sidebar:
 import ComponentDemo from '@components/ComponentDemo.astro'
 import FrameworkSelect from '@components/FrameworkSelect.astro'
 import FrameworkContent from '@components/FrameworkContent.astro'
+import ScreenImage from '@components/ScreenImage.astro'
 
 <FrameworkSelect />
 
-Every application has some kind of [runtime state](/core-concepts/runtime-state/) and Buttonize apps are no exception.
+As described in the previous section Buttonize has concept of [Runtime State](/core-concepts/runtime-state/).
 
-When an app is loaded, it starts with an empty state. Nnce the browser tab is closed or refreshed, the state is destroyed.
+You can access the runtime state value in your Buttonize app by using double curly brackets `{{expression}}` notation in your code.
+The `expression` must be a valid [JMESPath](https://jmespath.org).
 
-Every `Input` stores some data in the runtime state. You can learn more in the "Runtime State" section of each component.
+## Simple example
 
-You can access the state value in your app by using the `{{variable_name}}` notation in your code.
-
-## Example
+```text title="Expression" frame="terminal"
+platform.value
+```
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {"'name' is used as a key when storing the input value in the state":12-13} {"The input value is displayed here by using {{name}}":17-18}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-8} "platform"
+    import { Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
 
     Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
+      apiKey: 'btnz_mybuttonizekey1234567'
     })
 
     new ButtonizeApp(this, 'MyButtonizeApp')
       .page('MyButtonizePage', {
         body: [
-          Input.text({
-
-            id: 'name',
-            label: 'What is your name?',
-            placeholder: 'Joe'
+          Input.select({
+            id: 'platform',
+            options: [
+              { label: 'MacOS', value: 'mac' },
+              { label: 'Windows', value: 'win' },
+              { label: 'Linux', value: 'lnx' }
+            ],
+            label: 'What is your operating system?'
           }),
-
-          Display.heading('Hello {{name}}, this is my page'),
+          Display.text(
+            'User has selected option with value "{{platform.value}}"'
+          )
         ]
       })
     ```
@@ -49,46 +54,35 @@ You can access the state value in your app by using the `{{variable_name}}` nota
 
 </FrameworkContent>
 
-### Preview
-
-```json title="Runtime state" frame="terminal"
-{
-	"name": "Alex"
-}
-```
-
 <ComponentDemo
 	height={200}
-	runtimeStorage={{
-		name: 'Alex'
-	}}
 	components={[
 		{
-			typeName: 'input.text',
+			typeName: 'input.select',
 			props: {
-				id: 'name',
-				label: 'What is your name?',
-				placeholder: 'Joe'
+				id: 'platform',
+				options: [
+					{ label: 'MacOS', value: 'mac' },
+					{ label: 'Windows', value: 'win' },
+					{ label: 'Linux', value: 'lnx' }
+				],
+				label: 'What is your operating system?'
 			}
 		},
 		{
-			typeName: 'display.heading',
+			typeName: 'display.text',
 			props: {
-				label: 'Hello {{name}}, this is my page'
+				label: `User has selected option with value "{{platform.value}}"`
 			}
 		}
 	]}
 />
 
-## Variables
+## Advanced example
 
-The contents of the variable notation are evaluated via [JMESPath](https://jmespath.org). It's like JSONPath but more powerful.
+`awsServices` object is for example result of an [Action](/core-concepts/actions/).
 
-So you can use simple notation like `{{myVariable}}`, or you can do more advanced stuff like what's shown below.
-
-### Example
-
-```json title="Runtime state" frame="terminal"
+```json title="Runtime State" frame="terminal"
 {
 	"awsServices": [
 		{ "name": "Lambda", "category": "Compute" },
@@ -100,18 +94,17 @@ So you can use simple notation like `{{myVariable}}`, or you can do more advance
 }
 ```
 
-```text title="JMESPath Expression" frame="terminal"
+```text title="Expression" frame="terminal"
 awsServices[?category == 'Compute'].name | sort(@) | join(', ', @)
 ```
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-9}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-8}
+    import { Buttonize, ButtonizeApp, Display } from '@buttonize/cdk'
 
     Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
+      apiKey: 'btnz_mybuttonizekey1234567'
     })
 
     new ButtonizeApp(this, 'MyButtonizeApp')
@@ -125,10 +118,8 @@ awsServices[?category == 'Compute'].name | sort(@) | join(', ', @)
 
 </FrameworkContent>
 
-##### Preview
-
 <ComponentDemo
-	height={80}
+	height={120}
 	runtimeStorage={{
 		awsServices: [
 			{ name: 'Lambda', category: 'Compute' },
@@ -148,130 +139,91 @@ awsServices[?category == 'Compute'].name | sort(@) | join(', ', @)
 	]}
 />
 
-### Absolute vs Relative references
+## Using variables in component props
 
-You can reference a variable from the runtime state in two ways:
+Most of the [Components](/core-concepts/components/) props can have dynamic value based on a variable expression.
 
-- Relative - `{{name}}` - reference inside the context of the active page
-- Absolute - `{{MyButtonizePage.name}}` - reference across all pages
-
-This can be useful, for example, when building a multi-step form.
-
-#### Example
-
-##### Relative
+```text title="Expression" frame="terminal"
+buttonColor.value
+```
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {12, 16}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-8} "buttonColor"
+    import { Action, Buttonize, ButtonizeApp, Input } from '@buttonize/cdk'
 
     Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
+      apiKey: 'btnz_mybuttonizekey1234567'
     })
 
     new ButtonizeApp(this, 'MyButtonizeApp')
-      .page('FirstPage', {
+      .page('MyButtonizePage', {
         body: [
-          Input.text({
-            id: 'name',
-            label: 'What is your name?',
-            placeholder: 'Joe'
-          }),
-          Display.text('Your name: {{name}}'),
-          Display.text('Name of your dog: {{name}}'),
+          Input.select({
+    					id: 'buttonColor',
+    					options: [
+    						{ label: 'Black', value: 'default' },
+    						{ label: 'Green', value: 'positive' },
+    						{ label: 'Red', value: 'negative' }
+    					],
+    					initialValue: { label: 'Black', value: 'default' },
+    					label: 'Select button color'
+    				}),
+    				Input.button({
+    					label: 'Click me',
+    					onClick: Action.buttonize.app.changePage('NextPage'),
+    					intent: '{{buttonColor.value}}'
+    				}),
         ]
       })
-      ```
+    ```
     </Fragment>
 
 </FrameworkContent>
 
-##### Absolute
+<ComponentDemo
+	height={200}
+	components={[
+		{
+			typeName: 'input.select',
+			props: {
+				id: 'buttonIntent',
+				options: [
+					{ label: 'Black', value: 'default' },
+					{ label: 'Green', value: 'positive' },
+					{ label: 'Red', value: 'negative' }
+				],
+				initialValue: { label: 'Black', value: 'default' },
+				label: 'Select button color'
+			}
+		},
+		{
+			typeName: 'input.button',
+			props: {
+				label: 'Click me',
+				onClick: {
+					type: 'buttonize',
+					service: 'app',
+					command: 'changePage',
+					input: {
+						newPageId: 'NextPage'
+					}
+				},
+				intent: '{{buttonIntent.value}}'
+			}
+		}
+	]}
+/>
 
-<FrameworkContent>
-  <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {"\"name\"'s value is read from \"SecondPage\" here": 17-18}  {"\"name\" value is read from \"FirstPage\" here": 28-29}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+## Debugging the expressions
 
-    Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
-    })
+You can use live local development view to debug your expressions. Just type the expression to the input above the state view.
 
-    new ButtonizeApp(this, 'MyButtonizeApp')
-      .page('FirstPage', {
-        body: [
-          Input.text({
-            id: 'name',
-            label: 'What is your name?',
-            placeholder: 'Joe'
-          }),
-          Display.text('Your name: {{name}}'),
+<ScreenImage>
+	![Live local development](../../../../public/images/variables-debugging-1.png)
+</ScreenImage>
 
-          Display.text('Name of your dog: {{SecondPage.name}}'),
-        ]
-      })
-      .page('SecondPage', {
-        body: [
-          Input.text({
-            id: 'name',
-            label: 'What is name of your dog?',
-            placeholder: 'Teddy'
-          }),
-
-          Display.text('Your name: {{FirstPage.name}}'),
-          Display.text('Name of your dog: {{name}}'),
-        ]
-      })
-      ```
-    </Fragment>
-
-</FrameworkContent>
-
-## Initial State
-
-You can define a set of [Actions](/core-concepts/actions/) that will be invoked once the page loads.
-
-This can be useful when you need to pre-fetch data that will be displayed to the user, such as dynamic options for a select box.
-
-### Example
-
-<FrameworkContent>
-  <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-17} "myInitDataExample"
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
-
-    Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
-    })
-
-    const myLambdaFunction = new lambda.NodejsFunction(
-      this,
-      'MyLambdaFunction',
-      {
-        handler: 'handler',
-        entry: path.join(__dirname, `lambdaHandler.ts`),
-        runtime: lambda.Runtime.NODEJS_20_X
-      }
-    )
-
-    new ButtonizeApp(this, 'MyButtonizeApp')
-      .page('MyPage', {
-        initialState: {
-          myInitDataExample: Action.aws.lambda.invoke(
-            myLambdaFunction
-          )
-        },
-        body: [
-          Display.json({
-            dataFromLambda: '{{myInitDataExample}}'
-          })
-        ]
-      })
-      ```
-    </Fragment>
-
-</FrameworkContent>
+<ScreenImage>
+	![Live local development
+	expression](../../../../public/images/variables-debugging-2.png)
+</ScreenImage>

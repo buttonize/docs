@@ -13,11 +13,11 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 
 Every application has some kind of runtime "state" and Buttonize apps are no exception.
 
-When app is loaded it starts with an empty state and once the browser tab is closed or refreshed the state is destroyed.
+When an app is loaded it starts with an empty state. Once the browser tab is closed or refreshed, the state is destroyed.
 
-Every `Input` stores some relevant data in the runtime state. You can learn more in "Runtime State" section of each component.
+Every `Input` [component](/core-concepts/components/#available-components) stores some data in the runtime state. You can learn more in the "Runtime State" section of each component.
 
-You can access the state value in your app by using `{{variable_name}}` notation in your code.
+You can access the runtime state value in your app by using [variable](/core-concepts/variables/) expressions.
 
 ## Example
 
@@ -49,8 +49,6 @@ You can access the state value in your app by using `{{variable_name}}` notation
 
 </FrameworkContent>
 
-### Preview
-
 ```json title="Runtime state" frame="terminal"
 {
 	"name": "Alex"
@@ -58,7 +56,7 @@ You can access the state value in your app by using `{{variable_name}}` notation
 ```
 
 <ComponentDemo
-	height={200}
+	height={180}
 	runtimeStorage={{
 		name: 'Alex'
 	}}
@@ -80,159 +78,9 @@ You can access the state value in your app by using `{{variable_name}}` notation
 	]}
 />
 
-## Variables
-
-The contents of the variable notation is being executed by [JMESPath](https://jmespath.org). It's like JSONPath but more powerful.
-
-So you can use simple notation like `{{myVariable}}` or you can do more advanced stuff such as shown below.
-
-### Example
-
-```json title="Runtime state" frame="terminal"
-{
-	"awsServices": [
-		{ "name": "Lambda", "category": "Compute" },
-		{ "name": "DynamoDB", "category": "Database" },
-		{ "name": "EC2", "category": "Compute" },
-		{ "name": "RDS", "category": "Database" },
-		{ "name": "S3", "category": "Storage" }
-	]
-}
-```
-
-```text title="JMESPath Expression" frame="terminal"
-awsServices[?category == 'Compute'].name | sort(@) | join(', ', @)
-```
-
-<FrameworkContent>
-  <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-9}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
-
-    Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
-    })
-
-    new ButtonizeApp(this, 'MyButtonizeApp')
-      .page('MyButtonizePage', {
-        body: [
-          Display.text(`AWS compute services: {{awsServices[?category == 'Compute'].name | sort(@) | join(', ', @)}}`),
-        ]
-      })
-    ```
-    </Fragment>
-
-</FrameworkContent>
-
-##### Preview
-
-<ComponentDemo
-	height={80}
-	runtimeStorage={{
-		awsServices: [
-			{ name: 'Lambda', category: 'Compute' },
-			{ name: 'DynamoDB', category: 'Database' },
-			{ name: 'EC2', category: 'Compute' },
-			{ name: 'RDS', category: 'Database' },
-			{ name: 'S3', category: 'Storage' }
-		]
-	}}
-	components={[
-		{
-			typeName: 'display.text',
-			props: {
-				label: `AWS compute services: {{awsServices[?category == 'Compute'].name | sort(@) | join(', ', @)}}`
-			}
-		}
-	]}
-/>
-
-### Absolute vs Relative references
-
-You can reference a variable from the runtime state in two ways:
-
-- Relative - `{{name}}` - reference inside the context of the active page
-- Absolute - `{{MyButtonizePage.name}}` - reference across all pages
-
-This can be useful for example when building a multi-step form.
-
-#### Example
-
-##### Relative
-
-<FrameworkContent>
-  <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {12, 16}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
-
-    Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
-    })
-
-    new ButtonizeApp(this, 'MyButtonizeApp')
-      .page('FirstPage', {
-        body: [
-          Input.text({
-            id: 'name',
-            label: 'What is your name?',
-            placeholder: 'Joe'
-          }),
-          Display.text('Your name: {{name}}'),
-          Display.text('Name of your dog: {{name}}'),
-        ]
-      })
-      ```
-    </Fragment>
-
-</FrameworkContent>
-
-##### Absolute
-
-<FrameworkContent>
-  <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {"\"name\" value is read from \"SecondPage\" here": 17-18}  {"\"name\" value is read from \"FirstPage\" here": 28-29}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
-
-    Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
-    })
-
-    new ButtonizeApp(this, 'MyButtonizeApp')
-      .page('FirstPage', {
-        body: [
-          Input.text({
-            id: 'name',
-            label: 'What is your name?',
-            placeholder: 'Joe'
-          }),
-          Display.text('Your name: {{name}}'),
-
-          Display.text('Name of your dog: {{SecondPage.name}}'),
-        ]
-      })
-      .page('SecondPage', {
-        body: [
-          Input.text({
-            id: 'name',
-            label: 'What is name of your dog?',
-            placeholder: 'Teddy'
-          }),
-
-          Display.text('Your name: {{FirstPage.name}}'),
-          Display.text('Name of your dog: {{name}}'),
-        ]
-      })
-      ```
-    </Fragment>
-
-</FrameworkContent>
-
 ## Initial State
 
-You can define set of [Actions](/core-concepts/actions/) that will be invoked once the page loads.
+You can define a set of [Actions](/core-concepts/actions/) that will be invoked once the page loads.
 
 This can be useful when you need to pre-fetch data that will be displayed to the user like for example dynamic options for select box.
 

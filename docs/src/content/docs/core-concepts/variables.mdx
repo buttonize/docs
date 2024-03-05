@@ -13,17 +13,17 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 
 Every application has some kind of runtime "state" and Buttonize apps are no exception.
 
-When app is loaded it starts with an empty state and once the browser tab is closed or refreshed the state is destroyed.
+When an app is loaded, it starts with an empty state. Nnce the browser tab is closed or refreshed, the state is destroyed.
 
-Every `Input` stores some relevant data in the runtime state. You can learn more in "Runtime State" section of each component.
+Every `Input` stores some data in the runtime state. You can learn more in the "Runtime State" section of each component.
 
-You can access the state value in your app by using `{{variable_name}}` notation in your code.
+You can access the state value in your app by using the `{{variable_name}}` notation in your code.
 
 ## Example
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {"'name' is used as a key when storing the input value in the state":12-13} {"The input value is being display here by using {{name}}":17-18}
+    ```ts title="lib/MyStack.ts" collapse={1-7} {"'name' is used as a key when storing the input value in the state":12-13} {"The input value is displayed here by using {{name}}":17-18}
     import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
 
     Buttonize.init(this, {
@@ -82,9 +82,9 @@ You can access the state value in your app by using `{{variable_name}}` notation
 
 ## Variables
 
-The contents of the variable notation is being executed by [JMESPath](https://jmespath.org). It's like JSONPath but more powerful.
+The contents of the variable notation are evaluated via [JMESPath](https://jmespath.org). It's like JSONPath but more powerful.
 
-So you can use simple notation like `{{myVariable}}` or you can do more advanced stuff such as shown below.
+So you can use simple notation like `{{myVariable}}`, or you can do more advanced stuff like what's shown below.
 
 ### Example
 
@@ -155,7 +155,7 @@ You can reference a variable from the runtime state in two ways:
 - Relative - `{{name}}` - reference inside the context of the active page
 - Absolute - `{{MyButtonizePage.name}}` - reference across all pages
 
-This can be useful for example when building a multi-step form.
+This can be useful, for example, when building a multi-step form.
 
 #### Example
 
@@ -192,7 +192,7 @@ This can be useful for example when building a multi-step form.
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {"\"name\" value is read from \"SecondPage\" here": 17-18}  {"\"name\" value is read from \"FirstPage\" here": 28-29}
+    ```ts title="lib/MyStack.ts" collapse={1-7} {"\"name\"'s value is read from \"SecondPage\" here": 17-18}  {"\"name\" value is read from \"FirstPage\" here": 28-29}
     import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
 
     Buttonize.init(this, {
@@ -232,9 +232,9 @@ This can be useful for example when building a multi-step form.
 
 ## Initial State
 
-You can define set of [Actions](/core-concepts/actions/) that will be invoked once the page loads.
+You can define a set of [Actions](/core-concepts/actions/) that will be invoked once the page loads.
 
-This can be useful when you need to pre-fetch data that will be displayed to the user like for example dynamic options for select box.
+This can be useful when you need to pre-fetch data that will be displayed to the user, such as dynamic options for a select box.
 
 ### Example
 

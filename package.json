@@ -8,7 +8,7 @@
 		"env": "run-script-os",
 		"env:windows": "env-cmd -f .env-cmd cmd /C \"ssocreds -p %AWS_PROFILE%\" && env-cmd -f .env-cmd",
 		"env:default": "env-cmd -f .env-cmd bash -c \"ssocreds -p \\$AWS_PROFILE\" && env-cmd -f .env-cmd",
-		"start": "npm run env -- sst start",
+		"dev:sst": "npm run env -- sst dev",
 		"build": "npm run env -- sst build",
 		"deploy": "npm run env -- sst deploy",
 		"remove": "npm run env -- sst remove",
@@ -46,7 +46,7 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.1.3",
 		"run-script-os": "^1.1.6",
-		"sst": "2.39.6",
+		"sst": "^2.40.6",
 		"typescript": "^5.3.3",
 		"vitest": "^0.25.1"
 	},

@@ -31,7 +31,7 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-5}
+    ```ts title="lib/MyStack.ts" collapse={1-5} {"     since the id of the input is selectInput, access the option's values like so":19}
     import { ButtonizeApp, Input } from '@buttonize/cdk'
 
     new ButtonizeApp(this, 'DemoApp', {
@@ -49,7 +49,10 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
           initialValue: [
             { label: 'Option 1', value: 'option1' }
           ],
-        })
+        }),
+
+        Display.text("Selected label: {{selectInput.label}}"),
+        Display.text("Selected value: {{selectInput.value}}")
       ]
     })
     ```
@@ -64,7 +67,7 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 		{
 			typeName: 'input.select',
 			props: {
-				id: 'selectInput',
+				id: 'selectInput', // the name of the variable in the runtime state
 				options: [
 					{ label: 'Option 1', value: 'option1' },
 					{ label: 'Option 2', value: 'option2' }
@@ -73,9 +76,60 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 				placeholder: 'Choose one...',
 				initialValue: [{ label: 'Option 1', value: 'option1' }]
 			}
+		},
+		{
+			typeName: 'display.text',
+			props: {
+				label: 'Selected label: {{selectInput.label}}'
+			}
+		},
+		{
+			typeName: 'display.text',
+			props: {
+				label: 'Selected value: {{selectInput.value}}'
+			}
 		}
 	]}
 />
+
+## Runtime State
+
+The value in the runtime state is the selected object from the select input. You can use dot notation to
+access the desired property for either the label or the value.
+
+```ts title="lib/MyStack.ts" "'name'"
+Input.select({
+	id: 'selectInput',
+	options: [
+		{ label: 'Option 1', value: 'option1' },
+		{ label: 'Option 2', value: 'option2' }
+	],
+	label: 'Select an option'
+})
+```
+
+```json title="Runtime state (1st option selected)" frame="terminal" ""name""
+// Assuming the first option is the selected value
+{
+	"selectInput": {
+		"label": "Option 1",
+		"value": "option1"
+	}
+}
+```
+
+```json title="Runtime state (2nd option selected)" frame="terminal" ""name""
+// If the section option is the selected value, it would of course be
+{
+	"selectInput": {
+		"label": "Option 2",
+		"value": "option2"
+	}
+}
+```
+
+As demonstrated by the Usage example above, you can access variables from the Runtime State
+via the "\{\{selectInput.value\}\}" syntax from elsewhere in your Buttonize app.
 
 ## Props
 

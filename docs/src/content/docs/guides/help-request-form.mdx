@@ -54,8 +54,8 @@ new ButtonizeApp(this, 'HelpFormApp')
 	})
 ```
 
-Within each page's `body` prop, we then fill in our frontend! It's here we layout what our app should look like and which actions
-certain components should take when interacted with.
+Within each page's `body` prop, we then layout what our app should look like and which actions certain components should take
+when interacted with.
 
 ## HelpFormPage (the first page)
 
@@ -96,7 +96,7 @@ This is dictated by the `id` property, which specifies what the name of the vari
 the value of our `Input.text` is. In our case, the name of that variable is `email`.
 
 Just by looking at this page, though, it's not immediately obvious what all this means. Let's take a look at the beginning of the
-second page to make things more clear
+second page to make things more clear. (Don't worry! We'll cover changing pages in a Buttonize app in just a bit.)
 
 ```typescript
 body: [
@@ -109,7 +109,7 @@ body: [
 ```
 
 In the second element, we see `Display.text('Email: {{email}}')`, which references the variable we were just talking about.
-This component renders text on the screen and interpolates `{{email}}` using the Runtime State, populated by the `Input.text`
+This component renders text on the screen and interpolates `{{email}}` using the [Runtime State](/core-concepts/runtime-state/), populated by the `Input.text`
 component we discussed above.
 
 Reading on, we can see we in fact reference all the `id`s from the various `Input` components on the first page in the second page.
@@ -199,7 +199,7 @@ Input.button({
 })
 ```
 
-Notice that Runtime State values aren't just used for display purposes. They're referenced within the payload with which we invoke the lambda
+Notice that [Runtime State](/core-concepts/runtime-state/) values aren't just used for display purposes. They're referenced within the payload with which we invoke the lambda
 so that [our lambda](https://github.com/buttonize/examples/blob/master/help-request-form/lib/lambdaHandler.ts) will have access to the values the user punched in.
 
 ```typescript
@@ -217,15 +217,18 @@ export const handler: Handler = async (event, context) => {
 ```
 
 It's important to note that Buttonize does not provision the lambda for you! The `Action.aws.lambda.invoke` action takes a CDK
-construct referencing some lambda you've created yourself. This way, your Buttonize app can drop smoothly into your CDK stack and play nice
+construct referencing some lambda you've created yourself. This way, your Buttonize app can drop right into your CDK stack and play nice
 with the rest of your CloudFormation resources. You can do whatever else you want with this lambda within the same stack: hook it up to S3
 events, control its IAM permissions, etc. Using Buttonize will not get in the way.
 
 The last thing to note is the `onClickFinished` property, which simply changes the page to our third and final page after the lambda returns.
 
+If you'd like more info on the `Input.button` component, please [see the docs](/components/input-button/).
+
 ## FinishPage (the third page)
 
-There's not much to this one. It exists solely to give feedback to the user, but the flow could go on if so desired.
+There's not much to this one. It exists solely to give feedback to the user, but the flow could go on! We'll end
+our guide here, though, as we've covered all the concepts employed within this example.
 
 ```typescript
 body: [
@@ -233,6 +236,8 @@ body: [
 	Display.text('One of our support team members will contact you shortly')
 ]
 ```
+
+If you wanted, you could also use variables from the [Runtime State](/core-concepts/runtime-state/) on this page as well.
 
 ## Wrapping Up
 

@@ -1,0 +1,278 @@
+---
+title: Customer Support App
+description: An example demonstrating how you can build simple, internal apps with Buttonize
+sidebar:
+  order: 1
+---
+
+One of the example apps we've built to demonstrate the business problems Buttonize can solve is
+an app for our customer support team.
+
+Many companies need this sort of app to enable their customer support team to manage user data.
+Perhaps your user has gotten themselves into a funny state database-wise, and your app doesn't
+yet have a code path for them to get out of it.
+
+In these cases, you'll need your support team to help!
+
+## The Example on GitHub
+
+The code for this example can be found [in our examples repo](https://github.com/buttonize/examples/tree/master/customer-support).
+Please check it out and get acquainted.
+
+One import thing to note is that in order to use the local development tooling with Buttonize, you _must_ export your CDK app,
+as can be seen [here](https://github.com/buttonize/examples/blob/3c0afb1bc0e9c48bd6ef0d22e487b3a0832e4975/customer-support/bin/customer-support.ts#L6).
+
+If you don't plan to use the local development features, then this step is optional.
+
+## CustomerSupportStack
+
+In this guide, we'll skip some of the general concepts already covered in the [Help Request Form Guide](/guides/help-request-form/). If
+you're new to building apps with Buttonize or haven't read that guide yet, we recommend doing so.
+
+Anyways, here's a high level overview of what our customer support app with all its pages looks like:
+
+```typescript
+new ButtonizeApp(this, 'CustomerSupportApp')
+	.page('LoadUserPage', {
+		body: [
+			// ...
+		]
+	})
+	.page('UserInfoPage', {
+		body: [
+			// ...
+		]
+	})
+	.page('EmailChangePage', {
+		body: [
+			// ...
+		]
+	})
+	.page('UserDeletedPage', {
+		body: [
+			// ...
+		]
+	})
+	.page('PasswordResetPage', {
+		body: [
+			// ...
+		]
+	})
+```
+
+Within each page's `body` prop, we then layout what our app should look like and which actions certain components should take
+when interacted with.
+
+## LoadUserPage (the first page)
+
+In our first page, we provide a form for our customer support agent to load the user they're trying to help into the app. This
+page is fairly straightforward:
+
+```typescript
+body: [
+	Display.grid([
+		{
+			size: 1,
+			body: [
+				Input.text({
+					id: 'email',
+					label: 'User'
+				})
+			]
+		},
+		{
+			size: 1,
+			body: [
+				Input.button({
+					label: 'Load User',
+					onClick: Action.aws.lambda.invoke(
+						new NodejsFunction(this, 'CustomerSupperLoadUserLambda', {
+							handler: 'handler',
+							entry: path.join(__dirname, `loadUserHandler.ts`),
+							runtime: lambda.Runtime.NODEJS_20_X
+						}),
+						{
+							Payload: {
+								email: '{{email}}'
+							}
+						},
+						{
+							id: 'loadUserPayload'
+						}
+					),
+					onClickFinished: Action.buttonize.app.changePage('UserInfoPage'),
+					kind: 'secondary',
+					intent: 'default'
+				})
+			]
+		}
+	])
+]
+```
+
+We simply need an `Input.text` field where the agent can enter the user id, and an `Input.button` component.
+In order to get the components to display side-by-side, we're using `Input.grid`. If we wanted them stacked vertically,
+we could also just do it like:
+
+```typescript
+body: [
+	Input.text({
+		id: 'email',
+		label: 'User'
+	}),
+	Input.button({
+		label: 'Load User',
+		onClick: Action.aws.lambda.invoke(...),
+		onClickFinished: Action.buttonize.app.changePage('UserInfoPage'),
+		kind: 'secondary',
+		intent: 'default'
+	})
+]
+```
+
+Also note our use of the `kind` and `intent` props in order to style the button. Your intellisense should make it
+clear which values are available for this buttons, and you'll be able to give them the colors and styles you want.
+
+When the button is pressed, it'll invoke a lamba to fetch the user data. Once it's done, we'll be sent to
+the next page in order to present the data.
+
+```typescript
+import { Handler } from 'aws-lambda'
+
+export const handler: Handler = async (event, context) => {
+	// Here, you can load the user info from your database
+	const email = event.email
+	// for this example, we just return hardcoded data
+	return {
+		success: true,
+		data: {
+			email,
+			subscription: { label: 'PRO', value: 'pro' },
+			registered: '15th May 2020',
+			picture:
+				'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=1060&t=st=1708887795~exp=1708888395~hmac=64f1a63fed0fad04d1d43eacf86c70427934558fcb1bbef3af60db9846e74700'
+		}
+	}
+}
+```
+
+Since this is just an example, you can see we're only returning some hardcoded data, but your lambda could fetch
+the data from anywhere! Anything you can do within a lambda, you can kick off from Buttonize.
+
+Once this lambda returns, we invoke `Action.buttonize.app.changePage` via the `onClickFinished` prop of the button
+and move on to the specified page.
+
+## UserInfoPage (the second page)
+
+On this page, we display all the info we have on the user and offer various actions the customer support agent
+can perform on the user's data.
+
+The main thing to take note of is that the user data is accessed through the `loadUserPayload` variable, which
+is from the [Runtime State](/core-concepts/runtime-state/), which was populated on the first page via our lamba action.
+After the lambda returned, it extracted the data from the response and inserted it into `loadUserPayload`. Now
+we can use that data in order to meaningful context to our page.
+
+```typescript
+body: [
+	Display.section({
+		label: 'Customer data',
+		body: [
+			Display.grid([
+				{
+					size: 1,
+					body: [Display.image('{{loadUserPayload.data.picture}}')]
+				},
+				{
+					size: 2,
+					body: [
+						Input.select({
+							id: 'plan',
+							label: 'Subscription plan',
+							options: [
+								{ label: 'PRO', value: 'pro' },
+								{ label: 'Free', value: 'free' }
+							],
+							initialValue: '{{loadUserPayload.data.subscription}}',
+							spacingBottom: 'md'
+						}),
+						Input.text({
+							id: 'newEmail',
+							label: 'Email change',
+							initialValue: '{{email}}'
+						}),
+						Input.button({
+							label: 'Confirm changes',
+							onClick: Action.buttonize.app.changePage('EmailChangePage'),
+							kind: 'primary',
+							intent: 'default'
+						})
+					]
+				}
+			]),
+			Display.text('Registered: {{loadUserPayload.data.registered}}')
+		]
+	}),
+	Display.section({
+		label: 'Advanced actions',
+		body: [
+			Display.grid([
+				{
+					size: 1,
+					body: [
+						Input.button({
+							label: 'Delete user',
+							onClick: Action.buttonize.app.changePage('UserDeletedPage'),
+							kind: 'secondary',
+							intent: 'negative'
+						})
+					]
+				},
+				{
+					size: 1,
+					body: [
+						Input.button({
+							label: 'Reset password',
+							onClick: Action.buttonize.app.changePage('PasswordResetPage'),
+							kind: 'secondary',
+							intent: 'default'
+						})
+					]
+				}
+			])
+		]
+	})
+]
+```
+
+For simplicity, all the action's you can take on this page simply take you to another page, accessing some data
+from the [Runtime State](/core-concepts/runtime-state/) in order to make it clear to our agent what happened.
+
+In an actual app, you'd likely invoke a distinct lambda for each one of these actions, passing the same data we're
+using on the confirmation pages into the payload.
+
+## The confirmation pages
+
+The code for these is simply since they just display text whose values are interpolated based on how the agent
+interacted with the previous page.
+
+```typescript
+}).page("EmailChangePage", {
+  body: [Display.heading("Email changed from {{email}} to {{newEmail}}")]
+}).page("UserDeletedPage", {
+  body: [Display.heading("{{email}} deleted")]
+}).page("PasswordResetPage", {
+  body: [Display.heading("{{email}}'s password reset")]
+})
+```
+
+Notice we're just using `email`, which was actually set in the first page, and `newEmail`, which was set in our second page.
+
+In an actual app, you'd probably invoke a lambda, pass these variables into the payload, and then use `onClickFinished`
+(like we did on the first page of this example) to go to these confirmation pages in order to give feedback to your customer support agent.
+
+## Wrapping Up
+
+That's about it for this example app. If you're already familiar with the [lambda invoke Action](/actions/aws/lambda-invoke/)
+and the [change page Action](/actions/buttonize/change-page/), this should be pretty straightforward.
+
+Hopefully you found this example useful. Now go build something!

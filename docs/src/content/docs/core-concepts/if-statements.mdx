@@ -1,0 +1,436 @@
+---
+title: If Statements
+description: For advanced use-cases you can use if statements for showing conditional UI.
+sidebar:
+  order: 7
+---
+
+import ComponentDemo from '@components/ComponentDemo.astro'
+import FrameworkSelect from '@components/FrameworkSelect.astro'
+import FrameworkContent from '@components/FrameworkContent.astro'
+
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize/blob/master/cdk/B.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
+
+If-then-else statements are crucial feature for any app longer than a couple of lines. Buttonize acknowledges this and provides the `B`
+symbol, which contains all you need in order to construct if statements in your Buttonize apps.
+
+:::note
+Conditions can currently be used only for [component's](/core-concepts/components/) and [action's](/core-concepts/actions/) property values. You can **not** use `B.if` directly in the
+[`body`](/core-concepts/apps-and-pages/#body) prop of a page or the [grid component](components/display-grid/).
+:::
+
+## How to make `if` statements in Buttonize
+
+<FrameworkContent>
+  <Fragment slot="cdk">
+    ```ts title="lib/MyStack.ts" collapse={1-17}
+    import { Action, Buttonize, ButtonizeApp, Input, B } from '@buttonize/cdk'
+
+    Buttonize.init(this, {
+      apiKey: 'btnz_mybuttonizekey1234567'
+    })
+
+    new ButtonizeApp(this, 'MyButtonizeApp')
+      .page('MyButtonizePage', {
+        body: [
+          Input.select({
+            id: 'operation',
+            options: [
+              { label: 'Create', value: 'create' },
+              { label: 'Delete', value: 'delete' }
+            ],
+            label: 'Select operation to perform'
+          }),
+          Input.button({
+            onClick: Action.buttonize.app.changePage('MyButtonizePage'),
+            label: B.if(
+              B.eq('{{operation.value}}', 'create'),
+              'Create',
+              B.if(
+                B.eq('{{operation.value}}', 'delete'),
+                'Delete',
+                'Select...'
+              )
+            ),
+            intent: B.if(
+              B.eq('{{operation.value}}', 'create'),
+              'positive',
+              B.if(
+                B.eq('{{operation.value}}', 'delete'),
+                'negative',
+                'default'
+              )
+            )
+          })
+        ]
+      })
+    ```
+    </Fragment>
+
+</FrameworkContent>
+
+<ComponentDemo
+	height={200}
+	components={[
+		{
+			typeName: 'input.select',
+			props: {
+				id: 'operation',
+				options: [
+					{ label: 'Create', value: 'create' },
+					{ label: 'Delete', value: 'delete' }
+				],
+				label: 'Select operation to perform'
+			}
+		},
+		{
+			typeName: 'input.button',
+			props: {
+				label: {
+					runtimeExpression: {
+						typeName: 'if',
+						statement: { eq: ['{{operation.value}}', 'create'] },
+						positive: 'Create',
+						negative: {
+							runtimeExpression: {
+								typeName: 'if',
+								statement: { eq: ['{{operation.value}}', 'delete'] },
+								positive: 'Delete',
+								negative: 'Select...'
+							}
+						}
+					}
+				},
+				onClick: {
+					type: 'buttonize',
+					service: 'app',
+					command: 'changePage',
+					input: {
+						newPageId: 'NextPage'
+					}
+				},
+				intent: {
+					runtimeExpression: {
+						typeName: 'if',
+						statement: { eq: ['{{operation.value}}', 'create'] },
+						positive: 'positive',
+						negative: {
+							runtimeExpression: {
+								typeName: 'if',
+								statement: { eq: ['{{operation.value}}', 'delete'] },
+								positive: 'negative',
+								negative: 'default'
+							}
+						}
+					}
+				}
+			}
+		}
+	]}
+/>
+
+## References
+
+### `B.if`
+
+If statement.
+
+```ansi frame="none"
+[38;5;39mB.if[0m(LogicalOperator | MathOperator, positiveResult, negativeResult) => RuntimeIfExpression
+```
+
+Example
+
+```ts
+B.if(B.eq('A', 'B'), 'A equals B', 'A does not equal B')
+```
+
+:::note
+
+`B.if` statements can be nested.
+
+```ts
+B.if(
+	B.eq('{{variable}}', 'A'),
+	'variable equals A',
+	B.if(
+		B.eq('{{variable}}', 'B'),
+		'variable equals B',
+		B.if(
+			B.eq('{{variable}}', 'C'),
+			'variable equals C',
+			'variable is not equal to either A, B or C'
+		)
+	)
+)
+```
+
+<details>
+  <summary>Equivalent of this expression in TypeScript</summary>
+  
+  ```ts
+  if (variable == 'A') {
+    return 'variable equals A'
+  } else {
+    if (variable == 'B') {
+      return 'variable equals B'
+    } else {
+      if (variable == 'C') {
+        return 'variable equals C'
+      } else {
+        return 'variable is not equal to either A, B or C'
+      }
+    }
+  }
+  ```
+</details>
+
+:::
+
+### `B.eq`
+
+Equality operator.
+
+```ansi frame="none"
+[38;5;39mB.eq[0m(leftOperand, rightOperand) => MathOperator
+```
+
+Example
+
+```ts
+B.if(
+	B.eq('{{variable}}', 'B'),
+	'variable equals B',
+	'variable does not equal B'
+)
+```
+
+<details>
+  <summary>Equivalent of this expression in TypeScript</summary>
+  
+  ```ts
+  if (variable == 'B') {
+    return 'variable equals B' 
+  } else {
+    return 'variable does not equal B'
+  }
+  ```
+</details>
+
+### `B.gt`
+
+Greater than operator.
+
+```ansi frame="none"
+[38;5;39mB.gt[0m(leftOperand, rightOperand) => MathOperator
+```
+
+Example
+
+```ts
+B.if(
+	B.gt('{{variable}}', '3'),
+	'variable is greater than 3',
+	'variable is lower or equal than 3'
+)
+```
+
+<details>
+  <summary>Equivalent of this expression in TypeScript</summary>
+  
+  ```ts
+  if (variable > 3) {
+    return 'variable is greater than 3' 
+  } else {
+    return 'variable is lower or equal than 3'
+  }
+  ```
+</details>
+
+### `B.gte`
+
+Greater than or equal operator.
+
+```ansi frame="none"
+[38;5;39mB.gte[0m(leftOperand, rightOperand) => MathOperator
+```
+
+Example
+
+```ts
+B.if(
+	B.gte('{{variable}}', '3'),
+	'variable is greater or equal than 3',
+	'variable is lower than 3'
+)
+```
+
+<details>
+  <summary>Equivalent of this expression in TypeScript</summary>
+  
+  ```ts
+  if (variable >= 3) {
+    return 'variable is greater or equal than 3' 
+  } else {
+    return 'variable is lower than 3'
+  }
+  ```
+</details>
+
+### `B.lt`
+
+Lower than operator.
+
+```ansi frame="none"
+[38;5;39mB.lt[0m(leftOperand, rightOperand) => MathOperator
+```
+
+Example
+
+```ts
+B.if(
+	B.lt('{{variable}}', '3'),
+	'variable is lower than 3',
+	'variable is greater or equal than 3'
+)
+```
+
+<details>
+  <summary>Equivalent of this expression in TypeScript</summary>
+  
+  ```ts
+  if (variable < 3) {
+    return 'variable is lower than 3' 
+  } else {
+    return 'variable is greater or equal than 3'
+  }
+  ```
+</details>
+
+### `B.lte`
+
+Lower than or equal operator.
+
+```ansi frame="none"
+[38;5;39mB.lte[0m(leftOperand, rightOperand) => MathOperator
+```
+
+Example
+
+```ts
+B.if(
+	B.lte('{{variable}}', '3'),
+	'variable is lower or equal than 3',
+	'variable is greater than 3'
+)
+```
+
+<details>
+  <summary>Equivalent of this expression in TypeScript</summary>
+  
+  ```ts
+  if (variable <= 3) {
+    return 'variable is lower or equal than 3' 
+  } else {
+    return 'variable is greater than 3'
+  }
+  ```
+</details>
+
+### `B.and`
+
+Logical AND operator.
+
+```ansi frame="none"
+[38;5;39mB.and[0m(...operators: (LogicalOperator | MathOperator)[]) => LogicalOperator
+```
+
+Example
+
+```ts
+B.if(
+	B.and(B.gt('{{variable}}', '3'), B.lt('{{variable}}', '5')),
+	'variable is equal to 4', // In case we use just integers
+	'variable is number not equal to 4'
+)
+```
+
+<details>
+  <summary>Equivalent of this expression in TypeScript</summary>
+  
+  ```ts
+  if (variable > 3 && variable < 5) {
+    return 'variable is equal to 4' // In case we use just integers
+  } else {
+    return 'variable is number not equal to 4'
+  }
+  ```
+</details>
+
+### `B.or`
+
+Logical OR operator.
+
+```ansi frame="none"
+[38;5;39mB.or[0m(...operators: (LogicalOperator | MathOperator)[]) => LogicalOperator
+```
+
+Example
+
+```ts
+B.if(
+	B.or(B.eq('{{variable}}', 'Joe'), B.eq('{{variable}}', 'Alex')),
+	'name in the variable is either Joe or Alex',
+	'name in the variable is not Joe or Alex'
+)
+```
+
+<details>
+  <summary>Equivalent of this expression in TypeScript</summary>
+  
+  ```ts
+  if (variable === 'Joe' || variable === 'Alex') {
+    return 'name in the variable is either Joe or Alex'
+  } else {
+    return 'name in the variable is not Joe or Alex'
+  }
+  ```
+</details>
+
+### `B.not`
+
+Logical NOT operator.
+
+```ansi frame="none"
+[38;5;39mB.not[0m(operator: LogicalOperator | MathOperator) => LogicalOperator
+```
+
+Example
+
+```ts
+B.if(
+  B.not(
+    B.eq('{{variable}}', 'Joe')
+  )
+  'name in the variable not Joe',
+  'name in the variable is Joe'
+)
+```
+
+<details>
+  <summary>Equivalent of this expression in TypeScript</summary>
+  
+  ```ts
+  if (!(variable === 'Joe')) {
+    return 'name in the variable not Joe'
+  } else {
+    return 'name in the variable is Joe'
+  }
+  ```
+</details>

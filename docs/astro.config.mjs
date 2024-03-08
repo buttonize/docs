@@ -77,7 +77,7 @@ export default defineConfig({
 			social: {
 				github: 'https://github.com/buttonize',
 				'x.com': 'https://twitter.com/buttonizeio',
-				discord: 'https://discord.gg/2quY4Vz5BM',
+				discord: 'https://discord.buttonize.io',
 				youtube: 'https://www.youtube.com/@buttonizeio'
 			},
 			customCss: [

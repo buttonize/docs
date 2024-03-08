@@ -7,7 +7,7 @@
 ---
 
 <p align="center">
-  <a href="https://discord.gg/2quY4Vz5BM"><img alt="Discord" src="https://img.shields.io/discord/1038752242238496779?style=flat-square" /></a>
+  <a href="https://discord.buttonize.io"><img alt="Discord" src="https://img.shields.io/discord/1038752242238496779?style=flat-square" /></a>
 </p>
 
 Buttonize enables you to build internals tools with [AWS CDK](https://aws.amazon.com/cdk/).
@@ -30,4 +30,4 @@ $ cd docs && pnpm start
 
 ---
 
-**Join our community** [Discord](https://discord.gg/2quY4Vz5BM) | [Twitter](https://twitter.com/Buttonizeio)
+**Join our community** [Discord](https://discord.buttonize.io) | [Twitter](https://twitter.com/Buttonizeio)

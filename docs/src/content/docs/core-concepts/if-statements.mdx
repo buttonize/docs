@@ -415,11 +415,9 @@ Example
 
 ```ts
 B.if(
-  B.not(
-    B.eq('{{variable}}', 'Joe')
-  )
-  'name in the variable not Joe',
-  'name in the variable is Joe'
+	B.not(B.eq('{{variable}}', 'Joe')),
+	'name in the variable not Joe',
+	'name in the variable is Joe'
 )
 ```
 

@@ -147,17 +147,26 @@ The buttons are not interactable in this example.
 			<PropMarker slot="markers" type="required" />
 			<Fragment slot="type">function</Fragment>
 			<Fragment slot="description">
-				The function to call when the user clicks the button.
+				The [Action](/core-concepts/actions/#available-actions) to call when the user clicks the button.
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
 			<Fragment slot="title">
 				{/* keep-good-prettier-formatting */}
-				### variant
+				### kind
 			</Fragment>
 			<PropMarker slot="markers" type="optional" />
-			<Fragment slot="type">"primary" | "secondary" | "tertiary"</Fragment>
-			<Fragment slot="description">The color variant for the button.</Fragment>
+			<Fragment slot="type">'primary' | 'secondary' | 'tertiary'</Fragment>
+			<Fragment slot="description">A variant of the button. Default is `primary`.</Fragment>
+		</PropDescription>
+    <PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### intent
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">'default' | 'positive' | 'negative'</Fragment>
+			<Fragment slot="description">An intent of the button. Default is `default`.</Fragment>
 		</PropDescription>
 		<PropDescription>
 			<Fragment slot="title">
@@ -167,7 +176,7 @@ The buttons are not interactable in this example.
 			<PropMarker slot="markers" type="optional" />
 			<Fragment slot="type">boolean</Fragment>
 			<Fragment slot="description">
-				Whether or not the button can be interacted with.
+				Whether or not the button can be interacted with. Default is `false`.
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
@@ -181,7 +190,7 @@ The buttons are not interactable in this example.
 				A callback that will be invoked when the `onClick` function is finished
 				executing.
 
-        This is also often used to redirect to the next page via `Action.buttonize.app.changePage`.
+        This is also often used to redirect to the next page via `Action.buttonize.app.changePage(...)`.
     		</Fragment>
     </PropDescription>
     <SpacingProps />

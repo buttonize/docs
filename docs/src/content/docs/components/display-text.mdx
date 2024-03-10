@@ -49,6 +49,7 @@ Shows plain text on a Buttonize page.
 ## Preview
 
 <ComponentDemo
+	height={100}
 	components={[
 		{
 			typeName: 'display.text',
@@ -63,6 +64,15 @@ Shows plain text on a Buttonize page.
 
 <FrameworkContent>
 	<Fragment slot="cdk">
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### label
+			</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">The displayed text.</Fragment>
+		</PropDescription>
 		<SpacingProps />
 		<SizingProps />
 	</Fragment>

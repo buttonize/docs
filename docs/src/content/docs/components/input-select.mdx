@@ -63,6 +63,7 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 ## Preview
 
 <ComponentDemo
+	height={200}
 	components={[
 		{
 			typeName: 'input.select',
@@ -153,7 +154,7 @@ via the "\{\{selectInput.value\}\}" syntax from elsewhere in your Buttonize app.
 				### options
 			</Fragment>
 			<PropMarker slot="markers" type="required" />
-			<Fragment slot="type">object</Fragment>
+			<Fragment slot="type">\{ label: string; value: string | number | boolean \}[]</Fragment>
 			<Fragment slot="description">
 				An array of options. Each option should have a `label` and `value` key
 				set.
@@ -209,7 +210,7 @@ via the "\{\{selectInput.value\}\}" syntax from elsewhere in your Buttonize app.
 				### initialValue
 			</Fragment>
 			<PropMarker slot="markers" type="optional" />
-			<Fragment slot="type">string</Fragment>
+			<Fragment slot="type">\{ label: string; value: string | number | boolean \}</Fragment>
 			<Fragment slot="description">
 				Initial selected value or values for the select input. Use an array for
 				multi-select.

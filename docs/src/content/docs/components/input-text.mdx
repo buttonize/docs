@@ -107,7 +107,7 @@ via the "\{\{name\}\}" syntax from elsewhere in your Buttonize app.
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
 				Key used for storing value of the text input in the [Runtime
-				Storage](http://localhost:4321/core-concepts/runtime-storage/).
+				State](/core-concepts/runtime-state/).
 			</Fragment>
 		</PropDescription>
 		<PropDescription>
@@ -138,6 +138,17 @@ via the "\{\{name\}\}" syntax from elsewhere in your Buttonize app.
 			<Fragment slot="description">
 				The initial value for the input set in the [Runtime
 				State](/core-concepts/runtime-state/).
+			</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### disabled
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">boolean</Fragment>
+			<Fragment slot="description">
+				Whether or not the input is disabled. Default is `false`.
 			</Fragment>
 		</PropDescription>
 		<SpacingProps />

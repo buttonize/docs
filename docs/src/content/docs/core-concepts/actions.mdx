@@ -9,7 +9,13 @@ import FrameworkSelect from '@components/FrameworkSelect.astro'
 import FrameworkContent from '@components/FrameworkContent.astro'
 import PagesList from '@components/PagesList.astro'
 
-<FrameworkSelect />
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize/tree/master/cdk/actions)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
 
 Actions are user-defined responses to certain events. For example, they can be a click of a button or the loading of a page. If a component has property with the prefix `on`, like `onSubmit` for example, you can define an action there.
 
@@ -22,13 +28,12 @@ Currently there are two main groups of of actions:
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-11,17-26} {15,30-42}
+    ```ts title="lib/MyStack.ts" collapse={1-10,16-25} {14,29-39}
     import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+    import { Action, Buttonize, ButtonizeApp, Display, Input } from 'buttonize/cdk'
 
     Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
+      apiKey: 'btnz_mybuttonizekey1234567'
     })
 
     new ButtonizeApp(this, 'MyButtonizeApp')
@@ -54,9 +59,7 @@ Currently there are two main groups of of actions:
             variant: 'secondary',
             onClick: Action.aws.lambda.invoke(
               new NodejsFunction(this, 'MyLambda', {
-                handler: 'handler',
-                entry: path.join(__dirname, `lambdaHandler.ts`),
-                runtime: lambda.Runtime.NODEJS_20_X
+                entry: path.join(__dirname, `lambdaHandler.ts`)
               }),
               {
                 Payload: {

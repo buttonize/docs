@@ -31,20 +31,20 @@ Displays an interactable toggle button within a Buttonize page.
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-5}
-    import { ButtonizeApp, Input } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-4} {"the name of the variable in the runtime state": 7-8}
+    import { ButtonizeApp, Input, Display } from 'buttonize/cdk'
 
-    new ButtonizeApp(this, 'DemoApp', {
-      name: 'Demo App'
-    }).page('DemoPage', {
-      body: [
-        Input.toggle({
-          id: 'toggleSwitch', // the name of the variable in the runtime state
-          label: 'Enable Feature',
-        }),
-        Display.text("toggleSwitch's value: {{toggleSwitch}}"),
-      ]
-    })
+    new ButtonizeApp(this, 'DemoApp')
+      .page('DemoPage', {
+        body: [
+          Input.toggle({
+
+            id: 'toggleSwitch',
+            label: 'Enable Feature',
+          }),
+          Display.text("toggleSwitch's value: {{toggleSwitch}}"),
+        ]
+      })
     ```
 
    </Fragment>

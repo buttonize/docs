@@ -11,7 +11,13 @@ import FrameworkContent from '@components/FrameworkContent.astro'
 import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 
-<FrameworkSelect />
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize/blob/master/cdk/ButtonizeApp.ts)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
 
 Apps and pages are the main building blocks of Buttonize. Every app is composed of one or more pages and every page is then composed of one or more [Components](/core-concepts/components).
 
@@ -27,12 +33,11 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" {8-9,18}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" {7-8,17}
+    import { Action, Buttonize, ButtonizeApp, Display, Input } from 'buttonize/cdk'
 
     Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
+      apiKey: 'btnz_mybuttonizekey1234567'
     })
 
     new ButtonizeApp(this, 'MyButtonizeApp')
@@ -73,6 +78,7 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 	_The buttons are not interactive in this example._
 </span>
 <ComponentDemo
+	height={160}
 	components={[
 		{
 			typeName: 'display.heading',
@@ -103,7 +109,7 @@ Apps and pages are the main building blocks of Buttonize. Every app is composed 
 	_The buttons are not interactive in this example._
 </span>
 <ComponentDemo
-	height={250}
+	height={270}
 	components={[
 		{
 			typeName: 'display.heading',

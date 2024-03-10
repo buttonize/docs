@@ -31,30 +31,29 @@ Displays a dropdown field, allowing a user to select an option from a pre-define
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-5} {"     since the id of the input is selectInput, access the option's values like so":19}
-    import { ButtonizeApp, Input } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-4} {"since the id of the input is selectInput, access the option's values like so":18}
+    import { ButtonizeApp, Input, Display } from 'buttonize/cdk'
 
-    new ButtonizeApp(this, 'DemoApp', {
-      name: 'Demo App'
-    }).page('DemoPage', {
-      body: [
-        Input.select({
-          id: 'selectInput',
-          options: [
-            { label: 'Option 1', value: 'option1' },
-            { label: 'Option 2', value: 'option2' },
-          ],
-          label: 'Select an option',
-          placeholder: 'Choose one...',
-          initialValue: [
-            { label: 'Option 1', value: 'option1' }
-          ],
-        }),
+    new ButtonizeApp(this, 'DemoApp')
+      .page('DemoPage', {
+        body: [
+          Input.select({
+            id: 'selectInput',
+            options: [
+              { label: 'Option 1', value: 'option1' },
+              { label: 'Option 2', value: 'option2' },
+            ],
+            label: 'Select an option',
+            placeholder: 'Choose one...',
+            initialValue: [
+              { label: 'Option 1', value: 'option1' }
+            ],
+          }),
 
-        Display.text("Selected label: {{selectInput.label}}"),
-        Display.text("Selected value: {{selectInput.value}}")
-      ]
-    })
+          Display.text("Selected label: {{selectInput.label}}"),
+          Display.text("Selected value: {{selectInput.value}}")
+        ]
+      })
     ```
 
    </Fragment>

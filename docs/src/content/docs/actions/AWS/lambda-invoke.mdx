@@ -26,13 +26,12 @@ Invoke a Lambda function.
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```typescript title="lib/MyStack.ts" "lambda.invoke" collapse={1-12}
+    ```typescript title="lib/MyStack.ts" "lambda.invoke" collapse={1-10}
     import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
-    import { Action, ButtonizeApp, Input } from '@buttonize/cdk'
+    import { Action, ButtonizeApp, Input } from 'buttonize/cdk'
 
-    new ButtonizeApp(this, 'DemoApp', {
-        name: 'Demo App'
-      }).page('DemoPage', {
+    new ButtonizeApp(this, 'DemoApp')
+      .page('DemoPage', {
         body: [
           Input.text({
             id: 'name',
@@ -75,7 +74,7 @@ Here, we only mention the most frequently used props.
         ### Payload
       </Fragment>
       <PropMarker slot="markers" type="optional" />
-      <Fragment slot="type">object | string</Fragment>
+      <Fragment slot="type">object</Fragment>
       <Fragment slot="description">
          Buttonize resolves variables in the `Payload` object and stringifies the whole object to JSON before sending the request to AWS.
 

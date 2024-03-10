@@ -26,7 +26,7 @@ platform.value
 <FrameworkContent>
   <Fragment slot="cdk">
     ```ts title="lib/MyStack.ts" collapse={1-8} "platform"
-    import { Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+    import { Buttonize, ButtonizeApp, Display, Input } from 'buttonize/cdk'
 
     Buttonize.init(this, {
       apiKey: 'btnz_mybuttonizekey1234567'
@@ -101,7 +101,7 @@ awsServices[?category == 'Compute'].name | sort(@) | join(', ', @)
 <FrameworkContent>
   <Fragment slot="cdk">
     ```ts title="lib/MyStack.ts" collapse={1-8}
-    import { Buttonize, ButtonizeApp, Display } from '@buttonize/cdk'
+    import { Buttonize, ButtonizeApp, Display } from 'buttonize/cdk'
 
     Buttonize.init(this, {
       apiKey: 'btnz_mybuttonizekey1234567'
@@ -150,7 +150,7 @@ buttonColor.value
 <FrameworkContent>
   <Fragment slot="cdk">
     ```ts title="lib/MyStack.ts" collapse={1-8} "buttonColor"
-    import { Action, Buttonize, ButtonizeApp, Input } from '@buttonize/cdk'
+    import { Action, Buttonize, ButtonizeApp, Input } from 'buttonize/cdk'
 
     Buttonize.init(this, {
       apiKey: 'btnz_mybuttonizekey1234567'

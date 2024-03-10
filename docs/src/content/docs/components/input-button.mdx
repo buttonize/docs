@@ -33,20 +33,18 @@ The button can be used to trigger a lambda, change pages within a Buttonize app,
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-5} {"     changing pages within a Buttonize app": 7}
-    import { Action, ButtonizeApp, Display } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-4}
+    import { Action, ButtonizeApp, Input } from 'buttonize/cdk'
     
-    new ButtonizeApp(this, 'DemoApp', {
-      name: 'Demo App'
-    }).page('DemoPage', {
-      body: [
-        
-        Input.button({
-          label: 'Next Page',
-          onClick: Action.buttonize.app.changePage('SecondPage')
-        })
-      ]
-    })
+    new ButtonizeApp(this, 'DemoApp')
+      .page('DemoPage', {
+        body: [
+          Input.button({
+            label: 'Next Page',
+            onClick: Action.buttonize.app.changePage('SecondPage')
+          })
+        ]
+      })
     ```
    </Fragment>
 </FrameworkContent>
@@ -76,28 +74,23 @@ The buttons are not interactable in this example.
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {"     invoking an AWS service": 9}
-    import { Action, ButtonizeApp, Display } from '@buttonize/cdk'
-    import * as lambda from "aws-cdk-lib/aws-lambda";
+    ```ts title="lib/MyStack.ts" collapse={1-5}
+    import { Action, ButtonizeApp, Input } from 'buttonize/cdk'
     import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
     
-    new ButtonizeApp(this, 'DemoApp', {
-      name: 'Demo App'
-    }).page('DemoPage', {
-      body: [
-
-        Input.button({
-          label: 'Invoke Lambda',
-          onClick: Action.aws.lambda.invoke(
-            new NodejsFunction(this, 'ExampleLambda', {
-              handler: 'handler',
-              entry: 'exampleLambda.ts',
-              runtime: lambda.Runtime.NODEJS_20_X
-            })
-          )
-        })
-      ]
-    })
+    new ButtonizeApp(this, 'DemoApp')
+      .page('DemoPage', {
+        body: [
+          Input.button({
+            label: 'Invoke Lambda',
+            onClick: Action.aws.lambda.invoke(
+              new NodejsFunction(this, 'ExampleLambda', {
+                entry: 'exampleLambda.ts'
+              })
+            )
+          })
+        ]
+      })
     ```
 
    </Fragment>

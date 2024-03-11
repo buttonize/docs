@@ -12,7 +12,13 @@ import PropDescription from '@components/PropDescription.astro'
 import PropMarker from '@components/PropMarker.astro'
 import PagesList from '@components/PagesList.astro'
 
-<FrameworkSelect />
+<FrameworkSelect>
+	<FrameworkContent>
+		<Fragment slot="cdk">
+			[Source](https://github.com/buttonize/buttonize/tree/master/cdk/components)
+		</Fragment>
+	</FrameworkContent>
+</FrameworkSelect>
 
 Components are the visible parts of Buttonize apps.
 
@@ -25,12 +31,11 @@ There are two types of components
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {11-16}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-6} {10-15}
+    import { Action, Buttonize, ButtonizeApp, Display, Input } from 'buttonize/cdk'
 
     Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
+      apiKey: 'btnz_mybuttonizekey1234567'
     })
 
     new ButtonizeApp(this, 'MyButtonizeApp')
@@ -41,7 +46,7 @@ There are two types of components
             id: 'name',
             label: 'What is your name?',
             placeholder: 'Joe'
-          }),
+          })
         ]
       })
     ```

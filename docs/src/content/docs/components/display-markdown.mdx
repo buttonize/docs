@@ -31,16 +31,15 @@ Displays content formatted with Markdown.
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-5}
-    import { ButtonizeApp, Display } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-4}
+    import { ButtonizeApp, Display } from 'buttonize/cdk'
 
-    new ButtonizeApp(this, 'DemoApp', {
-      name: 'Demo App'
-    }).page('DemoPage', {
-      body: [
-        Display.markdown('# Hello, *World*!')
-      ]
-    })
+    new ButtonizeApp(this, 'DemoApp')
+      .page('DemoPage', {
+        body: [
+          Display.markdown('# Hello, *World*!')
+        ]
+      })
     ```
 
    </Fragment>

@@ -23,12 +23,11 @@ You can access the runtime state value in your app by using [variable](/core-con
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-7} {"'name' is used as a key when storing the input value in the state":12-13} {"The input value is being display here by using {{name}}":17-18}
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-6} {"'name' is used as a key when storing the input value in the state":11-12} {"The input value is being display here by using {{name}}":16-17}
+    import { Buttonize, ButtonizeApp, Display, Input } from 'buttonize/cdk'
 
     Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
+      apiKey: 'btnz_mybuttonizekey1234567'
     })
 
     new ButtonizeApp(this, 'MyButtonizeApp')
@@ -88,22 +87,17 @@ This can be useful when you need to pre-fetch data that will be displayed to the
 
 <FrameworkContent>
   <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-17} "myInitDataExample"
-    import { Action, Buttonize, ButtonizeApp, Display, Input } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-12} "myInitDataExample"
+    import { Action, Buttonize, ButtonizeApp, Display, Input } from 'buttonize/cdk'
 
     Buttonize.init(this, {
-      apiKey: 'btnz_mybuttonizekey1234567',
-      externalId: 'this-is-super-secret-99'
+      apiKey: 'btnz_mybuttonizekey1234567'
     })
 
     const myLambdaFunction = new lambda.NodejsFunction(
       this,
       'MyLambdaFunction',
-      {
-        handler: 'handler',
-        entry: path.join(__dirname, `lambdaHandler.ts`),
-        runtime: lambda.Runtime.NODEJS_20_X
-      }
+      { entry: path.join(__dirname, `lambdaHandler.ts`) }
     )
 
     new ButtonizeApp(this, 'MyButtonizeApp')

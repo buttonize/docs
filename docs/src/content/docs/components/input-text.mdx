@@ -31,24 +31,25 @@ Simple text input field.
 
 <FrameworkContent>
    <Fragment slot="cdk">
-    ```ts title="lib/MyStack.ts" collapse={1-5}
-    import { ButtonizeApp, Display } from '@buttonize/cdk'
+    ```ts title="lib/MyStack.ts" collapse={1-4} {"since the id of the input above is "name", access the value like so": 13-14} {"the name of the variable in the runtime state": 7-8}
+    import { ButtonizeApp, Display, Input } from 'buttonize/cdk'
     
-    new ButtonizeApp(this, 'DemoApp', {
-      name: 'Demo App'
-    }).page('DemoPage', {
-      body: [
-        Input.text({
-          id: 'name', // the name of the variable in the runtime state
-          label: 'What is your name?',
-          placeholder: 'John Doe',
-          initialValue: 'David Copperfield'
-        }),
-        // since the id of the input above is "name", access the value like so
-        Display.text("You entered: {{name}}")
-      ]
-    })
+    new ButtonizeApp(this, 'DemoApp')
+      .page('DemoPage', {
+        body: [
+          Input.text({
+
+            id: 'name',
+            label: 'What is your name?',
+            placeholder: 'John Doe',
+            initialValue: 'David Copperfield'
+          }),
+
+          Display.text("You entered: {{name}}")
+        ]
+      })
     ```
+
    </Fragment>
 </FrameworkContent>
 

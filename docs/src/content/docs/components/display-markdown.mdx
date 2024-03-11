@@ -38,8 +38,7 @@ Displays content formatted with Markdown.
       name: 'Demo App'
     }).page('DemoPage', {
       body: [
-        Display.markdown('# Hello, *World*!', {
-        })
+        Display.markdown('# Hello, *World*!')
       ]
     })
     ```
@@ -64,6 +63,15 @@ Displays content formatted with Markdown.
 
 <FrameworkContent>
 	<Fragment slot="cdk">
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### markdown
+			</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">The markdown content to display.</Fragment>
+		</PropDescription>
 		<SpacingProps />
 		<SizingProps />
 	</Fragment>

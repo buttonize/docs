@@ -24,7 +24,7 @@ import SizingProps from '../../../components/SizingProps.mdx'
 Displays bold heading with large font size.
 
 ```ansi frame="none"
-[38;5;39mDisplay.heading[0m(text, props)
+[38;5;39mDisplay.heading[0m(label, props)
 ```
 
 ## Usage
@@ -65,6 +65,15 @@ Displays bold heading with large font size.
 		<PropDescription>
 			<Fragment slot="title">
 				{/* keep-good-prettier-formatting */}
+				### label
+			</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">string</Fragment>
+			<Fragment slot="description">The displayed text.</Fragment>
+		</PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
 				### subtitle
 			</Fragment>
 			<PropMarker slot="markers" type="optional" />
@@ -79,7 +88,7 @@ Displays bold heading with large font size.
 				### level
 			</Fragment>
 			<PropMarker slot="markers" type="optional" />
-			<Fragment slot="type">2 | 3 | 4</Fragment>
+			<Fragment slot="type">1 | 2 | 3 | 4</Fragment>
 			<Fragment slot="description">
 				Level of the heading. Default level is `1`.
 			</Fragment>

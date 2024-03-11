@@ -90,29 +90,32 @@ Renders code within your Buttonize app with syntax highlighting.
 			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
 				The programming language of the code for proper syntax highlighting.
-			</Fragment>
-		</PropDescription>
-		<PropDescription>
-			<Fragment slot="title">
-				{/* keep-good-prettier-formatting */}
-				### title
-			</Fragment>
-			<PropMarker slot="markers" type="optional" />
-			<Fragment slot="type">string</Fragment>
-			<Fragment slot="description">Optional title for the code block.</Fragment>
-		</PropDescription>
-		<PropDescription>
-			<Fragment slot="title">
-				{/* keep-good-prettier-formatting */}
-				### frame
-			</Fragment>
-			<PropMarker slot="markers" type="optional" />
-			<Fragment slot="type">'code' | 'terminal' | 'none' | 'auto'</Fragment>
-			<Fragment slot="description">
-				Frame type for the code block. Default is 'code'.
-			</Fragment>
-		</PropDescription>
-		<SpacingProps />
-		<SizingProps />
-	</Fragment>
+
+        [List of all available languages.](https://github.com/shikijs/textmate-grammars-themes/blob/main/packages/tm-grammars/README.md)
+    		</Fragment>
+    	</PropDescription>
+    	<PropDescription>
+    		<Fragment slot="title">
+    			{/* keep-good-prettier-formatting */}
+    			### title
+    		</Fragment>
+    		<PropMarker slot="markers" type="optional" />
+    		<Fragment slot="type">string</Fragment>
+    		<Fragment slot="description">Optional title for the code block.</Fragment>
+    	</PropDescription>
+    	<PropDescription>
+    		<Fragment slot="title">
+    			{/* keep-good-prettier-formatting */}
+    			### frame
+    		</Fragment>
+    		<PropMarker slot="markers" type="optional" />
+    		<Fragment slot="type">'code' | 'terminal' | 'none' | 'auto'</Fragment>
+    		<Fragment slot="description">
+    			Frame type for the code block. Default is `'code'`.
+    		</Fragment>
+    	</PropDescription>
+    	<SpacingProps />
+    	<SizingProps />
+    </Fragment>
+
 </FrameworkContent>

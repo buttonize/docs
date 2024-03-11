@@ -27,10 +27,6 @@ Displays a video within your Buttonize app.
 [38;5;39mDisplay.video[0m(url, props)
 ```
 
-The video link must be a valid value for the `src` attribute of an HTML `<video>` tag.
-
-Embeddable YouTube video links and other such `<iframe>`-based links will not work.
-
 ## Usage
 
 <FrameworkContent>
@@ -70,15 +66,31 @@ Embeddable YouTube video links and other such `<iframe>`-based links will not wo
 		<PropDescription>
 			<Fragment slot="title">
 				{/* keep-good-prettier-formatting */}
-				### muted
+				### url
 			</Fragment>
-			<PropMarker slot="markers" type="optional" />
-			<Fragment slot="type">boolean</Fragment>
+			<PropMarker slot="markers" type="required" />
+			<Fragment slot="type">string</Fragment>
 			<Fragment slot="description">
-				Initial muted state of the video. Default is `false`.
-			</Fragment>
-		</PropDescription>
-		<SpacingProps />
-		<SizingProps />
-	</Fragment>
+				The source URL of the video.
+
+        The video URL must be a valid value for the `src` attribute of an HTML [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) tag.
+
+        Embeddable YouTube video links and other such `<iframe>`-based links will not work.
+    		</Fragment>
+    	</PropDescription>
+    <PropDescription>
+    		<Fragment slot="title">
+    			{/* keep-good-prettier-formatting */}
+    			### muted
+    		</Fragment>
+    		<PropMarker slot="markers" type="optional" />
+    		<Fragment slot="type">boolean</Fragment>
+    		<Fragment slot="description">
+    			Initial muted state of the video. Default is `false`.
+    		</Fragment>
+    	</PropDescription>
+    	<SpacingProps />
+    	<SizingProps />
+    </Fragment>
+
 </FrameworkContent>

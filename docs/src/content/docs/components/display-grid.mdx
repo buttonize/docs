@@ -88,6 +88,33 @@ Displays the given components with the specified, grid-based layout.
 
 <FrameworkContent>
 	<Fragment slot="cdk">
-		<SpacingProps />
-	</Fragment>
+    <PropDescription>
+    		<Fragment slot="title">
+    			{/* keep-good-prettier-formatting */}
+    			### columns[].body
+    		</Fragment>
+    		<PropMarker slot="markers" type="required" />
+    		<Fragment slot="type">IComponent[]</Fragment>
+    		<Fragment slot="description">
+    			Body of the grid column.
+    		</Fragment>
+    </PropDescription>
+		<PropDescription>
+			<Fragment slot="title">
+				{/* keep-good-prettier-formatting */}
+				### columns[].size
+			</Fragment>
+			<PropMarker slot="markers" type="optional" />
+			<Fragment slot="type">1 | 2 | 3 | 4</Fragment>
+			<Fragment slot="description">
+				Width of the grid column.
+
+        Total sum of all sizes must be less or equal `4`.
+
+        Default is `1`.
+    		</Fragment>
+    </PropDescription>
+    <SpacingProps />
+
+  </Fragment>
 </FrameworkContent>

@@ -43,6 +43,25 @@ const rehypeExternalLinksOptions = {
 	}
 }
 
+const prodHeadScripts = [
+	{
+		tag: 'script',
+		attrs: {
+			async: true,
+			src: 'https://www.googletagmanager.com/gtag/js?id=G-9LX6CMEGR1'
+		}
+	},
+	{
+		tag: 'script',
+		content: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-9LX6CMEGR1');`
+	}
+]
+
 // https://astro.build/config
 export default defineConfig({
 	site: process.env.SITE,
@@ -126,7 +145,8 @@ export default defineConfig({
 			components: {
 				// Override the default `SocialIcons` component.
 				SocialIcons: './src/components/SocialIcons.astro'
-			}
+			},
+			head: process.env.STAGE === 'master' ? prodHeadScripts : []
 		}),
 		tailwind({
 			// Disable the default base styles:

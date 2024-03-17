@@ -5,7 +5,8 @@ tableOfContents: false
 ---
 
 import { LinkCard, CardGrid } from '@astrojs/starlight/components'
-import IntroCard from '../../components/IntroCard.astro'
+import IntroCard from '@components/IntroCard.astro'
+import ScreenImage from '@components/ScreenImage.astro'
 
 Buttonize is a **fully managed** SaaS platform **connected directly to your AWS environment**
 providing you with an Infrastructure as Code abstraction such as **AWS CDK** over rich
@@ -41,6 +42,12 @@ set of **UI components** and actions in order to build **internal tools** on top
 ## How Buttonize can help you
 
 Buttonize helps developers and companies using AWS cloud to solve a painful problem of internal tooling.
+
+<ScreenImage>
+	<div class="p-4">
+		![Buttonize illustration](../../../public/images/schema_illust.png)
+	</div>
+</ScreenImage>
 
 ### Problems with internal tooling
 
